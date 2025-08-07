@@ -1,36 +1,167 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TD Studios NY
+
+Official website for TD Studios New York - Premium AI Solutions & Digital Innovation
+
+## Project Overview
+
+**Domain:** tdstudiosny.com  
+**Status:** Development  
+**Tech Stack:** Next.js 15, TypeScript, Tailwind CSS  
+**Created:** 2025-08-07
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+- Git
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone [repository-url]
+
+# Navigate to project directory
+cd tdstudiosny
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.local.example .env.local
+# Edit .env.local with your actual API keys
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+tdstudiosny/
+├── app/                  # Next.js app directory
+│   ├── components/       # React components
+│   ├── lib/             # Utility functions
+│   ├── layout.tsx       # Root layout
+│   ├── page.tsx         # Home page
+│   └── globals.css      # Global styles
+├── public/              # Static assets
+│   └── images/          # Image assets
+├── components.json      # UI component configuration
+├── tailwind.config.ts   # Tailwind configuration
+├── next.config.ts       # Next.js configuration
+└── package.json         # Dependencies
 
-## Learn More
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Available Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+npm run type-check   # Run TypeScript checker
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Features
 
-## Deploy on Vercel
+- ⚡ Next.js 15 with App Router
+- 🎨 Tailwind CSS for styling
+- 📱 Fully responsive design
+- 🔒 TypeScript for type safety
+- 🚀 Optimized for performance
+- 🎯 SEO optimized
+- 🤖 AI integration ready
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Vercel (Recommended)
+
+1. Push code to GitHub
+2. Import project in Vercel
+3. Configure environment variables
+4. Deploy
+
+### Manual Deployment
+
+```bash
+# Build the project
+npm run build
+
+# Start production server
+npm run start
+```
+
+## Environment Variables
+
+Create a `.env.local` file with:
+
+```env
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=https://tdstudiosny.com
+NEXT_PUBLIC_SITE_NAME=TD Studios NY
+
+# API Keys
+OPENAI_API_KEY=your_key_here
+ANTHROPIC_API_KEY=your_key_here
+STRIPE_SECRET_KEY=your_key_here
+STRIPE_PUBLISHABLE_KEY=your_key_here
+```
+
+## Development Workflow
+
+1. Create feature branch: `git checkout -b feature/your-feature`
+2. Make changes and test locally
+3. Run linting: `npm run lint`
+4. Build project: `npm run build`
+5. Commit changes: `git commit -m "Add: your feature"`
+6. Push to repository: `git push origin feature/your-feature`
+7. Create pull request
+
+## Key Pages & Routes
+
+- `/` - Homepage
+- `/about` - About TD Studios NY
+- `/services` - Services offered
+- `/contact` - Contact information
+- `/api/*` - API endpoints
+
+## Tech Stack Details
+
+- **Framework:** Next.js 15.4.6
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **UI Components:** Radix UI
+- **Icons:** Lucide React
+- **Utilities:** clsx, tailwind-merge
+
+## Performance Targets
+
+- Lighthouse Score: 95+
+- First Contentful Paint: < 1s
+- Time to Interactive: < 2s
+- Core Web Vitals: All green
+
+## Security
+
+- Environment variables for sensitive data
+- HTTPS enforced in production
+- API rate limiting implemented
+- Input validation on all forms
+- XSS protection headers
+
+## Contact
+
+**TD Studios NY**  
+Website: tdstudiosny.com  
+Email: contact@tdstudiosny.com
+
+---
+
+© 2025 TD Studios NY. All rights reserved.
+EOF < /dev/null
