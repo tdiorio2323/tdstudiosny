@@ -1,8 +1,8 @@
 import { ImageResponse } from "next/og";
 import React from "react";
 export const runtime = "edge";
-export const alt: string = "TD Studios";
-export const contentType = "image/png";
+
+
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const t = (searchParams.get("title") ?? "TD Studios").slice(0, 80);
@@ -28,6 +28,6 @@ export async function GET(req: Request) {
         t
       )
     ),
-    { width: 1200, height: 630 }
+    { width: 1200, height: 630, headers: { 'Content-Type': 'image/png' } }
   );
 }

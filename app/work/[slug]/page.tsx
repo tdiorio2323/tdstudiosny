@@ -1,340 +1,185 @@
-import { Metadata } from "next"
-import Image from "next/image"
-import Link from "next/link"
-import { notFound } from "next/navigation"
-import { clients, type Client } from "@/lib/clients-data"
-import { GlassCard } from "@/components/glass-card"
-import { FrostedButton } from "@/components/frosted-button"
-import { SocialShare } from "@/components/social-share"
-import { Globe, Instagram, Facebook, Twitter, Linkedin, ArrowLeft } from "lucide-react"
+// app/work/[slug]/page.tsx - Refactored Content
 
-interface ProjectPageProps {
-  params: Promise<{
-    slug: string
-  }>
+import { generateSEOMetadata } from "@/components/seo-head"
+import { clients } from "@/lib/clients-data"
+import { notFound } from "next/navigation"
+import Image from "next/image"
+import { FrostedButton } from "@/components/frosted-button"
+import { GlassCard } from "@/components/glass-card"
+import { ArrowLeft, Globe } from "lucide-react" // Only kept Globe, removed Social Icons
+import Link from "next/link"
+import { JsonLd } from "@/components/json-ld"
+import { CaseStudyDetailContent } from "@/components/CaseStudyDetailContent" // New Import
+
+type Props = {
+  params: { slug: string }
 }
 
-// Generate static params for all client projects
 export async function generateStaticParams() {
   return clients.map((client) => ({
     slug: client.slug,
   }))
 }
 
-// Generate metadata for each project page
-export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const { slug } = await params
-  const client = clients.find((c) => c.slug === slug)
-
+export async function generateMetadata({ params }: Props) {
+  const client = clients.find((c) => c.slug === params.slug)
   if (!client) {
-    return {
-      title: "Project Not Found | TD Studios",
-    }
+    return generateSEOMetadata({
+      title: "Project Not Found",
+      description: "The requested project could not be found.",
+    })
   }
-
-  return {
-    title: `${client.name} — TD Studios`,
-    description: client.description,
-    alternates: {
-      canonical: `https://tdstudiosny.com/work/${slug}`,
-    },
-    openGraph: {
-      title: `${client.name} — TD Studios`,
-      description: client.description,
-      images: [client.logo],
-      url: `https://tdstudiosny.com/work/${slug}`,
-      siteName: "TD Studios",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${client.name} — TD Studios`,
-      description: client.description,
-      images: [client.logo],
-    },
-  }
+  // FIXED Template Literals using backticks (``)
+  return generateSEOMetadata({
+    title: `${client.name} - Case Study`,
+    description: client.description || `Case study for ${client.name} by TD Studios.`,
+    canonical: `/work/${client.slug}`,
+    ogImage: client.gallery[0], // Pass the first image as ogImage
+  })
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { slug } = await params
-  const client = clients.find((c) => c.slug === slug)
+export default function ClientCaseStudyPage({ params }: Props) {
+  const client = clients.find((c) => c.slug === params.slug)
 
   if (!client) {
     notFound()
   }
 
-  // Generate JSON-LD structured data
-  const jsonLd = {
+  const breadcrumbSchema = {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    name: client.name,
-    description: client.description,
-    creator: {
-      "@type": "Organization",
-      name: "TD Studios",
-      url: "https://tdstudiosny.com",
-    },
-    datePublished: client.year,
-    serviceType: client.services,
-    ...(client.testimonial && {
-      review: {
-        "@type": "Review",
-        reviewBody: client.testimonial.quote,
-        author: {
-          "@type": "Person",
-          name: client.testimonial.author,
-          jobTitle: client.testimonial.position,
-        },
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-          bestRating: "5",
-        },
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://tdstudiosny.com",
       },
-    }),
-    ...(client.websiteUrl && {
-      url: client.websiteUrl,
-    }),
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Work",
+        "item": "https://tdstudiosny.com/work",
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": client.name,
+        // FIXED Template Literal using backticks (``)
+        "item": `https://tdstudiosny.com/work/${client.slug}`,
+      },
+    ],
   }
 
   return (
-    <>
-      {/* JSON-LD Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <main className="min-h-dvh bg-background">
+      <JsonLd data={breadcrumbSchema} />
+      {/* Hero Section */}
+      <section className="relative min-h-screen md:min-h-[70vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src={client.heroImage || client.gallery[0] || "https://i.imgur.com/a1bXC5y.png"}
+            alt={`${client.name} Hero Image`}
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-black/40 md:bg-black/40 hero-overlay-mobile"></div>
+        </div>
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">{client.name}</h1>
+          <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
+            {client.tagline || "A case study in premium design and development."}
+          </p>
+          <FrostedButton href="/contact" className="px-8 py-4 text-lg font-semibold">
+            Start Your Project
+          </FrostedButton>
+        </div>
+      </section>
 
-      <main className="min-h-screen">
-        {/* Hero Section with Client Branding */}
-        <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0">
-            <Image
-              src="https://i.imgur.com/a1bXC5y.png"
-              alt={`${client.name} project hero`}
-              fill
-              priority
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black"></div>
-          </div>
-
-          <div className="relative z-10 text-center max-w-5xl mx-auto px-6">
-            {/* Navigation and Share */}
-            <div className="flex items-center justify-between mb-8">
-              <Link
-                href="/work"
-                className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Back to Portfolio
-              </Link>
-              
-              <SocialShare
-                url={`https://tdstudiosny.com/work/${client.slug}`}
-                title={`${client.name} - TD Studios Portfolio`}
-                description={client.description}
-              />
-            </div>
-
-            {/* Client Logo */}
-            <div className="flex justify-center mb-8">
-              <div
-                className={`relative w-32 h-32 overflow-hidden ${client.logoBgColor || "bg-neutral-900/80"} border border-white/20 rounded-2xl p-4`}
-              >
-                <Image
-                  src={client.logo}
-                  alt={`${client.name} logo`}
-                  fill
-                  className={`object-contain ${client.logoInvert ? "invert" : ""}`}
-                  sizes="128px"
-                />
-              </div>
-            </div>
-
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">{client.name}</h1>
-            <p className="text-xl text-white/90 mb-4">
-              {client.industry} • {client.year}
-            </p>
-
-            {/* Client Links */}
-            {(client.websiteUrl || client.socialLinks) && (
-              <div className="flex flex-wrap gap-3 justify-center mt-8">
-                {client.websiteUrl && (
-                  <a
-                    href={client.websiteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white backdrop-blur-lg transition-colors min-h-[44px]"
-                  >
-                    <Globe className="w-4 h-4" />
-                    Visit Website
-                  </a>
-                )}
-                {client.socialLinks?.instagram && (
-                  <a
-                    href={client.socialLinks.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white backdrop-blur-lg transition-colors min-h-[44px]"
-                  >
-                    <Instagram className="w-4 h-4" />
-                    Instagram
-                  </a>
-                )}
-                {client.socialLinks?.facebook && (
-                  <a
-                    href={client.socialLinks.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white backdrop-blur-lg transition-colors min-h-[44px]"
-                  >
-                    <Facebook className="w-4 h-4" />
-                    Facebook
-                  </a>
-                )}
-                {client.socialLinks?.twitter && (
-                  <a
-                    href={client.socialLinks.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white backdrop-blur-lg transition-colors min-h-[44px]"
-                  >
-                    <Twitter className="w-4 h-4" />
-                    Twitter
-                  </a>
-                )}
-                {client.socialLinks?.linkedin && (
-                  <a
-                    href={client.socialLinks.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white backdrop-blur-lg transition-colors min-h-[44px]"
-                  >
-                    <Linkedin className="w-4 h-4" />
-                    LinkedIn
-                  </a>
-                )}
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* Services Section */}
-        {client.services.length > 0 && (
-          <section className="relative py-16 px-6 bg-black/40">
-            <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl font-bold mb-8 text-center text-white">Services Provided</h2>
-              <div className="flex flex-wrap gap-3 justify-center">
-                {client.services.map((service) => (
-                  <span
-                    key={service}
-                    className="px-6 py-3 bg-neutral-900/80 border border-white/20 rounded-full text-sm text-white backdrop-blur-lg"
-                  >
-                    {service}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Project Overview */}
-        {client.description && (
-          <section className="relative py-16 px-6">
-            <div className="max-w-4xl mx-auto">
-              <GlassCard className="p-8 md:p-12">
-                <h2 className="text-3xl font-bold mb-6 text-white">Project Overview</h2>
-                <p className="text-white/90 text-lg leading-relaxed">{client.description}</p>
-              </GlassCard>
-            </div>
-          </section>
-        )}
-
-        {/* Key Results */}
-        {client.results.length > 0 && (
-          <section className="relative py-16 px-6 bg-black/40">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold mb-8 text-center text-white">Key Results</h2>
-              <GlassCard className="p-8">
-                <ul className="space-y-4">
-                  {client.results.map((result, index) => (
-                    <li key={index} className="flex items-start text-white">
-                      <span className="text-green-400 text-2xl mr-4 flex-shrink-0">✓</span>
-                      <span className="text-lg">{result}</span>
-                    </li>
-                  ))}
-                </ul>
-              </GlassCard>
-            </div>
-          </section>
-        )}
-
-        {/* Project Gallery */}
-        {client.gallery.length > 0 && (
-          <section className="relative py-16 px-6">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl font-bold mb-8 text-center text-white">Project Gallery</h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {client.gallery.map((image, index) => (
-                  <div
-                    key={index}
-                    className="relative aspect-video overflow-hidden rounded-xl border border-white/10"
-                  >
-                    <Image
-                      src={image}
-                      alt={`${client.name} gallery image ${index + 1}`}
-                      fill
-                      className="object-cover hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
+      {/* Project Details */}
+      <section className="py-24 bg-black/60">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* Left Column: Overview (Static Info) */}
+            <div className="lg:col-span-1">
+              <GlassCard className="p-8 sticky top-24">
+                <h2 className="text-3xl font-bold text-white mb-6">Project Overview</h2>
+                <div className="space-y-4 mb-8">
+                  <div>
+                    <h3 className="text-lg font-semibold text-white">Client</h3>
+                    <p className="text-white/80">{client.name}</p>
                   </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Client Testimonial */}
-        {client.testimonial && (
-          <section className="relative py-16 px-6 bg-black/40">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold mb-8 text-center text-white">Client Testimonial</h2>
-              <GlassCard className="p-8 md:p-12">
-                <blockquote className="text-white/90 text-xl italic mb-6 leading-relaxed">
-                  "{client.testimonial.quote}"
-                </blockquote>
-                <div className="border-t border-white/10 pt-6">
-                  <p className="text-white font-semibold text-lg">{client.testimonial.author}</p>
-                  <p className="text-white/70">{client.testimonial.position}</p>
+                  <div>
+                    <h3 className="text-lg font-semibold text-white">Industry</h3>
+                    <p className="text-white/80">{client.industry}</p>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-white">Year</h3>
+                    <p className="text-white/80">{client.year}</p>
+                  </div>
+                  {client.websiteUrl && (
+                    <div>
+                      <h3 className="text-lg font-semibold text-white">Website</h3>
+                      <a
+                        href={client.websiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-luxury-gold hover:underline flex items-center gap-2"
+                      >
+                        Visit Website <Globe className="w-4 h-4" />
+                      </a>
+                    </div>
+                  )}
                 </div>
+
+                {client.services.length > 0 && (
+                  <div className="mb-8">
+                    <h3 className="text-lg font-semibold text-white mb-4">Services Provided</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {client.services.map((service) => (
+                        <span
+                          key={service}
+                          className="px-4 py-2 bg-neutral-900/80 border border-white/20 rounded-full text-sm text-white"
+                        >
+                          {service}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <Link href="/work" className="text-luxury-gold hover:underline flex items-center gap-2">
+                  <ArrowLeft className="w-4 h-4" /> Back to Portfolio
+                </Link>
               </GlassCard>
             </div>
-          </section>
-        )}
 
-        {/* CTA Section */}
-        <section className="relative py-20 px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <GlassCard className="p-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-                Ready to Create Your Success Story?
-              </h2>
-              <p className="text-white/90 text-lg mb-8">
-                Let's discuss how we can transform your brand with strategic design and development.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <FrostedButton href="/contact" className="text-lg">
-                  Start Your Project
-                </FrostedButton>
-                <FrostedButton href="/work" className="text-lg bg-white/5">
-                  View More Work
-                </FrostedButton>
-              </div>
-            </GlassCard>
+            {/* Right Column: Uses reusable content component */}
+            <div className="lg:col-span-2">
+                <CaseStudyDetailContent client={client} />
+            </div>
+
           </div>
-        </section>
-      </main>
-    </>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative py-20 px-6">
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <GlassCard className="p-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Elevate Your Brand?</h2>
+            <p className="text-white text-lg mb-8">
+              Let's discuss your vision and create a digital experience that stands out.
+            </p>
+            <FrostedButton href="/contact" className="px-8 py-4 text-lg font-semibold">
+              Get in Touch
+            </FrostedButton>
+          </GlassCard>
+        </div>
+      </section>
+    </main>
   )
 }

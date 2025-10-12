@@ -7,6 +7,7 @@ import { GlassCard } from "@/components/glass-card"
 import { FrostedButton } from "@/components/frosted-button"
 import { X, ArrowRight, Instagram, Facebook, Twitter, Linkedin, Globe } from "lucide-react"
 import { clients, type Client } from "@/lib/clients-data"
+import { CaseStudyDetailContent } from "@/components/CaseStudyDetailContent";
 
 export default function PortfolioClientPage() {
   const [selectedProject, setSelectedProject] = useState<Client | null>(null)
@@ -154,142 +155,8 @@ export default function PortfolioClientPage() {
                 </button>
               </div>
 
-              {/* Client Info */}
-              {(selectedProject.websiteUrl || selectedProject.socialLinks) && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold mb-4 text-white">Client Links</h3>
-                  <div className="flex flex-wrap gap-3">
-                    {selectedProject.websiteUrl && (
-                      <a
-                        href={selectedProject.websiteUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 border border-white/20 rounded-lg text-white hover:bg-neutral-900/90 transition-colors min-h-[44px]"
-                      >
-                        <Globe className="w-4 h-4" />
-                        Website
-                      </a>
-                    )}
-                    {selectedProject.socialLinks?.instagram && (
-                      <a
-                        href={selectedProject.socialLinks.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 border border-white/20 rounded-lg text-white hover:bg-neutral-900/90 transition-colors min-h-[44px]"
-                      >
-                        <Instagram className="w-4 h-4" />
-                        Instagram
-                      </a>
-                    )}
-                    {selectedProject.socialLinks?.facebook && (
-                      <a
-                        href={selectedProject.socialLinks.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 border border-white/20 rounded-lg text-white hover:bg-neutral-900/90 transition-colors min-h-[44px]"
-                      >
-                        <Facebook className="w-4 h-4" />
-                        Facebook
-                      </a>
-                    )}
-                    {selectedProject.socialLinks?.twitter && (
-                      <a
-                        href={selectedProject.socialLinks.twitter}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 border border-white/20 rounded-lg text-white hover:bg-neutral-900/90 transition-colors min-h-[44px]"
-                      >
-                        <Twitter className="w-4 h-4" />
-                        Twitter
-                      </a>
-                    )}
-                    {selectedProject.socialLinks?.linkedin && (
-                      <a
-                        href={selectedProject.socialLinks.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 border border-white/20 rounded-lg text-white hover:bg-neutral-900/90 transition-colors min-h-[44px]"
-                      >
-                        <Linkedin className="w-4 h-4" />
-                        LinkedIn
-                      </a>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Services */}
-              {selectedProject.services.length > 0 && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold mb-4 text-white">Services Provided</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.services.map((service) => (
-                      <span
-                        key={service}
-                        className="px-4 py-2 bg-neutral-900/80 border border-white/20 rounded-full text-sm text-white"
-                      >
-                        {service}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Description */}
-              {selectedProject.description && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold mb-4 text-white">Project Overview</h3>
-                  <p className="text-white leading-relaxed">{selectedProject.description}</p>
-                </div>
-              )}
-
-              {/* Results */}
-              {selectedProject.results.length > 0 && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold mb-4 text-white">Key Results</h3>
-                  <ul className="space-y-2">
-                    {selectedProject.results.map((result, index) => (
-                      <li key={index} className="flex items-center text-white">
-                        <span className="text-green-400 mr-3">✓</span>
-                        {result}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Gallery */}
-              {selectedProject.gallery.length > 0 && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold mb-4 text-white">Project Gallery</h3>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    {selectedProject.gallery.map((image, index) => (
-                      <div key={index} className="relative aspect-video overflow-hidden rounded-lg border border-white/10">
-                        <Image
-                          src={image}
-                          alt={`${selectedProject.name} gallery ${index + 1}`}
-                          fill
-                          loading="lazy"
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Testimonial */}
-              {selectedProject.testimonial && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold mb-4 text-white">Client Testimonial</h3>
-                  <GlassCard className="p-6">
-                    <p className="text-white italic mb-4">"{selectedProject.testimonial.quote}"</p>
-                    <p className="text-white font-semibold">{selectedProject.testimonial.author}</p>
-                    <p className="text-white/70 text-sm">{selectedProject.testimonial.position}</p>
-                  </GlassCard>
-                </div>
-              )}
+              {/* Client Details (Reusable Component) */}
+              <CaseStudyDetailContent client={selectedProject} isModal={true} />
 
               {/* Actions */}
               <div className="flex flex-col sm:flex-row gap-4">

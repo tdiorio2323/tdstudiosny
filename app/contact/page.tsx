@@ -266,15 +266,14 @@ export default function ContactPage() {
       <JsonLd data={localBusinessSchema} />
       {/* Hero Section */}
       <section className="relative min-h-screen md:min-h-[70vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 aspect-video">
           <Image
-          src="/contact-hero-image.jpg"
-          alt="Contact Hero"
-          width={1920}
-          height={1080}
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
+            src="/contact-hero-image.jpg"
+            alt="Contact Hero"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-black/40 md:bg-black/40 hero-overlay-mobile"></div>
         </div>

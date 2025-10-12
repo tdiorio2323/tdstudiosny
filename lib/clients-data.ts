@@ -10,6 +10,8 @@ export interface Client {
   year: string
   services: string[]
   description: string
+  heroImage?: string
+  tagline?: string
   results: string[]
   gallery: string[]
   websiteUrl?: string
