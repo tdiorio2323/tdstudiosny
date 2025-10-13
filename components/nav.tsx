@@ -59,7 +59,7 @@ export function Nav() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-lg font-medium tracking-wider transition-colors hover:text-white ${pathname === item.href ? "text-white border-b border-white" : "text-white/70"
+                className={`text-lg font-medium tracking-wider transition-colors hover:text-white ${pathname === item.href ? "text-white border-b border-white" : "text-white/80"
                   }`}
               >
                 {item.name}
@@ -124,7 +124,7 @@ export function Nav() {
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`w-full text-center text-2xl font-medium tracking-wider transition-all duration-300 mobile-nav-item mobile-touch-target flex items-center justify-center py-4 border-b border-white/10 ${pathname === item.href ? "text-white bg-white/5" : "text-white/70 hover:text-white hover:bg-white/5"
+                  className={`w-full text-center text-2xl font-medium tracking-wider transition-all duration-300 mobile-nav-item mobile-touch-target flex items-center justify-center py-4 border-b border-white/10 ${pathname === item.href ? "text-white bg-white/5" : "text-white/80 hover:bg-white/5 hover:text-white"
                     }`}
                 >
                   {item.name}

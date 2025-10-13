@@ -7,15 +7,16 @@ import { Footer } from "@/components/footer"
 import { StickyHeader } from "@/components/sticky-header"
 import { AnalyticsProvider } from "@/components/analytics-provider"
 import "./globals.css"
+import "@/styles/layout-scale.css"
 import type React from "react"
 import { Suspense } from "react"
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://tdstudiosny.com"),
   title: { default: "TD Studios", template: "%s · TD Studios" },
-  description: "Design, automation, and platform builds.",
+  description: "High-end websites, branding, and marketing systems engineered for creators and ambitious brands.",
   alternates: { canonical: "/" },
 };
 

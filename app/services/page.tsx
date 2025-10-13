@@ -110,7 +110,7 @@ export default function ServicesPage() {
                   className={`px-6 py-3 rounded-lg font-medium transition-all ${
                     currentTab === tab.id
                       ? "bg-white text-black"
-                      : "text-white/70 hover:text-white"
+                      : "text-white/80 hover:text-white"
                   }`}
                 >
                   {tab.label}

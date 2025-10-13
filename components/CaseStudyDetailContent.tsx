@@ -129,7 +129,7 @@ export function CaseStudyDetailContent({ client, isModal = false }: CaseStudyDet
           <GlassCard className="p-8">
             <p className="text-white italic text-xl mb-6">"{client.testimonial.quote}"</p>
             <p className="text-white font-semibold text-lg">{client.testimonial.author}</p>
-            <p className="text-white/70 text-base">{client.testimonial.position}</p>
+            <p className="text-white/80 text-base">{client.testimonial.position}</p>
           </GlassCard>
         </div>
       )}

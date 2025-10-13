@@ -31,7 +31,7 @@ export function HeroSection({ heroImage }: HeroSectionProps) {
   }, [])
 
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative isolate h-screen overflow-hidden">
       {/* Background Video with Fade Effect */}
       <div
         ref={bgRef}
@@ -45,32 +45,41 @@ export function HeroSection({ heroImage }: HeroSectionProps) {
         />
       </div>
 
-      {/* Hero Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4 sm:px-6">
-        <div className="animate-fade-in-up max-w-4xl mx-auto">
-          {/* Dark overlay backdrop for text readability */}
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-md rounded-2xl sm:rounded-3xl -z-10 transform scale-110" />
+      {/* Gradient mask for readability */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"
+      />
 
-          <div className="py-8 sm:py-12 px-4 sm:px-6 md:px-8">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-white drop-shadow-2xl leading-tight">
-              Design Your Success
-            </h1>
-            <p className="mt-4 sm:mt-6 text-white text-base sm:text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
-              High-end websites, branding, and marketing systems engineered for creators and ambitious brands.
-            </p>
-            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-              <Link
-                href="/work"
-                className="w-full sm:w-auto min-h-[48px] px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-white/90 hover:bg-white text-black text-sm font-semibold tracking-wide transition-all duration-300 shadow-xl flex items-center justify-center"
-              >
-                View Our Work
-              </Link>
-              <Link
-                href="/contact"
-                className="w-full sm:w-auto min-h-[48px] px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-black/80 hover:bg-black border border-white/30 text-white text-sm font-semibold tracking-wide backdrop-blur-lg transition-all duration-300 shadow-xl flex items-center justify-center"
-              >
-                Start a Project
-              </Link>
+      {/* Hero Content */}
+      <div className="relative z-10 flex h-full items-center">
+        <div className="container-max">
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/50 px-6 py-12 text-center shadow-2xl backdrop-blur-xl sm:px-10 md:px-14">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-white/5 to-transparent opacity-60"
+            />
+            <div className="relative stack-md animate-fade-in-up">
+              <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-white">
+                Design Your Success
+              </h1>
+              <p className="mx-auto max-w-2xl text-lg md:text-xl text-white/80">
+                High-end websites, branding, and marketing systems engineered for creators and ambitious brands.
+              </p>
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+                <Link
+                  href="/work"
+                  className="w-full min-h-[48px] rounded-full bg-white/90 px-6 py-3 text-base font-medium tracking-wide text-black transition-colors duration-300 hover:bg-white sm:w-auto"
+                >
+                  View Our Work
+                </Link>
+                <Link
+                  href="/contact"
+                  className="w-full min-h-[48px] rounded-full border border-white/30 bg-black/80 px-6 py-3 text-base font-medium tracking-wide text-white transition-colors duration-300 hover:bg-black sm:w-auto"
+                >
+                  Start a Project
+                </Link>
+              </div>
             </div>
           </div>
         </div>

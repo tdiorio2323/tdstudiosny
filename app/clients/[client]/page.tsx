@@ -96,7 +96,7 @@ export default async function ClientPortalPage({ params }: ClientPortalPageProps
 
           <div className="mx-auto mt-16 max-w-5xl rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl p-8 text-white shadow-[0_24px_70px_rgba(0,0,0,0.45)]">
             <h3 className="text-xl font-semibold mb-4 tracking-wide">Account Notes</h3>
-            <p className="text-white/70 text-sm leading-relaxed">
+            <p className="text-white/80 text-sm leading-relaxed">
               TD Studios manages credentials and sensitive integrations on your behalf. When you need to add or update
               anything in the vault, drop us a line and we\'ll secure it immediately.
             </p>

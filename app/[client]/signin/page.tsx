@@ -46,7 +46,7 @@ export default function ClientSignInPage() {
     <main className="min-h-dvh grid place-items-center p-4">
       <GlassCard className="w-full max-w-md p-8">
         <h1 className="text-3xl font-bold text-center mb-6">Client Sign-in</h1>
-        <p className="text-center text-white/70 mb-8">
+        <p className="text-center text-white/80 mb-8">
           Access your project dashboard and updates.
         </p>
 

@@ -1,0 +1,9 @@
+@layer utilities {
+  .container-max      { @apply max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8; }
+  .stack-sm > * + *   { @apply mt-3; }
+  .stack-md > * + *   { @apply mt-6; }
+  .stack-lg > * + *   { @apply mt-10; }
+  .elev-1             { @apply shadow-sm; }
+  .elev-2             { @apply shadow; }
+  .elev-3             { @apply shadow-lg; }
+}

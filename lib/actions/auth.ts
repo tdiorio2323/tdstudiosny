@@ -1,12 +1,12 @@
 "use server";
 
 import { createServerClient } from '@supabase/ssr';
-import { cookies, ReadonlyRequestCookies } from 'next/headers';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 // Supabase setup for server components/actions
-const createSupabaseServerClient = () => {
-  const cookieStore: ReadonlyRequestCookies = cookies(); // cookies() returns ReadonlyRequestCookies directly
+const createSupabaseServerClient = async () => {
+  const cookieStore = await cookies();
   
   // Note: These env vars must be available in the server environment
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -37,7 +37,7 @@ export async function signIn(formData: FormData) {
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
 
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
 
   const { error } = await supabase.auth.signInWithPassword({
     email,

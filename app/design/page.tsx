@@ -199,7 +199,7 @@ export default function DesignPage() {
                 </div>
                 <div className="p-4">
                   <h4 className="font-semibold mb-2">Premium E-Commerce</h4>
-                  <p className="text-white/70 text-sm">Full brand identity and digital asset library</p>
+                  <p className="text-white/80 text-sm">Full brand identity and digital asset library</p>
                 </div>
               </GlassCard>
 
@@ -215,7 +215,7 @@ export default function DesignPage() {
                 </div>
                 <div className="p-4">
                   <h4 className="font-semibold mb-2">Tech Startup</h4>
-                  <p className="text-white/70 text-sm">Modern brand system with scalable components</p>
+                  <p className="text-white/80 text-sm">Modern brand system with scalable components</p>
                 </div>
               </GlassCard>
 
@@ -231,7 +231,7 @@ export default function DesignPage() {
                 </div>
                 <div className="p-4">
                   <h4 className="font-semibold mb-2">Luxury Service</h4>
-                  <p className="text-white/70 text-sm">Sophisticated identity for premium positioning</p>
+                  <p className="text-white/80 text-sm">Sophisticated identity for premium positioning</p>
                 </div>
               </GlassCard>
             </div>

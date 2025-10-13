@@ -298,7 +298,7 @@ export default function ContactPage() {
             {services.map((service, index) => (
               <GlassCard key={index} className="text-center">
                 <h3 className="text-xl font-semibold text-white mb-3">{service}</h3>
-                <p className="text-white/70 text-sm">
+                <p className="text-white/80 text-sm">
                   {service === "Web Experience" && "Custom websites and digital experiences that convert visitors into customers."}
                   {service === "Product & Platform Development" && "Full-stack applications and platforms built for scale and performance."}
                   {service === "Social & Content Systems" && "Brand storytelling and content strategies that drive engagement."}
@@ -337,7 +337,7 @@ export default function ContactPage() {
                 >
                   <div className="text-left">
                     <h3 className="text-lg font-semibold text-white mb-2">New Project</h3>
-                    <p className="text-white/70 text-sm">
+                    <p className="text-white/80 text-sm">
                       Brand identity, website, or digital platform development
                     </p>
                   </div>
@@ -353,7 +353,7 @@ export default function ContactPage() {
                 >
                   <div className="text-left">
                     <h3 className="text-lg font-semibold text-white mb-2">Free Consultation</h3>
-                    <p className="text-white/70 text-sm">
+                    <p className="text-white/80 text-sm">
                       Strategy discussion and project scoping session
                     </p>
                   </div>
@@ -609,7 +609,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">30-Minute Strategy Session</h3>
-                    <p className="text-white/70">
+                    <p className="text-white/80">
                       We'll discuss your project scope, timeline, budget, and create a customized roadmap for success.
                     </p>
                   </div>
@@ -620,7 +620,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">Custom Proposal</h3>
-                    <p className="text-white/70">
+                    <p className="text-white/80">
                       Within 24 hours, receive a detailed proposal with timeline, deliverables, and transparent pricing.
                     </p>
                   </div>
@@ -631,7 +631,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">Based in NYC</h3>
-                    <p className="text-white/70">
+                    <p className="text-white/80">
                       Headquartered in New York City, serving ambitious brands and teams worldwide.
                     </p>
                   </div>

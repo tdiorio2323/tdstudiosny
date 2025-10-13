@@ -85,33 +85,35 @@ export default function HomePage() {
       <HeroSection heroImage={heroImage} />
 
       {/* What We Do */}
-      <Section>
-        <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-center text-white">What We Do</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-6">
+      <Section innerClassName="text-center">
+        <h2 className="text-4xl md:text-5xl font-semibold text-white">What We Do</h2>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
             { name: "Web", href: "/web", desc: "Website design and marketing experiences." },
             { name: "Dev", href: "/dev", desc: "Platform and system development." },
             { name: "Social", href: "/social", desc: "Content and social media growth systems." },
             { name: "Design", href: "/design", desc: "Branding and visual identity design." },
           ].map((s) => (
-            <GlassCard key={s.name} className="luxury-glass hover:scale-105 transition-transform">
-              <h3 className="text-2xl font-bold text-white">{s.name}</h3>
-              <p className="text-white/70 text-sm mt-2">{s.desc}</p>
-              <Link
-                href={s.href}
-                className="inline-block mt-4 text-sm text-white/90 hover:text-white hover:underline"
-              >
-                Learn More →
-              </Link>
+            <GlassCard key={s.name} className="luxury-glass transition-transform hover:scale-105">
+              <div className="stack-sm text-left">
+                <h3 className="text-2xl font-bold text-white">{s.name}</h3>
+                <p className="text-sm text-white/80">{s.desc}</p>
+                <Link
+                  href={s.href}
+                  className="inline-block text-sm text-white/90 transition-colors hover:text-white hover:underline"
+                >
+                  Learn More →
+                </Link>
+              </div>
             </GlassCard>
           ))}
         </div>
       </Section>
 
       {/* Why TD Studios */}
-      <Section className="bg-black/20 py-20">
-        <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-center text-white">Why TD Studios</h2>
-        <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto px-6">
+      <Section className="bg-black/20" innerClassName="text-center md:text-left">
+        <h2 className="text-4xl md:text-5xl font-semibold text-white">Why TD Studios</h2>
+        <div className="grid gap-6 md:grid-cols-3">
           {[
             {
               title: "Luxury Execution",
@@ -126,20 +128,22 @@ export default function HomePage() {
               text: "Projects that convert, perform, and grow your brand's authority.",
             },
           ].map((x) => (
-            <GlassCard key={x.title} className="luxury-glass">
-              <h3 className="text-xl font-bold text-white">{x.title}</h3>
-              <p className="text-white/70 mt-2">{x.text}</p>
+            <GlassCard key={x.title} className="luxury-glass text-left">
+              <div className="stack-sm">
+                <h3 className="text-xl font-bold text-white">{x.title}</h3>
+                <p className="text-white/80">{x.text}</p>
+              </div>
             </GlassCard>
           ))}
         </div>
       </Section>
 
       {/* CTA */}
-      <Section className="text-center py-24">
-        <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">Bring Your Vision to Life</h2>
+      <Section className="py-24" innerClassName="text-center">
+        <h2 className="text-5xl md:text-6xl font-bold text-white">Bring Your Vision to Life</h2>
         <Link
           href="/contact"
-          className="inline-block px-10 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 hover:from-white/30 hover:to-white/20 border border-white/30 text-white text-sm tracking-wide backdrop-blur-lg transition"
+          className="inline-block rounded-full border border-white/30 bg-gradient-to-r from-white/20 to-white/10 px-10 py-4 text-sm font-medium tracking-wide text-white transition hover:from-white/30 hover:to-white/20"
         >
           Start a Project
         </Link>

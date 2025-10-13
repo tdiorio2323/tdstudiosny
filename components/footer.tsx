@@ -33,13 +33,13 @@ export function Footer() {
 
         {/* Footer Links */}
         <div className="flex justify-center gap-6 mb-6 text-sm">
-          <Link href="/support" className="text-white/70 hover:text-white transition-colors">
+          <Link href="/support" className="text-white/80 transition-colors hover:text-white">
             Support
           </Link>
-          <Link href="/legal" className="text-white/70 hover:text-white transition-colors">
+          <Link href="/legal" className="text-white/80 transition-colors hover:text-white">
             Legal
           </Link>
-          <Link href="/book" className="text-white/70 hover:text-white transition-colors">
+          <Link href="/book" className="text-white/80 transition-colors hover:text-white">
             Book
           </Link>
         </div>
