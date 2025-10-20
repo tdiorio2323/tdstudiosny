@@ -14,7 +14,7 @@ import { Suspense } from "react"
 const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://tdstudiosny.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://tdstudiosdigital.com"),
   title: { default: "TD Studios", template: "%s · TD Studios" },
   description: "High-end websites, branding, and marketing systems engineered for creators and ambitious brands.",
   alternates: { canonical: "/" },
@@ -47,8 +47,8 @@ export default function RootLayout({
           "@context":"https://schema.org",
           "@type":"Organization",
           "name":"TD Studios",
-          "url":"https://tdstudiosny.com",
-          "logo":"https://tdstudiosny.com/og/td-logo.png",
+          "url":"https://tdstudiosdigital.com",
+          "logo":"https://tdstudiosdigital.com/og/td-logo.png",
           "sameAs":[
             "https://instagram.com/tdstudiosco"
           ]

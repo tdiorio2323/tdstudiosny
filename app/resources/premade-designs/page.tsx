@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Premade Designs | TD Studios",
   description: "Ready-to-deploy design templates and assets for Quick Printz campaigns. Professional designs at affordable prices.",
   alternates: {
-    canonical: "https://tdstudiosny.com/resources/premade-designs",
+    canonical: "https://tdstudiosdigital.com/resources/premade-designs",
   },
   openGraph: {
     title: "Premade Designs | TD Studios",
     description: "Ready-to-deploy design templates and assets for Quick Printz campaigns. Professional designs at affordable prices.",
-    url: "https://tdstudiosny.com/resources/premade-designs",
+    url: "https://tdstudiosdigital.com/resources/premade-designs",
   },
   twitter: {
     card: "summary_large_image",

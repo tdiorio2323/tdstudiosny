@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Legal | TD Studios",
   description: "Terms of Service and Privacy Policy for TD Studios. Our commitment to transparency, data protection, and client rights for all design and development services.",
   alternates: {
-    canonical: "https://tdstudiosny.com/legal",
+    canonical: "https://tdstudiosdigital.com/legal",
   },
   openGraph: {
     title: "Legal | TD Studios",
     description: "Terms of Service and Privacy Policy for TD Studios. Our commitment to transparency, data protection, and client rights for all design and development services.",
-    url: "https://tdstudiosny.com/legal",
+    url: "https://tdstudiosdigital.com/legal",
   },
   twitter: {
     card: "summary_large_image",
@@ -31,13 +31,13 @@ export default function LegalPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://tdstudiosny.com",
+        "item": "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Legal",
-        "item": "https://tdstudiosny.com/legal",
+        "item": "https://tdstudiosdigital.com/legal",
       },
     ],
   }

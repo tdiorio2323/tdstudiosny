@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   title: "Web Experience | TD Studios",
   description: "Premium website design and digital experiences built for conversion. Strategy, UX architecture, and marketing sites that turn visitors into customers.",
   alternates: {
-    canonical: "https://tdstudiosny.com/web",
+    canonical: "https://tdstudiosdigital.com/web",
   },
   openGraph: {
     title: "Web Experience | TD Studios",
     description: "Premium website design and digital experiences built for conversion. Strategy, UX architecture, and marketing sites that turn visitors into customers.",
-    url: "https://tdstudiosny.com/web",
+    url: "https://tdstudiosdigital.com/web",
   },
   twitter: {
     card: "summary_large_image",
@@ -47,13 +47,13 @@ export default function WebPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://tdstudiosny.com",
+        "item": "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Web Experience",
-        "item": "https://tdstudiosny.com/web",
+        "item": "https://tdstudiosdigital.com/web",
       },
     ],
   }

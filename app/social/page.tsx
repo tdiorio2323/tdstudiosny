@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   title: "Social Media Marketing | TD Studios",
   description: "Social media strategy, content creation, and community management. Instagram, LinkedIn, TikTok campaigns that drive engagement and conversions.",
   alternates: {
-    canonical: "https://tdstudiosny.com/social",
+    canonical: "https://tdstudiosdigital.com/social",
   },
   openGraph: {
     title: "Social Media Marketing | TD Studios",
     description: "Social media strategy, content creation, and community management. Instagram, LinkedIn, TikTok campaigns that drive engagement and conversions.",
-    url: "https://tdstudiosny.com/social",
+    url: "https://tdstudiosdigital.com/social",
   },
   twitter: {
     card: "summary_large_image",
@@ -57,13 +57,13 @@ export default function SocialPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://tdstudiosny.com",
+        "item": "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Social Media Marketing",
-        "item": "https://tdstudiosny.com/social",
+        "item": "https://tdstudiosdigital.com/social",
       },
     ],
   }

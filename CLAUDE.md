@@ -107,7 +107,8 @@ The app uses a consistent luxury design layout with:
 
 Required environment variables (create `.env.local` file in project root, see `.env.local.example` for template):
 - `RESEND_API_KEY` - Resend API key for contact form emails
-- `CONTACT_TO_EMAIL` - Email address for contact form submissions
+- `CONTACT_TO_EMAIL` - Email address for contact form submissions (e.g., tyler@tdstudiosdigital.com)
+- `NEXT_PUBLIC_SITE_URL` - Site URL for canonical URLs and metadata (https://tdstudiosdigital.com)
 - `OPENAI_API_KEY` - OpenAI API key for ChatKit agent integration
 - `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` - Supabase backend configuration
 - `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Supabase frontend configuration
@@ -184,9 +185,9 @@ pnpm audit:fast     # Minimal fast audit (skip install/build, 1 LH run, limited 
 ### Next.js Configuration (`next.config.mjs`)
 - ESLint errors ignored during builds for deployment compatibility
 - TypeScript build errors ignored for v0.app integration
-- **Image domains**: Configured for `i.imgur.com`, `via.placeholder.com`, `cdn.platform.openai.com`, and `tdstudiosny.com`
+- **Image domains**: Configured for `i.imgur.com`, `via.placeholder.com`, `cdn.platform.openai.com`, and `tdstudiosdigital.com`
 - **Image optimization**: Modern AVIF and WebP formats with responsive device sizes
-- **Domain redirects**: www.tdstudiosny.com → tdstudiosny.com (permanent, 301)
+- **Domain redirects**: www.tdstudiosdigital.com → tdstudiosdigital.com (permanent, 301)
 - **Security headers**: Configured via `headers()` function (see Security section below)
 
 ### TypeScript Configuration (`tsconfig.json`)
@@ -272,11 +273,13 @@ Configured in `next.config.mjs` via `headers()` async function:
 
 ## Deployment & Integration
 
-### v0.app Integration
+### v0.app Integration & Deployment
 - **Auto-Sync**: Repository automatically synced with v0.app deployments
 - **Source Control**: Changes flow from v0.app → GitHub → Vercel
 - **Project Link**: [v0.app/chat/projects/MgSVoHLfRb7](https://v0.app/chat/projects/MgSVoHLfRb7)
-- **Deployment URL**: Vercel deployment with automatic builds
+- **Vercel Project Name**: `td-studios-website` (under td-studioss-projects team)
+- **Live Domain**: https://tdstudiosdigital.com
+- **Deprecated Domain**: tdstudiosny.com (legacy references being phased out)
 
 ### Development Workflow
 - **Primary Development**: Use v0.app interface for major changes

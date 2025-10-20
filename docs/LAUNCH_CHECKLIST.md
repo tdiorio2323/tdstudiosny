@@ -399,7 +399,7 @@ nslookup tdstudiosny.com
 # Should resolve to Vercel IP
 
 # Check www redirect
-curl -I https://www.tdstudiosny.com
+curl -I https://www.tdstudiosdigital.com
 # Should redirect 301 to https://tdstudiosny.com
 
 # Verify all pages are accessible

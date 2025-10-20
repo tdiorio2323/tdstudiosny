@@ -52,9 +52,9 @@ export default function ContactPage() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "TD Studios NY",
-    "image": "https://tdstudiosny.com/logo.png",
-    "@id": "https://tdstudiosny.com/contact",
-    "url": "https://tdstudiosny.com/contact",
+    "image": "https://tdstudiosdigital.com/logo.png",
+    "@id": "https://tdstudiosdigital.com/contact",
+    "url": "https://tdstudiosdigital.com/contact",
     "telephone": "+1-212-555-0199",
   }
   const [contactType, setContactType] = useState<string | null>(null)

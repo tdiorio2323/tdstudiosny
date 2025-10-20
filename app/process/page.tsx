@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   title: "Our Process | TD Studios",
   description: "Our proven 5-step process to turn your brand vision into a polished digital experience.",
   alternates: {
-    canonical: "https://tdstudiosny.com/process",
+    canonical: "https://tdstudiosdigital.com/process",
   },
   openGraph: {
     title: "Our Process | TD Studios",
     description: "Our proven 5-step process to turn your brand vision into a polished digital experience.",
-    url: "https://tdstudiosny.com/process",
+    url: "https://tdstudiosdigital.com/process",
   },
   twitter: {
     card: "summary_large_image",
@@ -141,13 +141,13 @@ export default function ProcessPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://tdstudiosny.com",
+        "item": "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Process",
-        "item": "https://tdstudiosny.com/process",
+        "item": "https://tdstudiosdigital.com/process",
       },
     ],
   }

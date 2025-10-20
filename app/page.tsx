@@ -11,8 +11,8 @@ export default function HomePage() {
     "@type": "Organization",
     "name": "TD Studios",
     "alternateName": "TD Studios NY",
-    "url": "https://tdstudiosny.com",
-    "logo": "https://tdstudiosny.com/logo.png",
+    "url": "https://tdstudiosdigital.com",
+    "logo": "https://tdstudiosdigital.com/logo.png",
     "description": "High-end websites, branding, and marketing systems engineered for creators and ambitious brands.",
     "foundingDate": "2023",
     "address": {
@@ -23,7 +23,7 @@ export default function HomePage() {
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Customer Support",
-      "url": "https://tdstudiosny.com/contact",
+      "url": "https://tdstudiosdigital.com/contact",
       "email": "hello@tdstudiosny.com"
     },
     "serviceArea": {
@@ -68,10 +68,10 @@ export default function HomePage() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "TD Studios",
-    "url": "https://tdstudiosny.com",
+    "url": "https://tdstudiosdigital.com",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://tdstudiosny.com/search?q={search_term_string}",
+      "target": "https://tdstudiosdigital.com/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }

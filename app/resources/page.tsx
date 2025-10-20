@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Resources | TD Studios",
   description: "Free design guides, case studies, templates, and webinars. Learn luxury brand psychology, color theory, typography, and conversion optimization strategies.",
   alternates: {
-    canonical: "https://tdstudiosny.com/resources",
+    canonical: "https://tdstudiosdigital.com/resources",
   },
   openGraph: {
     title: "Resources | TD Studios",
     description: "Free design guides, case studies, templates, and webinars. Learn luxury brand psychology, color theory, typography, and conversion optimization strategies.",
-    url: "https://tdstudiosny.com/resources",
+    url: "https://tdstudiosdigital.com/resources",
   },
   twitter: {
     card: "summary_large_image",

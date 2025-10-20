@@ -24,13 +24,13 @@ export default function ServicesPage() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": "https://tdstudiosny.com/services",
+    "@id": "https://tdstudiosdigital.com/services",
     "name": "TD Studios Design & Development Services",
     "description": "Comprehensive design and development services including branding, web development, and user experience design for premium brands.",
     "provider": {
       "@type": "Organization",
       "name": "TD Studios",
-      "url": "https://tdstudiosny.com",
+      "url": "https://tdstudiosdigital.com",
     },
     "serviceType": ["Brand Design", "Web Development", "User Experience Design"],
     "areaServed": {
@@ -69,7 +69,7 @@ export default function ServicesPage() {
     },
     "availableChannel": {
       "@type": "ServiceChannel",
-      "serviceUrl": "https://tdstudiosny.com/contact",
+      "serviceUrl": "https://tdstudiosdigital.com/contact",
     },
   }
 
@@ -81,13 +81,13 @@ export default function ServicesPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://tdstudiosny.com",
+        "item": "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Services",
-        "item": "https://tdstudiosny.com/services",
+        "item": "https://tdstudiosdigital.com/services",
       },
     ],
   }

@@ -14,7 +14,7 @@ interface SEOHeadProps {
  *
  * @param title - Page title (will be suffixed with " | TD Studios")
  * @param description - Meta description (140-160 characters recommended)
- * @param canonical - Canonical URL (optional, defaults to tdstudiosny.com + path)
+ * @param canonical - Canonical URL (optional, defaults to tdstudiosdigital.com + path)
  * @param ogImage - OpenGraph image URL (optional, defaults to /og-image.webp)
  * @param noindex - Set to true to prevent indexing (for client portals, etc.)
  * @param keywords - SEO keywords (optional, primarily for reference)
@@ -36,7 +36,7 @@ export function generateSEOMetadata({
   noindex = false,
   keywords = [],
 }: SEOHeadProps): Metadata {
-  const baseUrl = 'https://tdstudiosny.com'
+  const baseUrl = 'https://tdstudiosdigital.com'
   const canonicalUrl = canonical ? `${baseUrl}${canonical}` : undefined
   const fullTitle = `${title} | TD Studios`
   const imageUrl = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`

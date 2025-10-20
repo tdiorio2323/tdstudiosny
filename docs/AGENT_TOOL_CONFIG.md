@@ -63,7 +63,7 @@ Add this to your agent instructions:
 ```
 After collecting client information (name, business name, project goals, and budget range), 
 call the log_client_intake function to save their details. 
-Then provide them with the booking link: https://www.tdstudiosny.com/book
+Then provide them with the booking link: https://www.tdstudiosdigital.com/book
 ```
 
 ## Testing the Endpoint

@@ -28,7 +28,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'tdstudiosny.com',
+        hostname: 'tdstudiosdigital.com',
         pathname: '/**',
       },
     ],
@@ -37,8 +37,8 @@ const nextConfig = {
     return [
       {
         source: "/:path*",
-        has: [{ type: "host", value: "www.tdstudiosny.com" }],
-        destination: "https://tdstudiosny.com/:path*",
+        has: [{ type: "host", value: "www.tdstudiosdigital.com" }],
+        destination: "https://tdstudiosdigital.com/:path*",
         permanent: true,
       },
     ];

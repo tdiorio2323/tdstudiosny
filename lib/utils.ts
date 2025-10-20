@@ -16,7 +16,7 @@ export function createMetadata(
   path: string,
   metadata?: Partial<Metadata>
 ): Metadata {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tdstudiosny.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tdstudiosdigital.com'
   const canonicalUrl = `${baseUrl}${path}`
 
   return {

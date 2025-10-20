@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   title: "Graphic Design & Brand Identity | TD Studios",
   description: "Luxury brand identity and visual design. Logo design, brand guidelines, color systems, and typography for premium brands seeking market differentiation.",
   alternates: {
-    canonical: "https://tdstudiosny.com/design",
+    canonical: "https://tdstudiosdigital.com/design",
   },
   openGraph: {
     title: "Graphic Design & Brand Identity | TD Studios",
     description: "Luxury brand identity and visual design. Logo design, brand guidelines, color systems, and typography for premium brands seeking market differentiation.",
-    url: "https://tdstudiosny.com/design",
+    url: "https://tdstudiosdigital.com/design",
   },
   twitter: {
     card: "summary_large_image",
@@ -48,13 +48,13 @@ export default function DesignPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://tdstudiosny.com",
+        "item": "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Graphic Design",
-        "item": "https://tdstudiosny.com/design",
+        "item": "https://tdstudiosdigital.com/design",
       },
     ],
   }

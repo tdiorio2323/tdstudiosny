@@ -12,7 +12,7 @@ import { JsonLd } from "@/components/json-ld"
 import { CaseStudyDetailContent } from "@/components/CaseStudyDetailContent" // New Import
 
 type Props = {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
@@ -22,7 +22,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const client = clients.find((c) => c.slug === params.slug)
+  const { slug } = await params
+  const client = clients.find((c) => c.slug === slug)
   if (!client) {
     return generateSEOMetadata({
       title: "Project Not Found",
@@ -38,8 +39,9 @@ export async function generateMetadata({ params }: Props) {
   })
 }
 
-export default function ClientCaseStudyPage({ params }: Props) {
-  const client = clients.find((c) => c.slug === params.slug)
+export default async function ClientCaseStudyPage({ params }: Props) {
+  const { slug } = await params
+  const client = clients.find((c) => c.slug === slug)
 
   if (!client) {
     notFound()
@@ -53,20 +55,20 @@ export default function ClientCaseStudyPage({ params }: Props) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://tdstudiosny.com",
+        "item": "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Work",
-        "item": "https://tdstudiosny.com/work",
+        "item": "https://tdstudiosdigital.com/work",
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": client.name,
         // FIXED Template Literal using backticks (``)
-        "item": `https://tdstudiosny.com/work/${client.slug}`,
+        "item": `https://tdstudiosdigital.com/work/${client.slug}`,
       },
     ],
   }

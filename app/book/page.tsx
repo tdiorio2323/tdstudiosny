@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: "Book a Consultation | TD Studios",
   description: "Schedule a free 30-minute consultation with TD Studios. Discuss your web design, development, or branding project with our team. No commitment required.",
   alternates: {
-    canonical: "https://tdstudiosny.com/book",
+    canonical: "https://tdstudiosdigital.com/book",
   },
   openGraph: {
     title: "Book a Consultation | TD Studios",
     description: "Schedule a free 30-minute consultation with TD Studios. Discuss your web design, development, or branding project with our team. No commitment required.",
-    url: "https://tdstudiosny.com/book",
+    url: "https://tdstudiosdigital.com/book",
   },
   twitter: {
     card: "summary_large_image",
@@ -30,13 +30,13 @@ export default function BookPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://tdstudiosny.com",
+        "item": "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Book",
-        "item": "https://tdstudiosny.com/book",
+        "item": "https://tdstudiosdigital.com/book",
       },
     ],
   }

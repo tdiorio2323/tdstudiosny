@@ -34,7 +34,7 @@
 - [ ] **Implement contact form email sending** (1h)
   - File: `app/api/contact/route.ts:41`
   - Currently has `// TODO: send email / persist`
-  - Use Resend API to send to `tyler@tdstudiosny.com`
+  - Use Resend API to send to `tyler@tdstudiosdigital.com`
   - Add confirmation email to user
   - Log to Supabase for backup
 

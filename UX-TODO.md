@@ -31,7 +31,7 @@
 - [ ] **Update sitemap.ts with all routes** (app/sitemap.ts)
   - Currently only includes `/`, `/portfolio`, `/contact`
   - Missing: `/work`, `/services`, `/pricing`, `/process`, `/book`, `/support`, `/resources`, `/resources/premade-designs`, `/legal`
-  - Fix base URL: change `www.tdstudiosny.com` → `tdstudiosny.com` (www redirects)
+  - Fix base URL: change `www.tdstudiosdigital.com` → `tdstudiosdigital.com` (www redirects)
   - **Files:** `app/sitemap.ts` lines 4-10
 
 ### Content & Trust
@@ -100,7 +100,7 @@
 
 - [ ] **Add canonical URLs to all pages**
   - Currently only in root layout metadata
-  - Add `alternates: { canonical: 'https://tdstudiosny.com/[route]' }` to each page's metadata
+  - Add `alternates: { canonical: 'https://tdstudiosdigital.com/[route]' }` to each page's metadata
   - **Files:** All `app/*/page.tsx` metadata exports
 
 - [ ] **Optimize meta descriptions** (150-160 chars)

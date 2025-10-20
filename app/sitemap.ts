@@ -2,7 +2,7 @@ import { MetadataRoute } from "next"
 import { clients } from "@/lib/clients-data"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://tdstudiosny.com"
+  const baseUrl = "https://tdstudiosdigital.com"
 
   const routes = [
     { path: "", priority: 1.0, changefreq: "weekly" },

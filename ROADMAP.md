@@ -60,7 +60,7 @@
 ### SEO Essentials
 - [ ] **Update sitemap** — 0.5h
   - Add 9 missing routes: `/work`, `/services`, `/pricing`, `/process`, `/book`, `/support`, `/resources`, `/resources/premade-designs`, `/legal`
-  - Fix base URL: `www.tdstudiosny.com` → `tdstudiosny.com`
+  - Fix base URL: `www.tdstudiosdigital.com` → `tdstudiosdigital.com`
   - Files: `app/sitemap.ts`
 
 - [ ] **Create robots.txt** — 0.3h

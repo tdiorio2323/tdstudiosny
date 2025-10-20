@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   title: "FAQ | TD Studios",
   description: "Frequently asked questions about TD Studios services, pricing, process, and timelines. Learn about our web design, development, and branding services.",
   alternates: {
-    canonical: "https://tdstudiosny.com/faq",
+    canonical: "https://tdstudiosdigital.com/faq",
   },
   openGraph: {
     title: "FAQ | TD Studios",
     description: "Frequently asked questions about TD Studios services, pricing, process, and timelines. Learn about our web design, development, and branding services.",
-    url: "https://tdstudiosny.com/faq",
+    url: "https://tdstudiosdigital.com/faq",
   },
   twitter: {
     card: "summary_large_image",
@@ -134,13 +134,13 @@ export default function FAQPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://tdstudiosny.com",
+        "item": "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "FAQ",
-        "item": "https://tdstudiosny.com/faq",
+        "item": "https://tdstudiosdigital.com/faq",
       },
     ],
   }

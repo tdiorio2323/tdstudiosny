@@ -17,12 +17,12 @@ export async function generateMetadata({ params }: ClientPortalLayoutProps): Pro
       follow: false,
     },
     alternates: {
-      canonical: `https://tdstudiosny.com/clients/${client}`,
+      canonical: `https://tdstudiosdigital.com/clients/${client}`,
     },
     openGraph: {
       title: `Client Portal | ${client.charAt(0).toUpperCase() + client.slice(1)} | TD Studios`,
       description: `Private client portal for ${client}. Access your project files, resources, and collaboration tools.`,
-      url: `https://tdstudiosny.com/clients/${client}`,
+      url: `https://tdstudiosdigital.com/clients/${client}`,
       siteName: "TD Studios",
       type: "website",
     },

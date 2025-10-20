@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   title: "Product & Platform Development | TD Studios",
   description: "Full-stack development for platforms, SaaS apps, and digital products. React, Next.js, TypeScript, Supabase, and modern tech stacks built to scale.",
   alternates: {
-    canonical: "https://tdstudiosny.com/dev",
+    canonical: "https://tdstudiosdigital.com/dev",
   },
   openGraph: {
     title: "Product & Platform Development | TD Studios",
     description: "Full-stack development for platforms, SaaS apps, and digital products. React, Next.js, TypeScript, Supabase, and modern tech stacks built to scale.",
-    url: "https://tdstudiosny.com/dev",
+    url: "https://tdstudiosdigital.com/dev",
   },
   twitter: {
     card: "summary_large_image",
@@ -60,13 +60,13 @@ export default function DevPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://tdstudiosny.com",
+        "item": "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Development",
-        "item": "https://tdstudiosny.com/dev",
+        "item": "https://tdstudiosdigital.com/dev",
       },
     ],
   }
