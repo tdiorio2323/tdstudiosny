@@ -1,27 +1,29 @@
+import { Palette, Image as ImageIcon, Sparkles } from "lucide-react"
 import { Metadata } from "next"
 import Image from "next/image"
-import { PageTitle } from "@/components/page-title"
-import { Section } from "@/components/section"
-import { GlassCard } from "@/components/glass-card"
-import { FrostedButton } from "@/components/frosted-button"
-import { JsonLd } from "@/components/json-ld"
-import { Palette, Image as ImageIcon, Layout, Sparkles } from "lucide-react"
+import { FrostedButton } from "@/components/FrostedButton"
+import { GlassCard } from "@/components/GlassCard"
+import { Section } from "@/components/Section"
+import { JsonLd } from "@/features/seo/components/JsonLd"
 
 export const metadata: Metadata = {
   title: "Graphic Design & Brand Identity | TD Studios",
-  description: "Luxury brand identity and visual design. Logo design, brand guidelines, color systems, and typography for premium brands seeking market differentiation.",
+  description:
+    "Luxury brand identity and visual design. Logo design, brand guidelines, color systems, and typography for premium brands seeking market differentiation.",
   alternates: {
     canonical: "https://tdstudiosdigital.com/design",
   },
   openGraph: {
     title: "Graphic Design & Brand Identity | TD Studios",
-    description: "Luxury brand identity and visual design. Logo design, brand guidelines, color systems, and typography for premium brands seeking market differentiation.",
+    description:
+      "Luxury brand identity and visual design. Logo design, brand guidelines, color systems, and typography for premium brands seeking market differentiation.",
     url: "https://tdstudiosdigital.com/design",
   },
   twitter: {
     card: "summary_large_image",
     title: "Graphic Design & Brand Identity | TD Studios",
-    description: "Luxury brand identity and visual design. Logo design, brand guidelines, color systems, and typography for premium brands seeking market differentiation.",
+    description:
+      "Luxury brand identity and visual design. Logo design, brand guidelines, color systems, and typography for premium brands seeking market differentiation.",
   },
 }
 
@@ -43,18 +45,18 @@ export default function DesignPage() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
+    itemListElement: [
       {
         "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://tdstudiosdigital.com",
+        position: 1,
+        name: "Home",
+        item: "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
-        "position": 2,
-        "name": "Graphic Design",
-        "item": "https://tdstudiosdigital.com/design",
+        position: 2,
+        name: "Graphic Design",
+        item: "https://tdstudiosdigital.com/design",
       },
     ],
   }
@@ -79,13 +81,16 @@ export default function DesignPage() {
           </div>
 
           <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
-              Luxury Brand Design
-            </h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">Luxury Brand Design</h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Premium brand identity and visual design that elevates your market position and builds lasting customer connections.
+              Premium brand identity and visual design that elevates your market position and builds
+              lasting customer connections.
             </p>
-            <FrostedButton href="/contact" analyticsLabel="Design - Start Transformation" analyticsPosition="Hero CTA">
+            <FrostedButton
+              href="/contact"
+              analyticsLabel="Design - Start Transformation"
+              analyticsPosition="Hero CTA"
+            >
               Start your brand transformation
             </FrostedButton>
           </div>
@@ -96,7 +101,9 @@ export default function DesignPage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Create</h2>
-              <p className="text-white/80 text-lg">Comprehensive visual identity systems for premium brands</p>
+              <p className="text-white/80 text-lg">
+                Comprehensive visual identity systems for premium brands
+              </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -104,7 +111,8 @@ export default function DesignPage() {
                 <Sparkles className="w-10 h-10 text-white mb-4" />
                 <h3 className="text-xl font-semibold mb-4">Brand Identity Systems</h3>
                 <p className="text-white text-sm">
-                  Brand identity systems, logo design, and visual language that communicates premium positioning and builds trust.
+                  Brand identity systems, logo design, and visual language that communicates premium
+                  positioning and builds trust.
                 </p>
               </GlassCard>
 
@@ -112,7 +120,8 @@ export default function DesignPage() {
                 <Palette className="w-10 h-10 text-white mb-4" />
                 <h3 className="text-xl font-semibold mb-4">Luxury Branding</h3>
                 <p className="text-white text-sm">
-                  Color palettes, typography, iconography, and brand guidelines crafted for sophisticated market positioning.
+                  Color palettes, typography, iconography, and brand guidelines crafted for
+                  sophisticated market positioning.
                 </p>
               </GlassCard>
 
@@ -120,7 +129,8 @@ export default function DesignPage() {
                 <ImageIcon className="w-10 h-10 text-white mb-4" />
                 <h3 className="text-xl font-semibold mb-4">Digital Assets</h3>
                 <p className="text-white text-sm">
-                  Marketing materials, social media templates, and digital brand assets optimized for consistent brand experiences.
+                  Marketing materials, social media templates, and digital brand assets optimized
+                  for consistent brand experiences.
                 </p>
               </GlassCard>
             </div>
@@ -131,12 +141,17 @@ export default function DesignPage() {
         <Section id="philosophy" className="py-20 bg-black/20">
           <div className="max-w-4xl mx-auto px-6">
             <GlassCard className="luxury-glass p-8">
-              <h3 className="text-2xl font-semibold mb-6 text-center">Timeless Design Philosophy</h3>
+              <h3 className="text-2xl font-semibold mb-6 text-center">
+                Timeless Design Philosophy
+              </h3>
               <p className="text-white/90 text-lg leading-relaxed mb-6">
-                We believe great design transcends trends. Every brand identity we create is built on strategic foundations—understanding your audience, market position, and business goals before a single pixel is placed.
+                We believe great design transcends trends. Every brand identity we create is built
+                on strategic foundations—understanding your audience, market position, and business
+                goals before a single pixel is placed.
               </p>
               <p className="text-white/80 text-base leading-relaxed">
-                The result: visual systems that feel both contemporary and enduring, communicating luxury and authority without ever feeling dated.
+                The result: visual systems that feel both contemporary and enduring, communicating
+                luxury and authority without ever feeling dated.
               </p>
             </GlassCard>
           </div>
@@ -147,7 +162,9 @@ export default function DesignPage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Process</h2>
-              <p className="text-white/80 text-lg">From discovery to delivery, every step is intentional</p>
+              <p className="text-white/80 text-lg">
+                From discovery to delivery, every step is intentional
+              </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -183,7 +200,9 @@ export default function DesignPage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Brand Work</h2>
-              <p className="text-white/80 text-lg">See how we've transformed brands across industries</p>
+              <p className="text-white/80 text-lg">
+                See how we've transformed brands across industries
+              </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -199,7 +218,9 @@ export default function DesignPage() {
                 </div>
                 <div className="p-4">
                   <h4 className="font-semibold mb-2">Premium E-Commerce</h4>
-                  <p className="text-white/80 text-sm">Full brand identity and digital asset library</p>
+                  <p className="text-white/80 text-sm">
+                    Full brand identity and digital asset library
+                  </p>
                 </div>
               </GlassCard>
 
@@ -215,7 +236,9 @@ export default function DesignPage() {
                 </div>
                 <div className="p-4">
                   <h4 className="font-semibold mb-2">Tech Startup</h4>
-                  <p className="text-white/80 text-sm">Modern brand system with scalable components</p>
+                  <p className="text-white/80 text-sm">
+                    Modern brand system with scalable components
+                  </p>
                 </div>
               </GlassCard>
 
@@ -231,7 +254,9 @@ export default function DesignPage() {
                 </div>
                 <div className="p-4">
                   <h4 className="font-semibold mb-2">Luxury Service</h4>
-                  <p className="text-white/80 text-sm">Sophisticated identity for premium positioning</p>
+                  <p className="text-white/80 text-sm">
+                    Sophisticated identity for premium positioning
+                  </p>
                 </div>
               </GlassCard>
             </div>
@@ -243,7 +268,8 @@ export default function DesignPage() {
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h3 className="text-3xl font-bold mb-6">Ready to elevate your brand?</h3>
             <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
-              Let's create a visual identity that communicates your value and resonates with your ideal customers.
+              Let's create a visual identity that communicates your value and resonates with your
+              ideal customers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <FrostedButton href="/contact" className="btn-primary">

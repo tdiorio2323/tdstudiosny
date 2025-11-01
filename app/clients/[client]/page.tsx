@@ -1,8 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { redirect } from "next/navigation"
-import { clientAccessProfiles } from "@/lib/client-access"
-import { verifySession } from "@/lib/utils/auth"
+import { clientAccessProfiles } from "@/features/clients/lib/client-access"
 
 interface ClientPortalPageProps {
   params: Promise<{
@@ -39,8 +37,6 @@ const sections = [
 
 export default async function ClientPortalPage({ params }: ClientPortalPageProps) {
   const { client } = await params
-
-  // Authentication disabled - direct access allowed
   const profile = clientAccessProfiles[client?.toLowerCase()]
 
   if (!profile) {
@@ -70,7 +66,11 @@ export default async function ClientPortalPage({ params }: ClientPortalPageProps
           </div>
           <nav className="flex flex-wrap justify-center gap-6 text-xs md:text-sm tracking-[0.4em] uppercase text-black/80">
             {sections.map((section) => (
-              <Link key={section.id} href={`#${section.id}`} className="hover:text-black transition-colors">
+              <Link
+                key={section.id}
+                href={`#${section.id}`}
+                className="hover:text-black transition-colors"
+              >
                 {section.title}
               </Link>
             ))}
@@ -85,7 +85,9 @@ export default async function ClientPortalPage({ params }: ClientPortalPageProps
                 key={section.id}
                 className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl p-8 shadow-[0_24px_70px_rgba(0,0,0,0.45)]"
               >
-                <h1 className="text-2xl font-semibold text-white mb-4 tracking-wide">{section.title}</h1>
+                <h1 className="text-2xl font-semibold text-white mb-4 tracking-wide">
+                  {section.title}
+                </h1>
                 <p className="text-white/80 text-sm leading-relaxed mb-6">{section.description}</p>
                 <button className="inline-flex items-center justify-center rounded-full border border-yellow-300/60 bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 px-5 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-black shadow-[0_12px_32px_rgba(255,200,60,0.45)] transition-all duration-200 hover:from-yellow-400 hover:to-yellow-400 active:scale-[0.98] min-h-[44px] px-4 py-3">
                   {section.cta}
@@ -97,8 +99,9 @@ export default async function ClientPortalPage({ params }: ClientPortalPageProps
           <div className="mx-auto mt-16 max-w-5xl rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl p-8 text-white shadow-[0_24px_70px_rgba(0,0,0,0.45)]">
             <h3 className="text-xl font-semibold mb-4 tracking-wide">Account Notes</h3>
             <p className="text-white/80 text-sm leading-relaxed">
-              TD Studios manages credentials and sensitive integrations on your behalf. When you need to add or update
-              anything in the vault, drop us a line and we\'ll secure it immediately.
+              TD Studios manages credentials and sensitive integrations on your behalf. When you
+              need to add or update anything in the vault, drop us a line and we\'ll secure it
+              immediately.
             </p>
           </div>
         </main>

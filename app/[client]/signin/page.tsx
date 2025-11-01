@@ -1,44 +1,40 @@
 "use client"
 
+import { Terminal } from "lucide-react"
 import { useState } from "react"
-// Removed: useRouter
-// Removed: createClientComponentClient
-import { GlassCard } from "@/components/glass-card"
-import { FrostedButton } from "@/components/frosted-button"
+import { useFormStatus } from "react-dom"
+import { signIn } from "@/app/[client]/signin/actions"
+import { FrostedButton } from "@/components/FrostedButton"
+import { GlassCard } from "@/components/GlassCard"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Terminal } from "lucide-react"
-import { signIn } from "@/lib/actions/auth" // NEW: Import Server Action
-import { useFormStatus } from 'react-dom' // Helper hook
 
-// Helper component for pending state feedback
 function SubmitButton() {
-  const { pending } = useFormStatus();
+  const { pending } = useFormStatus()
+
   return (
     <FrostedButton type="submit" className="w-full" disabled={pending}>
       {pending ? "Signing In..." : "Sign In"}
     </FrostedButton>
-  );
+  )
 }
-
 
 export default function ClientSignInPage() {
   const [message, setMessage] = useState("")
   const [messageType, setMessageType] = useState<"success" | "error" | "">("")
-  // Removed: email, password state
 
-  // New action handler to manage state after server response
-  const formAction = async (formData: FormData) => {
+  const handleAction = async (formData: FormData) => {
     setMessage("")
     setMessageType("")
+
     try {
-        await signIn(formData);
-        // Success is handled by server-side redirect
+      await signIn(formData)
     } catch (error) {
-        // If signIn throws an error (e.g., wrong password), display the message
-        setMessage(error instanceof Error ? error.message : "An unknown error occurred during sign-in.");
-        setMessageType("error");
+      const fallbackMessage =
+        error instanceof Error ? error.message : "An unknown error occurred during sign-in."
+      setMessage(fallbackMessage)
+      setMessageType("error")
     }
   }
 
@@ -46,12 +42,9 @@ export default function ClientSignInPage() {
     <main className="min-h-dvh grid place-items-center p-4">
       <GlassCard className="w-full max-w-md p-8">
         <h1 className="text-3xl font-bold text-center mb-6">Client Sign-in</h1>
-        <p className="text-center text-white/80 mb-8">
-          Access your project dashboard and updates.
-        </p>
+        <p className="text-center text-white/80 mb-8">Access your project dashboard and updates.</p>
 
-        {/* Form uses the Server Action */}
-        <form action={formAction} className="space-y-6">
+        <form action={handleAction} className="space-y-6">
           <div>
             <Label htmlFor="email">Email</Label>
             <Input
@@ -81,7 +74,7 @@ export default function ClientSignInPage() {
             </Alert>
           )}
 
-          <SubmitButton /> 
+          <SubmitButton />
         </form>
       </GlassCard>
     </main>

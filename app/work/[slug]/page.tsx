@@ -1,15 +1,15 @@
 // app/work/[slug]/page.tsx - Refactored Content
 
-import { generateSEOMetadata } from "@/components/seo-head"
-import { clients } from "@/lib/clients-data"
-import { notFound } from "next/navigation"
-import Image from "next/image"
-import { FrostedButton } from "@/components/frosted-button"
-import { GlassCard } from "@/components/glass-card"
 import { ArrowLeft, Globe } from "lucide-react" // Only kept Globe, removed Social Icons
+import Image from "next/image"
 import Link from "next/link"
-import { JsonLd } from "@/components/json-ld"
-import { CaseStudyDetailContent } from "@/components/CaseStudyDetailContent" // New Import
+import { notFound } from "next/navigation"
+import { FrostedButton } from "@/components/FrostedButton"
+import { GlassCard } from "@/components/GlassCard"
+import { CaseStudyDetailContent } from "@/features/clients/components/CaseStudyDetailContent" // New Import
+import { clients } from "@/features/clients/lib/clients-data"
+import { JsonLd } from "@/features/seo/components/JsonLd"
+import { generateSEOMetadata } from "@/features/seo/components/SeoHead"
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -30,12 +30,11 @@ export async function generateMetadata({ params }: Props) {
       description: "The requested project could not be found.",
     })
   }
-  // FIXED Template Literals using backticks (``)
   return generateSEOMetadata({
     title: `${client.name} - Case Study`,
     description: client.description || `Case study for ${client.name} by TD Studios.`,
     canonical: `/work/${client.slug}`,
-    ogImage: client.gallery[0], // Pass the first image as ogImage
+    ogImage: client.gallery[0] ?? "/og/td-logo.png",
   })
 }
 
@@ -50,25 +49,25 @@ export default async function ClientCaseStudyPage({ params }: Props) {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
+    itemListElement: [
       {
         "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://tdstudiosdigital.com",
+        position: 1,
+        name: "Home",
+        item: "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
-        "position": 2,
-        "name": "Work",
-        "item": "https://tdstudiosdigital.com/work",
+        position: 2,
+        name: "Work",
+        item: "https://tdstudiosdigital.com/work",
       },
       {
         "@type": "ListItem",
-        "position": 3,
-        "name": client.name,
+        position: 3,
+        name: client.name,
         // FIXED Template Literal using backticks (``)
-        "item": `https://tdstudiosdigital.com/work/${client.slug}`,
+        item: `https://tdstudiosdigital.com/work/${client.slug}`,
       },
     ],
   }
@@ -90,7 +89,9 @@ export default async function ClientCaseStudyPage({ params }: Props) {
           <div className="absolute inset-0 bg-black/40 md:bg-black/40 hero-overlay-mobile"></div>
         </div>
         <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">{client.name}</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">
+            {client.name}
+          </h1>
           <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
             {client.tagline || "A case study in premium design and development."}
           </p>
@@ -152,7 +153,10 @@ export default async function ClientCaseStudyPage({ params }: Props) {
                   </div>
                 )}
 
-                <Link href="/work" className="text-luxury-gold hover:underline flex items-center gap-2">
+                <Link
+                  href="/work"
+                  className="text-luxury-gold hover:underline flex items-center gap-2"
+                >
                   <ArrowLeft className="w-4 h-4" /> Back to Portfolio
                 </Link>
               </GlassCard>
@@ -160,9 +164,8 @@ export default async function ClientCaseStudyPage({ params }: Props) {
 
             {/* Right Column: Uses reusable content component */}
             <div className="lg:col-span-2">
-                <CaseStudyDetailContent client={client} />
+              <CaseStudyDetailContent client={client} />
             </div>
-
           </div>
         </div>
       </section>
@@ -172,7 +175,9 @@ export default async function ClientCaseStudyPage({ params }: Props) {
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <GlassCard className="p-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Elevate Your Brand?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+              Ready to Elevate Your Brand?
+            </h2>
             <p className="text-white text-lg mb-8">
               Let's discuss your vision and create a digital experience that stands out.
             </p>

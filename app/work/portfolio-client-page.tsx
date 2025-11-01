@@ -1,13 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { X, ArrowRight } from "lucide-react"
 import Image from "next/image"
-import { ClientLogo } from "@/components/client-logo"
-import { GlassCard } from "@/components/glass-card"
-import { FrostedButton } from "@/components/frosted-button"
-import { X, ArrowRight, Instagram, Facebook, Twitter, Linkedin, Globe } from "lucide-react"
-import { clients, type Client } from "@/lib/clients-data"
-import { CaseStudyDetailContent } from "@/components/CaseStudyDetailContent";
+import { useState } from "react"
+import { FrostedButton } from "@/components/FrostedButton"
+import { GlassCard } from "@/components/GlassCard"
+import { CaseStudyDetailContent } from "@/features/clients/components/CaseStudyDetailContent"
+import { ClientLogo } from "@/features/clients/components/client-logo"
+import { clients, type Client } from "@/features/clients/lib/clients-data"
 
 export default function PortfolioClientPage() {
   const [selectedProject, setSelectedProject] = useState<Client | null>(null)
@@ -29,9 +29,12 @@ export default function PortfolioClientPage() {
         </div>
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">Client Success Stories</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">
+            Client Success Stories
+          </h1>
           <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
-            Discover how we've transformed brands and businesses through strategic design and development.
+            Discover how we've transformed brands and businesses through strategic design and
+            development.
           </p>
         </div>
       </section>
@@ -42,7 +45,9 @@ export default function PortfolioClientPage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Featured Clients</h2>
-            <p className="text-white text-lg">Click any logo to explore the project details and results</p>
+            <p className="text-white text-lg">
+              Click any logo to explore the project details and results
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -57,10 +62,13 @@ export default function PortfolioClientPage() {
                   alt={`${client.name} logo`}
                   fallbackText={client.name}
                   sizes="96px"
-                  containerClassName={`relative w-24 h-24 mx-auto mb-6 overflow-hidden ${client.logoBgColor || 'bg-neutral-900/80'} border border-white/20 rounded-full group-hover:bg-neutral-900/90 transition-colors`}
-                  imageClassName={`${client.id === 'serious-inquiries-only' ? 'object-cover' : 'object-contain p-4'} ${client.logoInvert ? "invert" : ""}`}                />
+                  containerClassName={`relative w-24 h-24 mx-auto mb-6 overflow-hidden ${client.logoBgColor || "bg-neutral-900/80"} border border-white/20 rounded-full group-hover:bg-neutral-900/90 transition-colors`}
+                  imageClassName={`${client.id === "serious-inquiries-only" ? "object-cover" : "object-contain p-4"} ${client.logoInvert ? "invert" : ""}`}
+                />
                 <h3 className="text-xl font-semibold mb-2 text-white">{client.name}</h3>
-                <p className="text-white text-sm mb-4">{client.industry} • {client.year}</p>
+                <p className="text-white text-sm mb-4">
+                  {client.industry} • {client.year}
+                </p>
                 {client.services.length > 0 && (
                   <div className="flex flex-wrap gap-2 justify-center">
                     {client.services.slice(0, 2).map((service) => (
@@ -117,9 +125,12 @@ export default function PortfolioClientPage() {
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <GlassCard className="p-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Join Our Success Stories?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+              Ready to Join Our Success Stories?
+            </h2>
             <p className="text-white text-lg mb-8">
-              Let's create something extraordinary together. Contact us to discuss your vision and bring it to life.
+              Let's create something extraordinary together. Contact us to discuss your vision and
+              bring it to life.
             </p>
             <FrostedButton href="/contact">Start Your Project</FrostedButton>
           </GlassCard>
@@ -143,8 +154,12 @@ export default function PortfolioClientPage() {
                     imageClassName={`object-contain p-2 ${selectedProject.logoInvert ? "invert" : ""}`}
                   />
                   <div>
-                    <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">{selectedProject.name}</h2>
-                    <p className="text-white text-sm sm:text-base">{selectedProject.industry} • {selectedProject.year}</p>
+                    <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">
+                      {selectedProject.name}
+                    </h2>
+                    <p className="text-white text-sm sm:text-base">
+                      {selectedProject.industry} • {selectedProject.year}
+                    </p>
                   </div>
                 </div>
                 <button

@@ -8,7 +8,7 @@ interface ClientSignInLayoutProps {
 
 export async function generateMetadata({ params }: ClientSignInLayoutProps): Promise<Metadata> {
   const { client } = await params
-  
+
   return {
     title: `Client Access | ${client.charAt(0).toUpperCase() + client.slice(1)} | TD Studios`,
     description: `Secure client portal access for ${client}. Enter your access code to view project files and resources.`,
@@ -34,10 +34,6 @@ export async function generateMetadata({ params }: ClientSignInLayoutProps): Pro
   }
 }
 
-export default function ClientSignInLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function ClientSignInLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 }

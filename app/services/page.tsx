@@ -1,13 +1,11 @@
-
 "use client"
-import ShareButton from "@/components/ShareButton";
-
-import { useSearchParams } from "next/navigation"
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
+import ShareButton from "@/features/marketing/components/ShareButton"
+import { JsonLd } from "@/features/seo/components/JsonLd"
 import { Design } from "./_components/Design"
 import { Development } from "./_components/Development"
 import { WebExperience } from "./_components/WebExperience"
-import { JsonLd } from "@/components/json-ld"
 
 type Tab = "design" | "dev" | "web"
 
@@ -25,69 +23,71 @@ export default function ServicesPage() {
     "@context": "https://schema.org",
     "@type": "Service",
     "@id": "https://tdstudiosdigital.com/services",
-    "name": "TD Studios Design & Development Services",
-    "description": "Comprehensive design and development services including branding, web development, and user experience design for premium brands.",
-    "provider": {
+    name: "TD Studios Design & Development Services",
+    description:
+      "Comprehensive design and development services including branding, web development, and user experience design for premium brands.",
+    provider: {
       "@type": "Organization",
-      "name": "TD Studios",
-      "url": "https://tdstudiosdigital.com",
+      name: "TD Studios",
+      url: "https://tdstudiosdigital.com",
     },
-    "serviceType": ["Brand Design", "Web Development", "User Experience Design"],
-    "areaServed": {
+    serviceType: ["Brand Design", "Web Development", "User Experience Design"],
+    areaServed: {
       "@type": "Place",
-      "name": "Worldwide"
+      name: "Worldwide",
     },
-    "hasOfferCatalog": {
+    hasOfferCatalog: {
       "@type": "OfferCatalog",
-      "name": "TD Studios Services",
-      "itemListElement": [
+      name: "TD Studios Services",
+      itemListElement: [
         {
           "@type": "Offer",
-          "itemOffered": {
+          itemOffered: {
             "@type": "Service",
-            "name": "Brand Identity Design",
-            "description": "Complete visual identity systems including logos, color palettes, and brand guidelines"
-          }
+            name: "Brand Identity Design",
+            description:
+              "Complete visual identity systems including logos, color palettes, and brand guidelines",
+          },
         },
         {
           "@type": "Offer",
-          "itemOffered": {
+          itemOffered: {
             "@type": "Service",
-            "name": "Web Development",
-            "description": "Custom websites and web applications built with modern technologies"
-          }
+            name: "Web Development",
+            description: "Custom websites and web applications built with modern technologies",
+          },
         },
         {
           "@type": "Offer",
-          "itemOffered": {
+          itemOffered: {
             "@type": "Service",
-            "name": "User Experience Design",
-            "description": "User-centered design and interface optimization for digital products"
-          }
-        }
-      ]
+            name: "User Experience Design",
+            description: "User-centered design and interface optimization for digital products",
+          },
+        },
+      ],
     },
-    "availableChannel": {
+    availableChannel: {
       "@type": "ServiceChannel",
-      "serviceUrl": "https://tdstudiosdigital.com/contact",
+      serviceUrl: "https://tdstudiosdigital.com/contact",
     },
   }
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
+    itemListElement: [
       {
         "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://tdstudiosdigital.com",
+        position: 1,
+        name: "Home",
+        item: "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
-        "position": 2,
-        "name": "Services",
-        "item": "https://tdstudiosdigital.com/services",
+        position: 2,
+        name: "Services",
+        item: "https://tdstudiosdigital.com/services",
       },
     ],
   }
@@ -108,9 +108,7 @@ export default function ServicesPage() {
                   key={tab.id}
                   href={`/services?tab=${tab.id}`}
                   className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                    currentTab === tab.id
-                      ? "bg-white text-black"
-                      : "text-white/80 hover:text-white"
+                    currentTab === tab.id ? "bg-white text-black" : "text-white/80 hover:text-white"
                   }`}
                 >
                   {tab.label}

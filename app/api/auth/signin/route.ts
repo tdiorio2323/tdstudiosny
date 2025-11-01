@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
-import { createSession, getPasscodeForClient } from "@/lib/utils/auth"
-import { clientAccessProfiles } from "@/lib/client-access"
+import { createSession, getPasscodeForClient } from "@/features/clients/lib/auth"
+import { clientAccessProfiles } from "@/features/clients/lib/client-access"
 
 // Rate limiting store (in-memory, resets on server restart)
 // For production, use Redis or similar
@@ -36,14 +36,11 @@ function resetRateLimit(clientSlug: string): void {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const body = (await request.json()) as Partial<{ clientSlug: string; passcode: string }>
     const { clientSlug, passcode } = body
 
-    if (!clientSlug || !passcode) {
-      return NextResponse.json(
-        { error: "Client slug and passcode are required" },
-        { status: 400 }
-      )
+    if (typeof clientSlug !== "string" || typeof passcode !== "string") {
+      return NextResponse.json({ error: "Client slug and passcode are required" }, { status: 400 })
     }
 
     // Check if client exists
@@ -93,9 +90,6 @@ export async function POST(request: NextRequest) {
     })
   } catch (error) {
     console.error("Authentication error:", error)
-    return NextResponse.json(
-      { error: "Authentication failed. Please try again." },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: "Authentication failed. Please try again." }, { status: 500 })
   }
 }

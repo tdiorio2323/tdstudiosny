@@ -8,7 +8,7 @@ interface ClientPortalLayoutProps {
 
 export async function generateMetadata({ params }: ClientPortalLayoutProps): Promise<Metadata> {
   const { client } = await params
-  
+
   return {
     title: `Client Portal | ${client.charAt(0).toUpperCase() + client.slice(1)} | TD Studios`,
     description: `Private client portal for ${client}. Access your project files, resources, and collaboration tools.`,
@@ -34,10 +34,6 @@ export async function generateMetadata({ params }: ClientPortalLayoutProps): Pro
   }
 }
 
-export default function ClientPortalLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function ClientPortalLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 }

@@ -1,13 +1,12 @@
-import { ImageResponse } from "next/og";
-import React from "react";
-export const runtime = "edge";
-
+import { ImageResponse } from "next/og"
+import { createElement } from "react"
+export const runtime = "edge"
 
 export async function GET(req: Request) {
-  const { searchParams } = new URL(req.url);
-  const t = (searchParams.get("title") ?? "TD Studios").slice(0, 80);
+  const { searchParams } = new URL(req.url)
+  const t = (searchParams.get("title") ?? "TD Studios").slice(0, 80)
   return new ImageResponse(
-    React.createElement(
+    createElement(
       "div",
       {
         style: {
@@ -22,12 +21,8 @@ export async function GET(req: Request) {
           padding: "40px",
         },
       },
-      React.createElement(
-        "div",
-        { style: { textAlign: "center", lineHeight: 1.1 } },
-        t
-      )
+      createElement("div", { style: { textAlign: "center", lineHeight: 1.1 } }, t)
     ),
-    { width: 1200, height: 630, headers: { 'Content-Type': 'image/png' } }
-  );
+    { width: 1200, height: 630, headers: { "Content-Type": "image/png" } }
+  )
 }

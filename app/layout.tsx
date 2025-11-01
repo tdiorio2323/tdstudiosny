@@ -1,29 +1,29 @@
-import type { Metadata } from "next"
-import { JsonLd } from "@/components/json-ld"
-import { Inter } from 'next/font/google'
-import Script from 'next/script'
 import { Analytics } from "@vercel/analytics/next"
-import { Footer } from "@/components/footer"
-import { StickyHeader } from "@/components/sticky-header"
-import { AnalyticsProvider } from "@/components/analytics-provider"
-import "./globals.css"
-import "@/styles/layout-scale.css"
+import { Inter } from "next/font/google"
+import Script from "next/script"
 import type React from "react"
 import { Suspense } from "react"
+import { Footer } from "@/features/layout/components/Footer"
+import { StickyHeader } from "@/features/layout/components/StickyHeader"
+import { AnalyticsProvider } from "@/features/layout/providers/AnalyticsProvider"
+import { JsonLd } from "@/features/seo/components/JsonLd"
+import "./globals.css"
+import "@/styles/layout-scale.css"
 
-const inter = Inter({ subsets: ['latin'], display: 'swap' })
+const inter = Inter({ subsets: ["latin"], display: "swap" })
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://tdstudiosdigital.com"),
   title: { default: "TD Studios", template: "%s · TD Studios" },
-  description: "High-end websites, branding, and marketing systems engineered for creators and ambitious brands.",
+  description:
+    "High-end websites, branding, and marketing systems engineered for creators and ambitious brands.",
   alternates: { canonical: "/" },
-};
+}
 
 export const viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
-  viewportFit: 'cover',
+  viewportFit: "cover",
   themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#0b0b0c" }],
 }
 
@@ -35,36 +35,37 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link
-          rel="preload"
-          as="image"
-          href="/main-background.webp"
-        />
+        <link rel="preload" as="image" href="/main-background.webp" />
       </head>
-  <body className={`${inter.className} bg-black text-white antialiased`}>
+      <body className={`${inter.className} bg-black text-white antialiased`}>
         {/** Sitewide Organization JSON-LD Schema */}
-        <JsonLd data={{
-          "@context":"https://schema.org",
-          "@type":"Organization",
-          "name":"TD Studios",
-          "url":"https://tdstudiosdigital.com",
-          "logo":"https://tdstudiosdigital.com/og/td-logo.png",
-          "sameAs":[
-            "https://instagram.com/tdstudiosco"
-          ]
-        }} />
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "TD Studios",
+            url: "https://tdstudiosdigital.com",
+            logo: "https://tdstudiosdigital.com/og/td-logo.png",
+            sameAs: ["https://instagram.com/tdstudiosco"],
+          }}
+        />
         {/* Skip Navigation Link for Accessibility */}
-        <a 
+        <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-black px-4 py-2 rounded-md z-[60] font-medium min-h-[44px]"
         >
           Skip to content
         </a>
-        <Script src='https://cdn.platform.openai.com/deployments/chatkit/chatkit.js' strategy='afterInteractive' />
+        <Script
+          src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
+          strategy="afterInteractive"
+        />
         <AnalyticsProvider>
           <StickyHeader />
           <main id="main" role="main">
-            <Suspense fallback={<div className="text-white p-8">Loading...</div>}>{children}</Suspense>
+            <Suspense fallback={<div className="text-white p-8">Loading...</div>}>
+              {children}
+            </Suspense>
           </main>
           <Footer />
         </AnalyticsProvider>

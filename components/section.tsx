@@ -1,4 +1,5 @@
-import { ReactNode } from "react"
+import type { ReactNode } from "react"
+import { cn } from "@/lib/utils"
 
 interface SectionProps {
   id?: string
@@ -8,13 +9,11 @@ interface SectionProps {
   innerClassName?: string
 }
 
-export function Section({ id, title, children, className = "", innerClassName = "" }: SectionProps) {
+export function Section({ id, title, children, className, innerClassName }: SectionProps) {
   return (
-    <section id={id} className={`py-12 md:py-20 ${className}`}>
-      <div className={`container-max stack-lg ${innerClassName}`}>
-        {title && (
-          <h2 className="text-2xl md:text-4xl font-bold text-center">{title}</h2>
-        )}
+    <section id={id} className={cn("py-12 md:py-20", className)}>
+      <div className={cn("container-max stack-lg", innerClassName)}>
+        {title && <h2 className="text-2xl md:text-4xl font-bold text-center">{title}</h2>}
         {children}
       </div>
     </section>

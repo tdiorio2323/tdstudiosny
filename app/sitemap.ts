@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next"
-import { clients } from "@/lib/clients-data"
+import { clients } from "@/features/clients/lib/clients-data"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://tdstudiosdigital.com"

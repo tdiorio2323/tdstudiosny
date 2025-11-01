@@ -1,15 +1,13 @@
-
 "use client"
-import MobileCta from "@/components/MobileCta";
-
-import type React from "react"
-import Image from "next/image"
-import { useState, useEffect } from "react"
-import { GlassCard } from "@/components/glass-card"
-import { FrostedButton } from "@/components/frosted-button"
-import { CalendlyWidget } from "@/components/calendly-widget"
-import { JsonLd } from "@/components/json-ld"
 import { Mail, Clock, MapPin } from "lucide-react"
+import Image from "next/image"
+import type React from "react"
+import { useState, useEffect } from "react"
+import { FrostedButton } from "@/components/FrostedButton"
+import { GlassCard } from "@/components/GlassCard"
+import { CalendlyWidget } from "@/features/contact/components/CalendlyWidget"
+import MobileCta from "@/features/contact/components/MobileCta"
+import { JsonLd } from "@/features/seo/components/JsonLd"
 
 const services = [
   "Web Experience",
@@ -51,11 +49,11 @@ export default function ContactPage() {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "TD Studios NY",
-    "image": "https://tdstudiosdigital.com/logo.png",
+    name: "TD Studios NY",
+    image: "https://tdstudiosdigital.com/logo.png",
     "@id": "https://tdstudiosdigital.com/contact",
-    "url": "https://tdstudiosdigital.com/contact",
-    "telephone": "+1-212-555-0199",
+    url: "https://tdstudiosdigital.com/contact",
+    telephone: "+1-212-555-0199",
   }
   const [contactType, setContactType] = useState<string | null>(null)
   interface ContactFormData {
@@ -79,17 +77,17 @@ export default function ContactPage() {
     timeline: "",
     details: "",
   })
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
   const [statusMessage, setStatusMessage] = useState<string | null>(null)
   const initialFieldErrors: Record<keyof ContactFormData, string> = {
-    fullName: '',
-    email: '',
-    company: '',
-    phone: '',
-    service: '',
-    budget: '',
-    timeline: '',
-    details: '',
+    fullName: "",
+    email: "",
+    company: "",
+    phone: "",
+    service: "",
+    budget: "",
+    timeline: "",
+    details: "",
   }
   const initialTouched: Record<keyof ContactFormData, boolean> = {
     fullName: false,
@@ -101,28 +99,29 @@ export default function ContactPage() {
     timeline: false,
     details: false,
   }
-  const [fieldErrors, setFieldErrors] = useState<Record<keyof ContactFormData, string>>(initialFieldErrors)
+  const [fieldErrors, setFieldErrors] =
+    useState<Record<keyof ContactFormData, string>>(initialFieldErrors)
   const [touched, setTouched] = useState<Record<keyof ContactFormData, boolean>>(initialTouched)
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
-    const type = urlParams.get('type')
+    const type = urlParams.get("type")
     if (type) {
       setContactType(type)
     }
   }, [])
 
   useEffect(() => {
-    setStatus('idle')
+    setStatus("idle")
     setStatusMessage(null)
   }, [contactType])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     // Validate all fields before submission
     const newErrors: Record<string, string> = {}
-    Object.keys(formData).forEach(key => {
+    Object.keys(formData).forEach((key) => {
       const error = validateField(key, formData[key as keyof typeof formData])
       if (error) newErrors[key] = error
     })
@@ -140,39 +139,39 @@ export default function ContactPage() {
     })
 
     // Don't submit if there are validation errors
-    if (Object.values(newErrors).some(error => error)) {
-      setStatus('error')
-      setStatusMessage('Please fix the errors above before submitting.')
+    if (Object.values(newErrors).some((error) => error)) {
+      setStatus("error")
+      setStatusMessage("Please fix the errors above before submitting.")
       return
     }
 
-    setStatus('submitting')
+    setStatus("submitting")
     setStatusMessage(null)
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           ...formData,
-          contactType
-        })
+          contactType,
+        }),
       })
 
       if (!response.ok) {
         // Track failed submission
-        if (typeof window !== 'undefined') {
-          import('@/lib/analytics').then(({ trackFormSubmission }) => {
-            trackFormSubmission(contactType || 'contact', false)
+        if (typeof window !== "undefined") {
+          import("@/lib/analytics").then(({ trackFormSubmission }) => {
+            trackFormSubmission(contactType || "contact", false)
           })
         }
-        throw new Error('Request failed')
+        throw new Error("Request failed")
       }
 
-      setStatus('success')
-      setStatusMessage('Thanks for reaching out. We\'ll get back to you within one business day.')
+      setStatus("success")
+      setStatusMessage("Thanks for reaching out. We'll get back to you within one business day.")
       setFormData({
         fullName: "",
         email: "",
@@ -184,80 +183,89 @@ export default function ContactPage() {
         details: "",
       })
       // Track successful submission
-      if (typeof window !== 'undefined') {
-        import('@/lib/analytics').then(({ trackFormSubmission }) => {
-          trackFormSubmission(contactType || 'contact', true)
+      if (typeof window !== "undefined") {
+        import("@/lib/analytics").then(({ trackFormSubmission }) => {
+          trackFormSubmission(contactType || "contact", true)
         })
       }
     } catch (error) {
       // Track error
-      if (typeof window !== 'undefined') {
-        import('@/lib/analytics').then(({ trackFormSubmission }) => {
-          trackFormSubmission(contactType || 'contact', false)
+      if (typeof window !== "undefined") {
+        import("@/lib/analytics").then(({ trackFormSubmission }) => {
+          trackFormSubmission(contactType || "contact", false)
         })
       }
-      console.error('Error submitting contact form:', error)
-      setStatus('error')
-      setStatusMessage('We couldn\'t send your message. Email tyler@tdstudiosny.com and we\'ll help right away.')
+      console.error("Error submitting contact form:", error)
+      setStatus("error")
+      setStatusMessage(
+        "We couldn't send your message. Email tyler@tdstudiosny.com and we'll help right away."
+      )
     }
   }
 
   // Real-time validation function
   const validateField = (name: string, value: string) => {
     switch (name) {
-      case 'fullName':
-        if (!value.trim()) return 'Full name is required'
-        if (value.length < 2) return 'Full name must be at least 2 characters'
-        if (value.length > 100) return 'Full name must be less than 100 characters'
+      case "fullName":
+        if (!value.trim()) return "Full name is required"
+        if (value.length < 2) return "Full name must be at least 2 characters"
+        if (value.length > 100) return "Full name must be less than 100 characters"
         break
-      case 'email':
-        if (!value.trim()) return 'Email is required'
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Please enter a valid email address'
+      case "email":
+        if (!value.trim()) return "Email is required"
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "Please enter a valid email address"
         break
-      case 'service':
-        if (!value.trim()) return 'Please select a service'
+      case "service":
+        if (!value.trim()) return "Please select a service"
         break
-      case 'details':
-        if (!contactType || contactType === 'project') {
-          if (!value.trim()) return 'Project details are required'
-          if (value.length < 10) return 'Please provide at least 10 characters of detail'
+      case "details":
+        if (!contactType || contactType === "project") {
+          if (!value.trim()) return "Project details are required"
+          if (value.length < 10) return "Please provide at least 10 characters of detail"
         }
-        if (value.length > 5000) return 'Details must be less than 5000 characters'
+        if (value.length > 5000) return "Details must be less than 5000 characters"
         break
     }
-    return ''
+    return ""
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target
-    
+
     setFormData({
       ...formData,
       [name]: value,
     })
 
     // Real-time validation for touched fields
-    if (Object.prototype.hasOwnProperty.call(touched, name) && touched[name as keyof ContactFormData]) {
+    if (
+      Object.prototype.hasOwnProperty.call(touched, name) &&
+      touched[name as keyof ContactFormData]
+    ) {
       const error = validateField(name, value)
-      setFieldErrors(prev => ({
+      setFieldErrors((prev) => ({
         ...prev,
-        [name]: error
+        [name]: error,
       }))
     }
   }
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target
-    
-    setTouched(prev => ({
+
+    setTouched((prev) => ({
       ...prev,
-      [name]: true
+      [name]: true,
     }))
 
     const error = validateField(name, value)
-    setFieldErrors(prev => ({
+    setFieldErrors((prev) => ({
       ...prev,
-      [name]: error
+      [name]: error,
     }))
   }
 
@@ -278,9 +286,12 @@ export default function ContactPage() {
           <div className="absolute inset-0 bg-black/40 md:bg-black/40 hero-overlay-mobile"></div>
         </div>
         <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">Let's Create Something Extraordinary</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">
+            Let's Create Something Extraordinary
+          </h1>
           <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
-            Ready to elevate your brand with premium design solutions? Let's discuss your project and bring your vision to life.
+            Ready to elevate your brand with premium design solutions? Let's discuss your project
+            and bring your vision to life.
           </p>
         </div>
       </section>
@@ -289,9 +300,12 @@ export default function ContactPage() {
       <section className="py-24 bg-black/60">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">What We Specialize In</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              What We Specialize In
+            </h2>
             <p className="text-white/80 text-lg max-w-2xl mx-auto">
-              Premium design and development services tailored for ambitious brands and forward-thinking companies.
+              Premium design and development services tailored for ambitious brands and
+              forward-thinking companies.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -299,12 +313,18 @@ export default function ContactPage() {
               <GlassCard key={index} className="text-center">
                 <h3 className="text-xl font-semibold text-white mb-3">{service}</h3>
                 <p className="text-white/80 text-sm">
-                  {service === "Web Experience" && "Custom websites and digital experiences that convert visitors into customers."}
-                  {service === "Product & Platform Development" && "Full-stack applications and platforms built for scale and performance."}
-                  {service === "Social & Content Systems" && "Brand storytelling and content strategies that drive engagement."}
-                  {service === "Brand & Identity" && "Visual identity systems that establish authority and build trust."}
-                  {service === "Digital Assets" && "Graphics, animations, and digital content optimized for all platforms."}
-                  {service === "Partnerships" && "Strategic collaboration and white-label services for agencies and teams."}
+                  {service === "Web Experience" &&
+                    "Custom websites and digital experiences that convert visitors into customers."}
+                  {service === "Product & Platform Development" &&
+                    "Full-stack applications and platforms built for scale and performance."}
+                  {service === "Social & Content Systems" &&
+                    "Brand storytelling and content strategies that drive engagement."}
+                  {service === "Brand & Identity" &&
+                    "Visual identity systems that establish authority and build trust."}
+                  {service === "Digital Assets" &&
+                    "Graphics, animations, and digital content optimized for all platforms."}
+                  {service === "Partnerships" &&
+                    "Strategic collaboration and white-label services for agencies and teams."}
                 </p>
               </GlassCard>
             ))}
@@ -318,7 +338,8 @@ export default function ContactPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Start Your Project</h2>
             <p className="text-white/80 text-lg max-w-2xl mx-auto">
-              Tell us about your project and we'll create a custom proposal tailored to your needs and timeline.
+              Tell us about your project and we'll create a custom proposal tailored to your needs
+              and timeline.
             </p>
           </div>
 
@@ -328,11 +349,11 @@ export default function ContactPage() {
               <div className="grid md:grid-cols-2 gap-4 mb-8">
                 <button
                   type="button"
-                  onClick={() => setContactType('project')}
+                  onClick={() => setContactType("project")}
                   className={`p-6 rounded-lg border transition-all duration-300 ${
-                    contactType === 'project'
-                      ? 'border-white/30 bg-white/10'
-                      : 'border-white/10 bg-transparent hover:border-white/20'
+                    contactType === "project"
+                      ? "border-white/30 bg-white/10"
+                      : "border-white/10 bg-transparent hover:border-white/20"
                   }`}
                 >
                   <div className="text-left">
@@ -344,11 +365,11 @@ export default function ContactPage() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setContactType('consultation')}
+                  onClick={() => setContactType("consultation")}
                   className={`p-6 rounded-lg border transition-all duration-300 ${
-                    contactType === 'consultation'
-                      ? 'border-white/30 bg-white/10'
-                      : 'border-white/10 bg-transparent hover:border-white/20'
+                    contactType === "consultation"
+                      ? "border-white/30 bg-white/10"
+                      : "border-white/10 bg-transparent hover:border-white/20"
                   }`}
                 >
                   <div className="text-left">
@@ -376,15 +397,22 @@ export default function ContactPage() {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         className={`w-full px-4 py-3 bg-white/10 border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 ${
-                          fieldErrors.fullName && touched.fullName ? 'border-red-400' : 'border-white/20'
+                          fieldErrors.fullName && touched.fullName
+                            ? "border-red-400"
+                            : "border-white/20"
                         }`}
                         placeholder="Your full name"
                         // TODO: Restore aria-invalid after accessibility review
-                        aria-describedby={fieldErrors.fullName && touched.fullName ? 'fullName-error' : undefined}
+                        aria-describedby={
+                          fieldErrors.fullName && touched.fullName ? "fullName-error" : undefined
+                        }
                       />
                       {fieldErrors.fullName && touched.fullName && (
-                        <p id="fullName-error" role="alert" className="mt-1 text-sm text-red-400">
-                        </p>
+                        <p
+                          id="fullName-error"
+                          role="alert"
+                          className="mt-1 text-sm text-red-400"
+                        ></p>
                       )}
                     </div>
                     <div>
@@ -399,11 +427,13 @@ export default function ContactPage() {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         className={`w-full px-4 py-3 bg-white/10 border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 ${
-                          fieldErrors.email && touched.email ? 'border-red-400' : 'border-white/20'
+                          fieldErrors.email && touched.email ? "border-red-400" : "border-white/20"
                         }`}
                         placeholder="your@email.com"
                         // TODO: Restore aria-invalid after accessibility review
-                        aria-describedby={fieldErrors.email && touched.email ? 'email-error' : undefined}
+                        aria-describedby={
+                          fieldErrors.email && touched.email ? "email-error" : undefined
+                        }
                       />
                       {fieldErrors.email && touched.email && (
                         <p id="email-error" role="alert" className="mt-1 text-sm text-red-400">
@@ -460,10 +490,14 @@ export default function ContactPage() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       className={`w-full px-4 py-3 bg-white/10 border rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-white/30 ${
-                        fieldErrors.service && touched.service ? 'border-red-400' : 'border-white/20'
+                        fieldErrors.service && touched.service
+                          ? "border-red-400"
+                          : "border-white/20"
                       }`}
                       // TODO: Restore aria-invalid after accessibility review
-                      aria-describedby={fieldErrors.service && touched.service ? 'service-error' : undefined}
+                      aria-describedby={
+                        fieldErrors.service && touched.service ? "service-error" : undefined
+                      }
                     >
                       <option value="">Select a service</option>
                       {services.map((service, index) => (
@@ -479,7 +513,7 @@ export default function ContactPage() {
                     )}
                   </div>
 
-                  {contactType === 'project' && (
+                  {contactType === "project" && (
                     <>
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
@@ -530,7 +564,9 @@ export default function ContactPage() {
 
                   <div>
                     <label htmlFor="details" className="block text-white font-medium mb-2">
-                      {contactType === 'project' ? 'Project Details *' : 'What would you like to discuss?'}
+                      {contactType === "project"
+                        ? "Project Details *"
+                        : "What would you like to discuss?"}
                     </label>
                     <textarea
                       id="details"
@@ -540,15 +576,19 @@ export default function ContactPage() {
                       onBlur={handleBlur}
                       rows={5}
                       className={`w-full px-4 py-3 bg-white/10 border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 resize-none ${
-                        fieldErrors.details && touched.details ? 'border-red-400' : 'border-white/20'
+                        fieldErrors.details && touched.details
+                          ? "border-red-400"
+                          : "border-white/20"
                       }`}
                       placeholder={
-                        contactType === 'project'
+                        contactType === "project"
                           ? "Tell us about your project goals, target audience, and any specific requirements..."
                           : "What questions do you have about our services or your potential project?"
                       }
                       // TODO: Restore aria-invalid after accessibility review
-                      aria-describedby={fieldErrors.details && touched.details ? 'details-error' : undefined}
+                      aria-describedby={
+                        fieldErrors.details && touched.details ? "details-error" : undefined
+                      }
                     />
                     {fieldErrors.details && touched.details && (
                       <p id="details-error" role="alert" className="mt-1 text-sm text-red-400">
@@ -561,9 +601,9 @@ export default function ContactPage() {
                   {statusMessage && (
                     <div
                       className={`p-4 rounded-lg ${
-                        status === 'success'
-                          ? 'bg-green-900/50 border border-green-500/30 text-green-100'
-                          : 'bg-red-900/50 border border-red-500/30 text-red-100'
+                        status === "success"
+                          ? "bg-green-900/50 border border-green-500/30 text-green-100"
+                          : "bg-red-900/50 border border-red-500/30 text-red-100"
                       }`}
                       role="alert"
                     >
@@ -574,17 +614,19 @@ export default function ContactPage() {
                   {/* Submit Button */}
                   <FrostedButton
                     type="submit"
-                    disabled={status === 'submitting'}
-                    loading={status === 'submitting'}
+                    disabled={status === "submitting"}
+                    loading={status === "submitting"}
                     className="w-full py-4 text-lg font-semibold"
-                    analyticsLabel={contactType === 'project' ? 'Submit Project Form' : 'Submit Consultation Form'}
+                    analyticsLabel={
+                      contactType === "project" ? "Submit Project Form" : "Submit Consultation Form"
+                    }
                     analyticsPosition="contact-form"
                   >
-                    {status === 'submitting'
-                      ? 'Sending...'
-                      : contactType === 'project'
-                      ? 'Submit Project Request'
-                      : 'Request Consultation'}
+                    {status === "submitting"
+                      ? "Sending..."
+                      : contactType === "project"
+                        ? "Submit Project Request"
+                        : "Request Consultation"}
                   </FrostedButton>
                 </>
               )}
@@ -598,9 +640,12 @@ export default function ContactPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Schedule a Free Consultation</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                Schedule a Free Consultation
+              </h2>
               <p className="text-white/80 text-lg mb-8">
-                Prefer to speak directly? Book a 30-minute consultation to discuss your project goals, timeline, and how we can help bring your vision to life.
+                Prefer to speak directly? Book a 30-minute consultation to discuss your project
+                goals, timeline, and how we can help bring your vision to life.
               </p>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
@@ -608,9 +653,12 @@ export default function ContactPage() {
                     <Clock className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">30-Minute Strategy Session</h3>
+                    <h3 className="text-lg font-semibold text-white mb-2">
+                      30-Minute Strategy Session
+                    </h3>
                     <p className="text-white/80">
-                      We'll discuss your project scope, timeline, budget, and create a customized roadmap for success.
+                      We'll discuss your project scope, timeline, budget, and create a customized
+                      roadmap for success.
                     </p>
                   </div>
                 </div>
@@ -621,7 +669,8 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">Custom Proposal</h3>
                     <p className="text-white/80">
-                      Within 24 hours, receive a detailed proposal with timeline, deliverables, and transparent pricing.
+                      Within 24 hours, receive a detailed proposal with timeline, deliverables, and
+                      transparent pricing.
                     </p>
                   </div>
                 </div>
@@ -650,7 +699,9 @@ export default function ContactPage() {
       {/* FAQ Section */}
       <section className="py-24 bg-black/40">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">Frequently Asked Questions</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">
+            Frequently Asked Questions
+          </h2>
           <div className="space-y-6">
             {faqs.map((faq, index) => (
               <GlassCard key={index}>
