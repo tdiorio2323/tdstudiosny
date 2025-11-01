@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start -p 3000",
     "lint": "eslint . --max-warnings=0",
@@ -33,7 +33,8 @@
     "audit:no-install": "SKIP_INSTALL=1 scripts/audit.sh",
     "audit:no-build": "SKIP_BUILD=1 scripts/audit.sh",
     "audit:fast": "QUICK=1 SKIP_INSTALL=1 SKIP_BUILD=1 LH_RUNS=1 AXE_CONCURRENCY=6 ROUTES=/,/services scripts/audit.sh",
-    "audit:perf-only": "A11Y=0 LHCI=1 LH_CATS=performance LH_RUNS=1 QUICK=1 SKIP_INSTALL=1 SKIP_BUILD=1 scripts/audit.sh"
+    "audit:perf-only": "A11Y=0 LHCI=1 LH_CATS=performance LH_RUNS=1 QUICK=1 SKIP_INSTALL=1 SKIP_BUILD=1 scripts/audit.sh",
+    "kill-3000": "lsof -ti :3000 | xargs -r kill"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

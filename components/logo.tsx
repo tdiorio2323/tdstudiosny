@@ -8,7 +8,8 @@ export function Logo({ className }: { className?: string }) {
         alt="TD Studios Logo"
         width={256}
         height={64}
-        className="h-16 w-auto"
+        className="w-64"
+        style={{ height: "auto" }}
       />
     </div>
   )
