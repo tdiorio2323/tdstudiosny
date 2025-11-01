@@ -7,15 +7,15 @@ import { useState, useMemo } from "react"
 import { Logo } from "@/components/Logo"
 
 const navItems = [
-  { name: "WORK", href: "/work" },
-  { name: "WEB", href: "/web" },
-  { name: "DEV", href: "/dev" },
-  { name: "SOCIAL", href: "/social" },
-  { name: "DESIGN", href: "/design" },
-  { name: "PROCESS", href: "/process" },
-  { name: "RESOURCES", href: "/resources" },
-  { name: "FAQ", href: "/faq" },
-  { name: "CONTACT", href: "/contact" },
+  { name: "Work", href: "/work" },
+  { name: "Web", href: "/web" },
+  { name: "Dev", href: "/dev" },
+  { name: "Social", href: "/social" },
+  { name: "Design", href: "/design" },
+  { name: "Process", href: "/process" },
+  { name: "Resources", href: "/resources" },
+  { name: "Faq", href: "/faq" },
+  { name: "Contact", href: "/contact" },
 ]
 
 export function Nav() {
@@ -58,12 +58,12 @@ export function Nav() {
           </div>
 
           {/* Desktop Navigation - Now Centered */}
-          <div className="hidden md:flex items-center justify-center flex-1 space-x-12">
+          <div className="hidden md:flex flex-1 items-center justify-center gap-6 whitespace-nowrap">
             {navigationItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-lg font-medium tracking-wider transition-colors hover:text-white ${
+                className={`text-lg font-medium uppercase tracking-wider transition-colors hover:text-white ${
                   pathname === item.href ? "text-white border-b border-white" : "text-white/80"
                 }`}
               >
@@ -137,7 +137,7 @@ export function Nav() {
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`w-full text-center text-2xl font-medium tracking-wider transition-all duration-300 mobile-nav-item mobile-touch-target flex items-center justify-center py-4 border-b border-white/10 ${
+                  className={`w-full text-center text-2xl font-medium uppercase tracking-wider transition-all duration-300 mobile-nav-item mobile-touch-target flex items-center justify-center py-4 border-b border-white/10 ${
                     pathname === item.href
                       ? "text-white bg-white/5"
                       : "text-white/80 hover:bg-white/5 hover:text-white"
