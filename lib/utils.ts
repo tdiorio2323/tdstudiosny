@@ -1,6 +1,6 @@
-import { clsx, type ClassValue } from 'clsx'
-import { twMerge } from 'tailwind-merge'
-import type { Metadata } from 'next'
+import { clsx, type ClassValue } from "clsx"
+import type { Metadata } from "next"
+import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -12,11 +12,8 @@ export function cn(...inputs: ClassValue[]) {
  * @param metadata - Additional metadata to merge
  * @returns Metadata object with canonical URL
  */
-export function createMetadata(
-  path: string,
-  metadata?: Partial<Metadata>
-): Metadata {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tdstudiosdigital.com'
+export function createMetadata(path: string, metadata?: Partial<Metadata>): Metadata {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tdstudiosdigital.com"
   const canonicalUrl = `${baseUrl}${path}`
 
   return {

@@ -1,10 +1,9 @@
-import * as React from "react"
 import * as LabelPrimitive from "@radix-ui/react-label"
-
+import * as React from "react"
 import { cn } from "@/lib/utils"
 
 interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }
 
 const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
@@ -14,8 +13,7 @@ const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
       className={cn(
         "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
         className
-      )
-      }
+      )}
       htmlFor={htmlFor}
       {...props}
     >

@@ -26,9 +26,10 @@ exports[`Nav > renders stable snapshot 1`] = `
             >
               <img
                 alt="TD Studios Logo"
-                class="h-16 w-auto"
+                class="w-64"
                 height="64"
                 src="/images/td-studios-logo.png"
+                style="height: auto;"
                 width="256"
               />
             </div>
@@ -60,9 +61,10 @@ exports[`Nav > renders stable snapshot 1`] = `
             >
               <img
                 alt="TD Studios Logo"
-                class="h-16 w-auto"
+                class="w-64"
                 height="64"
                 src="/images/td-studios-logo.png"
+                style="height: auto;"
                 width="256"
               />
             </div>
@@ -74,61 +76,61 @@ exports[`Nav > renders stable snapshot 1`] = `
           </a>
         </div>
         <div
-          class="hidden md:flex items-center justify-center flex-1 space-x-12"
+          class="hidden md:flex flex-1 items-center justify-center gap-6 whitespace-nowrap"
         >
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
+            class="text-lg font-medium uppercase tracking-wider transition-colors hover:text-white text-white/80"
             href="/work"
           >
-            WORK
+            Work
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
+            class="text-lg font-medium uppercase tracking-wider transition-colors hover:text-white text-white/80"
             href="/web"
           >
-            WEB
+            Web
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
+            class="text-lg font-medium uppercase tracking-wider transition-colors hover:text-white text-white/80"
             href="/dev"
           >
-            DEV
+            Dev
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
+            class="text-lg font-medium uppercase tracking-wider transition-colors hover:text-white text-white/80"
             href="/social"
           >
-            SOCIAL
+            Social
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
+            class="text-lg font-medium uppercase tracking-wider transition-colors hover:text-white text-white/80"
             href="/design"
           >
-            DESIGN
+            Design
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
+            class="text-lg font-medium uppercase tracking-wider transition-colors hover:text-white text-white/80"
             href="/process"
           >
-            PROCESS
+            Process
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
+            class="text-lg font-medium uppercase tracking-wider transition-colors hover:text-white text-white/80"
             href="/resources"
           >
-            RESOURCES
+            Resources
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
+            class="text-lg font-medium uppercase tracking-wider transition-colors hover:text-white text-white/80"
             href="/faq"
           >
-            FAQ
+            Faq
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
+            class="text-lg font-medium uppercase tracking-wider transition-colors hover:text-white text-white/80"
             href="/contact"
           >
-            CONTACT
+            Contact
           </a>
         </div>
         <div
