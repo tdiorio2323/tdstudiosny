@@ -1,7 +1,8 @@
-import * as Home from "../app/page";
-test("home has metadata", () => {
-  // @ts-expect-error metadata is a typed export
-  expect(Home.metadata?.title).toBeTruthy();
-  // @ts-expect-error
-  expect(Home.metadata?.description).toBeTruthy();
-});
+import { metadata } from "@/app/layout"
+
+describe("App metadata", () => {
+  it("defines base title and description", () => {
+    expect(metadata.title?.default).toBeTruthy()
+    expect(metadata.description).toBeTruthy()
+  })
+})
