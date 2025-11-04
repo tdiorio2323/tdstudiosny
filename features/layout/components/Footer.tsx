@@ -10,8 +10,8 @@ export function Footer() {
           src="/footer-background.jpg"
           alt="Abstract background image"
           fill
-          style={{ objectFit: "cover" }}
-          className="w-full h-full"
+          className="object-cover"
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/10"></div>
       </div>

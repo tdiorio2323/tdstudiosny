@@ -20,10 +20,10 @@ export default function PortfolioClientPage() {
           <Image
             src="https://i.imgur.com/a1bXC5y.png"
             alt="Portfolio Hero"
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center"
+            fill
             priority
+            className="object-cover object-center"
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-black/40 md:bg-black/40 hero-overlay-mobile"></div>
         </div>
