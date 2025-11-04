@@ -75,10 +75,9 @@
 
 ### Trust & Compliance
 
-- [ ] **Remove/verify award badges** — 1h
-  - 4 unverified awards with `data-verify="pending"`
-  - Options: Remove, verify, or change to "Featured On"
-  - Files: `app/page.tsx` lines 157-197
+- [x] **Remove/verify award badges** — 1h
+  - Unverified award badge copy removed from homepage; revisit once verified placements exist.
+  - Files: n/a (no award badges present)
 
 - [ ] **Add skip-to-content link** — 0.3h
   - Accessibility improvement for keyboard navigation

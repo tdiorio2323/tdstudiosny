@@ -99,12 +99,12 @@
       "priority": "high",
       "phase": 2,
       "title": "Remove/verify award badges",
-      "description": "4 unverified awards with data-verify=pending - remove, verify, or change",
+      "description": "Unverified award messaging removed from marketing surface until officially confirmed",
       "hours": 1,
-      "files": ["app/page.tsx"],
-      "lines": [157, 197],
+      "files": [],
+      "lines": [],
       "impact": "Credibility, trust signals, FTC compliance",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "id": "H007",
@@ -122,17 +122,17 @@
       "priority": "medium",
       "phase": 3,
       "title": "Add JSON-LD to 6 pages",
-      "description": "Add structured data: Organization, WebSite, CollectionPage, HowTo, ContactPoint, ItemList",
+      "description": "Structured data coverage across priority marketing routes (Organization, WebSite, CollectionPage, Service, HowTo, ContactPoint)",
       "hours": 3,
       "files": [
         "app/page.tsx",
         "app/work/page.tsx",
+        "app/services/page.tsx",
         "app/process/page.tsx",
-        "app/support/page.tsx",
-        "app/resources/page.tsx"
+        "app/support/page.tsx"
       ],
       "impact": "SEO rich results, enhanced SERP presence",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "id": "M002",

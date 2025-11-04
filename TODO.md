@@ -67,25 +67,18 @@
 
 ### SEO & Metadata
 
-- [ ] **Add comprehensive JSON-LD structured data** (2h)
-  - Currently only on pricing page
-  - Add to:
-    - [ ] Homepage (Organization, WebSite schema)
-    - [ ] Work page (CollectionPage, CreativeWork)
-    - [ ] Services page (Service, Offer)
-    - [ ] Process page (HowTo)
-    - [ ] Support page (Organization, ContactPoint)
+- [x] **Add comprehensive JSON-LD structured data** (2h)
+  - Expanded structured data coverage across priority routes:
+    - [x] Homepage (Organization, WebSite, ItemList of services)
+    - [x] Work page (CollectionPage with ItemList of case studies)
+    - [x] Services page (Service & breadcrumb schemas)
+    - [x] Process page (HowTo + FAQ schema)
+    - [x] Support page (ContactPage + breadcrumb)
 
 ### Trust & Credibility
 
-- [ ] **Verify or remove industry award claims** (1h)
-  - File: `app/page.tsx:158-197`
-  - Homepage has "AWWWARDS WINNER", "CSS DESIGN AWARDS", etc.
-  - All marked with `data-verify="pending"`
-  - Options:
-    1. Apply and get verified
-    2. Remove claims
-    3. Change to "Featured on..." if legitimate
+- [x] **Verify or remove industry award claims** (1h)
+  - Removed unverified award references from marketing copy; no `data-verify="pending"` badges remain.
 
 ---
 

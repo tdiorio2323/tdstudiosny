@@ -6,6 +6,13 @@ import { JsonLd } from "@/features/seo/components/JsonLd"
 import heroImage from "@/public/main-background.webp"
 
 export default function HomePage() {
+  const featuredServices = [
+    { name: "Web", href: "/web", desc: "Website design and marketing experiences." },
+    { name: "Dev", href: "/dev", desc: "Platform and system development." },
+    { name: "Social", href: "/social", desc: "Content and social media growth systems." },
+    { name: "Design", href: "/design", desc: "Branding and visual identity design." },
+  ] as const
+
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -77,10 +84,35 @@ export default function HomePage() {
     },
   }
 
+  const serviceCatalogSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "TD Studios Core Services",
+    description: "Four primary service pillars delivered by TD Studios.",
+    itemListElement: featuredServices.map((service, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Service",
+        name: `${service.name} Services`,
+        description: service.desc,
+        provider: {
+          "@type": "Organization",
+          name: "TD Studios",
+          url: "https://tdstudiosdigital.com",
+        },
+        areaServed: "Worldwide",
+        serviceOutput: service.name,
+        url: `https://tdstudiosdigital.com${service.href}`,
+      },
+    })),
+  }
+
   return (
     <>
       <JsonLd data={organizationSchema} />
       <JsonLd data={websiteSchema} />
+      <JsonLd data={serviceCatalogSchema} />
       <main id="main-content" className="flex flex-col">
         {/* Hero Section with Fade-on-Scroll Effect */}
         <HeroSection heroImage={heroImage} />
@@ -89,12 +121,7 @@ export default function HomePage() {
         <Section innerClassName="text-center">
           <h2 className="text-4xl md:text-5xl font-semibold text-white">What We Do</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              { name: "Web", href: "/web", desc: "Website design and marketing experiences." },
-              { name: "Dev", href: "/dev", desc: "Platform and system development." },
-              { name: "Social", href: "/social", desc: "Content and social media growth systems." },
-              { name: "Design", href: "/design", desc: "Branding and visual identity design." },
-            ].map((s) => (
+            {featuredServices.map((s) => (
               <GlassCard key={s.name} className="luxury-glass transition-transform hover:scale-105">
                 <div className="stack-sm text-left">
                   <h3 className="text-2xl font-bold text-white">{s.name}</h3>

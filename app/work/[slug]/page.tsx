@@ -46,6 +46,50 @@ export default async function ClientCaseStudyPage({ params }: Props) {
     notFound()
   }
 
+  const servicesSchema =
+    client.services.length > 0
+      ? client.services.map((service) => ({
+          "@type": "Service" as const,
+          name: service,
+        }))
+      : undefined
+
+  const resultsSchema =
+    client.results.length > 0
+      ? client.results.map((result) => ({
+          "@type": "CreativeWork" as const,
+          description: result,
+        }))
+      : undefined
+
+  const caseStudySchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: `${client.name} Case Study`,
+    description: client.description,
+    url: `https://tdstudiosdigital.com/work/${client.slug}`,
+    datePublished: client.year ? `${client.year}-01-01` : undefined,
+    image: client.gallery[0] ?? client.heroImage,
+    industry: client.industry,
+    provider: {
+      "@type": "Organization",
+      name: "TD Studios",
+      url: "https://tdstudiosdigital.com",
+    },
+    about: servicesSchema,
+    workExample: resultsSchema,
+    review: client.testimonial
+      ? {
+          "@type": "Review",
+          reviewBody: client.testimonial.quote,
+          author: {
+            "@type": "Person",
+            name: client.testimonial.author,
+          },
+        }
+      : undefined,
+  }
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -74,6 +118,7 @@ export default async function ClientCaseStudyPage({ params }: Props) {
 
   return (
     <main className="min-h-dvh bg-background">
+      <JsonLd data={caseStudySchema} />
       <JsonLd data={breadcrumbSchema} />
       {/* Hero Section */}
       <section className="relative min-h-screen md:min-h-[70vh] flex items-center justify-center overflow-hidden">
