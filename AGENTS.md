@@ -2,24 +2,29 @@
 
 ## Project Structure & Module Organization
 
-Use the Next.js App Router under `app/`; keep server-only loaders beside their page components to prevent double fetches. Shared UI primitives live in `components/`, with typed props exported from the same file. Pure utilities and hooks belong in `lib/`, while side effects stay in route loaders or server actions. Tailwind helpers sit in `styles/`, and optimized static assets go in `public/`. Unit specs reside in `__tests__/`; Playwright suites and baselines sit in `tests/` and `tests/screenshots/`. Track Supabase schema and CLI config in `supabase/`, updating docs whenever migrations ship.
+Source routes live in `app/` using the Next.js App Router; keep server-only loaders beside their page components to avoid duplicate fetches. Shared UI primitives sit in `components/`, while reusable hooks and utilities belong in `lib/`. Tailwind helpers stay under `styles/`, optimized assets in `public/`, and Supabase schema plus CLI config in `supabase/`. Unit specs go in `__tests__/`, with Playwright suites under `tests/` and baselines in `tests/screenshots/`. Keep related types and props defined in the same file as the component that consumes them.
 
 ## Build, Test, and Development Commands
 
-Run `npm ci` for lockfile-pinned installs; use `pnpm install` only when refreshing the lockfile. `npm run dev` starts the app at `http://localhost:3000`. `npm run build` validates production readiness and fails on missing env vars. Serve the compiled bundle with `npm start`. Keep CI healthy with `npm run lint`, `npm run typecheck`, and `npm test`. Debug UI workflows via `npx playwright test --headed`.
+- `npm ci` installs dependencies from the lockfile; use this before any build.
+- `npm run dev` launches the Next.js dev server at `http://localhost:3000`.
+- `npm run build` compiles the production bundle and validates required env vars.
+- `npm start` serves the built bundle for smoke testing.
+- `npm run lint`, `npm run typecheck`, and `npm test` keep CI healthy; run them locally before pushing.
+- `npx playwright test --headed` helps debug E2E flows visually.
 
 ## Coding Style & Naming Conventions
 
-Write strict TypeScript, avoid `any`, and colocate types with their usage. Indent with two spaces. Order JSX props as structure → modifiers → handlers, alphabetizing within each group when practical. Components use PascalCase filenames (e.g., `HeroBanner.tsx`), utilities use camelCase (e.g., `formatDate.ts`), and default export names mirror their files. Let ESLint and Prettier fixes flow through `npm run lint` before committing.
+Write strict TypeScript and avoid `any`. Indent with two spaces and order JSX props as structure → modifiers → handlers, alphabetizing within each group when practical. Components use PascalCase filenames that mirror their default exports (e.g., `HeroBanner.tsx`); utilities use camelCase (e.g., `formatDate.ts`). Run `npm run lint` before commits to apply ESLint and Prettier fixes.
 
 ## Testing Guidelines
 
-Vitest drives unit coverage; name files `*.spec.ts` and colocate when context matters, otherwise place them in `__tests__/`. Playwright covers end-to-end flows; choose action-first test titles such as `navigates to contact`. Inspect snapshot diffs before running `npx playwright test --update-snapshots`, and never commit `test-results/`. Address failing specs or flag them before merge.
+Vitest drives unit coverage; name specs `*.spec.ts` and colocate them when context matters. Execute `npm test` or `npm run test -- --watch` while iterating. Playwright covers end-to-end scenarios; prefer action-first titles like `navigates to contact`. Inspect any snapshot diffs before running `npx playwright test --update-snapshots`, and never commit `test-results/`.
 
 ## Commit & Pull Request Guidelines
 
-Adhere to Conventional Commits like `feat(app): add cart summary` or `fix(lib): guard null params`, keeping subjects ≤72 characters. Pull requests should describe the problem, solution, UI impact, linked issues, and confirm lint/build/test runs. Attach screenshots or recordings for UI changes, and call out new env vars or migrations. Request early reviews when touching shared components or Supabase schema.
+Follow Conventional Commits such as `feat(app): add cart summary` with subjects ≤72 characters. PRs should describe the problem, solution, UI impact, and link relevant issues. Attach screenshots or recordings for UI changes and confirm lint/build/test runs in the description. Request early reviews when touching shared components or Supabase schema.
 
 ## Security & Configuration Tips
 
-Store secrets in `.env.local` and keep `.env.example` synchronized with required keys. Run `npm run build` before pushing to catch configuration drift. Use `npm run scan:secrets` to ensure history stays clean. Compress imagery before placing it in `public/`, and document schema-sensitive updates alongside SQL changes in `supabase/`.
+Store secrets in `.env.local`, mirror required keys in `.env.example`, and run `npm run build` before pushing to catch env drift. Use `npm run scan:secrets` to prevent committing sensitive data. Compress assets before placing them in `public/`, and document Supabase migrations alongside SQL updates in `supabase/`.

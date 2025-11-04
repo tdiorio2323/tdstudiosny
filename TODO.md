@@ -76,17 +76,6 @@
     - [ ] Process page (HowTo)
     - [ ] Support page (Organization, ContactPoint)
 
-- [ ] **Generate sitemap.xml** (1h)
-  - Create `app/sitemap.ts` using Next.js 15 API
-  - Include all static routes
-  - Add changefreq and priority
-  - Submit to Google Search Console
-
-- [ ] **Create/customize robots.txt** (0.5h)
-  - Create `app/robots.ts`
-  - Allow all bots except AI scrapers (optional)
-  - Reference sitemap location
-
 ### Trust & Credibility
 
 - [ ] **Verify or remove industry award claims** (1h)
@@ -97,6 +86,13 @@
     1. Apply and get verified
     2. Remove claims
     3. Change to "Featured on..." if legitimate
+
+---
+
+## ✅ Completed (Cleanup Sweep)
+
+- [x] **Generate sitemap.ts** — All primary routes indexed via Next.js App Router sitemap.
+- [x] **Create app/robots.ts** — Robots directives aligned with production sitemap.
 
 ---
 
