@@ -1,8 +1,22 @@
 "use client"
-export default function ShareButton() {
+
+export function ShareButton() {
+  const handleShare = () => {
+    if (!navigator.share) {
+      return
+    }
+
+    const sharePayload: ShareData = {
+      title: document.title,
+      url: window.location.href,
+    }
+
+    void navigator.share(sharePayload)
+  }
+
   return (
     <button
-      onClick={() => navigator.share?.({ title: document.title, url: location.href })}
+      onClick={handleShare}
       aria-label="Share this page"
       className="inline-flex items-center justify-center px-4 py-2 min-h-[44px] rounded-lg transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30"
     >

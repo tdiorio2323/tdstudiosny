@@ -1,4 +1,4 @@
-export default function MobileCta() {
+export function MobileCta() {
   return (
     <div className="md:hidden fixed bottom-0 inset-x-0 z-50 bg-black/80 backdrop-blur supports-[padding:max(0px)]:pb-[env(safe-area-inset-bottom)]">
       <div className="container py-3">

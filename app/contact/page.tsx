@@ -1,28 +1,41 @@
 "use client"
-import { Mail, Clock, MapPin } from "lucide-react"
+
+import { Clock, Mail, MapPin } from "lucide-react"
 import Image from "next/image"
 import type React from "react"
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import { FrostedButton } from "@/components/FrostedButton"
 import { GlassCard } from "@/components/GlassCard"
 import { CalendlyWidget } from "@/features/contact/components/CalendlyWidget"
-import MobileCta from "@/features/contact/components/MobileCta"
+import { MobileCta } from "@/features/contact/components/MobileCta"
 import { JsonLd } from "@/features/seo/components/JsonLd"
 
-const services = [
+const SERVICES = [
   "Web Experience",
   "Product & Platform Development",
   "Social & Content Systems",
   "Brand & Identity",
   "Digital Assets",
   "Partnerships",
-]
+] as const
 
-const budgetRanges = ["$10K - $25K", "$25K - $50K", "$50K - $100K", "$100K+"]
+type ServiceOption = (typeof SERVICES)[number]
 
-const timelines = ["2-4 weeks", "1-2 months", "3-4 months", "6+ months"]
+const SERVICE_DESCRIPTIONS: Record<ServiceOption, string> = {
+  "Web Experience": "Custom websites and digital experiences that convert visitors into customers.",
+  "Product & Platform Development":
+    "Full-stack applications and platforms built for scale and performance.",
+  "Social & Content Systems": "Brand storytelling and content strategies that drive engagement.",
+  "Brand & Identity": "Visual identity systems that establish authority and build trust.",
+  "Digital Assets": "Graphics, animations, and digital content optimized for all platforms.",
+  Partnerships: "Strategic collaboration and white-label services for agencies and teams.",
+}
 
-const faqs = [
+const BUDGET_RANGES = ["$10K - $25K", "$25K - $50K", "$50K - $100K", "$100K+"] as const
+
+const TIMELINES = ["2-4 weeks", "1-2 months", "3-4 months", "6+ months"] as const
+
+const FAQ_ENTRIES = [
   {
     question: "How long does a typical project take?",
     answer:
@@ -43,7 +56,58 @@ const faqs = [
     answer:
       "Yes, we can accommodate rush projects with additional fees. Contact us to discuss your timeline and we'll find a solution.",
   },
-]
+] as const satisfies ReadonlyArray<{ question: string; answer: string }>
+
+const FORM_FIELD_KEYS = [
+  "fullName",
+  "email",
+  "company",
+  "phone",
+  "service",
+  "budget",
+  "timeline",
+  "details",
+] as const
+
+type FormField = (typeof FORM_FIELD_KEYS)[number]
+type ContactFormData = Record<FormField, string>
+type FormStatus = "idle" | "submitting" | "success" | "error"
+
+const createEmptyFormData = (): ContactFormData => ({
+  fullName: "",
+  email: "",
+  company: "",
+  phone: "",
+  service: "",
+  budget: "",
+  timeline: "",
+  details: "",
+})
+
+const createFieldErrors = (): Record<FormField, string> => ({
+  fullName: "",
+  email: "",
+  company: "",
+  phone: "",
+  service: "",
+  budget: "",
+  timeline: "",
+  details: "",
+})
+
+const createTouchedMap = (value = false): Record<FormField, boolean> => ({
+  fullName: value,
+  email: value,
+  company: value,
+  phone: value,
+  service: value,
+  budget: value,
+  timeline: value,
+  details: value,
+})
+
+const isFormField = (value: string): value is FormField =>
+  FORM_FIELD_KEYS.includes(value as FormField)
 
 export default function ContactPage() {
   const localBusinessSchema = {
@@ -54,54 +118,15 @@ export default function ContactPage() {
     "@id": "https://tdstudiosdigital.com/contact",
     url: "https://tdstudiosdigital.com/contact",
     telephone: "+1-212-555-0199",
-  }
+  } as const satisfies Record<string, unknown>
   const [contactType, setContactType] = useState<string | null>(null)
-  interface ContactFormData {
-    fullName: string
-    email: string
-    company: string
-    phone: string
-    service: string
-    budget: string
-    timeline: string
-    details: string
-  }
-
-  const [formData, setFormData] = useState<ContactFormData>({
-    fullName: "",
-    email: "",
-    company: "",
-    phone: "",
-    service: "",
-    budget: "",
-    timeline: "",
-    details: "",
-  })
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
+  const [formData, setFormData] = useState<ContactFormData>(() => createEmptyFormData())
+  const [status, setStatus] = useState<FormStatus>("idle")
   const [statusMessage, setStatusMessage] = useState<string | null>(null)
-  const initialFieldErrors: Record<keyof ContactFormData, string> = {
-    fullName: "",
-    email: "",
-    company: "",
-    phone: "",
-    service: "",
-    budget: "",
-    timeline: "",
-    details: "",
-  }
-  const initialTouched: Record<keyof ContactFormData, boolean> = {
-    fullName: false,
-    email: false,
-    company: false,
-    phone: false,
-    service: false,
-    budget: false,
-    timeline: false,
-    details: false,
-  }
-  const [fieldErrors, setFieldErrors] =
-    useState<Record<keyof ContactFormData, string>>(initialFieldErrors)
-  const [touched, setTouched] = useState<Record<keyof ContactFormData, boolean>>(initialTouched)
+  const [fieldErrors, setFieldErrors] = useState<Record<FormField, string>>(() =>
+    createFieldErrors()
+  )
+  const [touched, setTouched] = useState<Record<FormField, boolean>>(() => createTouchedMap())
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
@@ -120,26 +145,19 @@ export default function ContactPage() {
     e.preventDefault()
 
     // Validate all fields before submission
-    const newErrors: Record<string, string> = {}
-    Object.keys(formData).forEach((key) => {
-      const error = validateField(key, formData[key as keyof typeof formData])
-      if (error) newErrors[key] = error
-    })
+    const newErrors: Partial<Record<FormField, string>> = {}
+    for (const field of FORM_FIELD_KEYS) {
+      const error = validateField(field, formData[field])
+      if (error) {
+        newErrors[field] = error
+      }
+    }
 
-    setFieldErrors({ ...initialFieldErrors, ...newErrors })
-    setTouched({
-      fullName: true,
-      email: true,
-      company: true,
-      phone: true,
-      service: true,
-      budget: true,
-      timeline: true,
-      details: true,
-    })
+    setFieldErrors({ ...createFieldErrors(), ...newErrors })
+    setTouched(createTouchedMap(true))
 
     // Don't submit if there are validation errors
-    if (Object.values(newErrors).some((error) => error)) {
+    if (Object.values(newErrors).some((error) => Boolean(error))) {
       setStatus("error")
       setStatusMessage("Please fix the errors above before submitting.")
       return
@@ -172,16 +190,9 @@ export default function ContactPage() {
 
       setStatus("success")
       setStatusMessage("Thanks for reaching out. We'll get back to you within one business day.")
-      setFormData({
-        fullName: "",
-        email: "",
-        company: "",
-        phone: "",
-        service: "",
-        budget: "",
-        timeline: "",
-        details: "",
-      })
+      setFormData(createEmptyFormData())
+      setFieldErrors(createFieldErrors())
+      setTouched(createTouchedMap())
       // Track successful submission
       if (typeof window !== "undefined") {
         import("@/lib/analytics").then(({ trackFormSubmission }) => {
@@ -204,7 +215,7 @@ export default function ContactPage() {
   }
 
   // Real-time validation function
-  const validateField = (name: string, value: string) => {
+  const validateField = (name: FormField, value: string) => {
     switch (name) {
       case "fullName":
         if (!value.trim()) return "Full name is required"
@@ -234,16 +245,17 @@ export default function ContactPage() {
   ) => {
     const { name, value } = e.target
 
-    setFormData({
-      ...formData,
+    if (!isFormField(name)) {
+      return
+    }
+
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
-    })
+    }))
 
     // Real-time validation for touched fields
-    if (
-      Object.prototype.hasOwnProperty.call(touched, name) &&
-      touched[name as keyof ContactFormData]
-    ) {
+    if (touched[name]) {
       const error = validateField(name, value)
       setFieldErrors((prev) => ({
         ...prev,
@@ -256,6 +268,10 @@ export default function ContactPage() {
     e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target
+
+    if (!isFormField(name)) {
+      return
+    }
 
     setTouched((prev) => ({
       ...prev,
@@ -309,23 +325,10 @@ export default function ContactPage() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <GlassCard key={index} className="text-center">
+            {SERVICES.map((service) => (
+              <GlassCard key={service} className="text-center">
                 <h3 className="text-xl font-semibold text-white mb-3">{service}</h3>
-                <p className="text-white/80 text-sm">
-                  {service === "Web Experience" &&
-                    "Custom websites and digital experiences that convert visitors into customers."}
-                  {service === "Product & Platform Development" &&
-                    "Full-stack applications and platforms built for scale and performance."}
-                  {service === "Social & Content Systems" &&
-                    "Brand storytelling and content strategies that drive engagement."}
-                  {service === "Brand & Identity" &&
-                    "Visual identity systems that establish authority and build trust."}
-                  {service === "Digital Assets" &&
-                    "Graphics, animations, and digital content optimized for all platforms."}
-                  {service === "Partnerships" &&
-                    "Strategic collaboration and white-label services for agencies and teams."}
-                </p>
+                <p className="text-white/80 text-sm">{SERVICE_DESCRIPTIONS[service]}</p>
               </GlassCard>
             ))}
           </div>
@@ -500,8 +503,8 @@ export default function ContactPage() {
                       }
                     >
                       <option value="">Select a service</option>
-                      {services.map((service, index) => (
-                        <option key={index} value={service} className="bg-black text-white">
+                      {SERVICES.map((service) => (
+                        <option key={service} value={service} className="bg-black text-white">
                           {service}
                         </option>
                       ))}
@@ -530,8 +533,8 @@ export default function ContactPage() {
                             // TODO: Restore aria-invalid after accessibility review
                           >
                             <option value="">Select budget</option>
-                            {budgetRanges.map((budget, index) => (
-                              <option key={index} value={budget} className="bg-black text-white">
+                            {BUDGET_RANGES.map((budget) => (
+                              <option key={budget} value={budget} className="bg-black text-white">
                                 {budget}
                               </option>
                             ))}
@@ -551,8 +554,12 @@ export default function ContactPage() {
                             // TODO: Restore aria-invalid after accessibility review
                           >
                             <option value="">Select timeline</option>
-                            {timelines.map((timeline, index) => (
-                              <option key={index} value={timeline} className="bg-black text-white">
+                            {TIMELINES.map((timeline) => (
+                              <option
+                                key={timeline}
+                                value={timeline}
+                                className="bg-black text-white"
+                              >
                                 {timeline}
                               </option>
                             ))}
@@ -703,8 +710,8 @@ export default function ContactPage() {
             Frequently Asked Questions
           </h2>
           <div className="space-y-6">
-            {faqs.map((faq, index) => (
-              <GlassCard key={index}>
+            {FAQ_ENTRIES.map((faq) => (
+              <GlassCard key={faq.question}>
                 <div>
                   <h3 className="text-lg font-semibold mb-3 text-white">{faq.question}</h3>
                   <p className="text-white/80 leading-relaxed">{faq.answer}</p>

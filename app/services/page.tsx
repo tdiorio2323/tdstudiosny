@@ -1,23 +1,28 @@
 "use client"
+
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
-import ShareButton from "@/features/marketing/components/ShareButton"
+import { ShareButton } from "@/features/marketing/components/ShareButton"
 import { JsonLd } from "@/features/seo/components/JsonLd"
 import { Design } from "./_components/Design"
 import { Development } from "./_components/Development"
 import { WebExperience } from "./_components/WebExperience"
 
-type Tab = "design" | "dev" | "web"
+const TAB_DEFINITIONS = [
+  { id: "design", label: "Design" },
+  { id: "dev", label: "Development" },
+  { id: "web", label: "Web Experience" },
+] as const satisfies ReadonlyArray<{ id: string; label: string }>
+
+type Tab = (typeof TAB_DEFINITIONS)[number]["id"]
+
+const isTab = (value: string | null): value is Tab =>
+  TAB_DEFINITIONS.some((tab) => tab.id === value)
 
 export default function ServicesPage() {
   const searchParams = useSearchParams()
-  const currentTab = (searchParams.get("tab") as Tab) || "design"
-
-  const tabs: Array<{ id: Tab; label: string }> = [
-    { id: "design", label: "Design" },
-    { id: "dev", label: "Development" },
-    { id: "web", label: "Web Experience" },
-  ]
+  const requestedTab = searchParams.get("tab")
+  const currentTab = isTab(requestedTab) ? requestedTab : "design"
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -71,7 +76,7 @@ export default function ServicesPage() {
       "@type": "ServiceChannel",
       serviceUrl: "https://tdstudiosdigital.com/contact",
     },
-  }
+  } as const satisfies Record<string, unknown>
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -90,7 +95,7 @@ export default function ServicesPage() {
         item: "https://tdstudiosdigital.com/services",
       },
     ],
-  }
+  } as const satisfies Record<string, unknown>
 
   return (
     <>
@@ -103,7 +108,7 @@ export default function ServicesPage() {
           {/* Tab Navigation */}
           <div className="flex justify-center mb-12">
             <div className="inline-flex bg-neutral-900/70 backdrop-blur-sm rounded-lg p-1 border border-white/10">
-              {tabs.map((tab) => (
+              {TAB_DEFINITIONS.map((tab) => (
                 <Link
                   key={tab.id}
                   href={`/services?tab=${tab.id}`}
