@@ -7,6 +7,7 @@ All 24 remaining tasks structured for execution and automation.
 ## 🔴 P1 — Critical (10)
 
 ### 🎨 UX Improvements
+
 - [x] **1.1 Mobile spacing consistency** ✅
   - [x] Audit padding/margin across all pages
   - [x] Enforce 44px touch targets
@@ -29,6 +30,7 @@ All 24 remaining tasks structured for execution and automation.
 ---
 
 ### 🔍 SEO Enhancements
+
 - [x] **2.1 Canonical URLs**
   - [x] Add to `/[client]/signin`, `/clients/[client]`, `/work/[slug]`
   - [x] Verify all service pages
@@ -47,6 +49,7 @@ All 24 remaining tasks structured for execution and automation.
 ---
 
 ### 📱 Responsive QA
+
 - [x] **6.1 Desktop audit**
   - [x] Test 1920×1080 / 1440×900
   - [x] Verify nav/footer and image scaling
@@ -65,6 +68,7 @@ All 24 remaining tasks structured for execution and automation.
 ## 🟡 P2 — High Priority (4)
 
 ### ⚡ Performance & Accessibility
+
 - [x] **3.5 Optimize bundle size**
   - [x] Run `next build --profile`
   - [x] Tree-shake Radix / remove unused deps
@@ -83,6 +87,7 @@ All 24 remaining tasks structured for execution and automation.
 ## 🟢 P3 — Medium Priority (3)
 
 ### 🎬 Animations & Interactions
+
 - [x] **5.1 Scroll animations**
   - [x] Implement fade-in via Intersection Observer
   - [x] Respect `prefers-reduced-motion`
@@ -98,34 +103,36 @@ All 24 remaining tasks structured for execution and automation.
 ## 🚀 Release Checklist (4)
 
 - [x] **21. Full QA Pass**
-  - Chrome, Safari, Firefox  
+  - Chrome, Safari, Firefox
 - [x] **22. Performance budgets met**
-  - Lighthouse score >90  
+  - Lighthouse score >90
 - [x] **23. Accessibility audit passed**
-  - No critical WCAG violations  
+  - No critical WCAG violations
 - [x] **24. Documentation updates**
   - Update `CLAUDE.md`, `ROADMAP.md`, `CHANGELOG.md`
 
 ---
 
 ## 📊 Priority Order
-1. Mobile UX & Layout (1.1–1.4)  
-2. SEO (2.1–2.5)  
-3. Responsive QA (6.1–6.4)  
-4. Accessibility (4.1–4.3)  
-5. Performance + Animations (3.5, 5.1–5.3)  
+
+1. Mobile UX & Layout (1.1–1.4)
+2. SEO (2.1–2.5)
+3. Responsive QA (6.1–6.4)
+4. Accessibility (4.1–4.3)
+5. Performance + Animations (3.5, 5.1–5.3)
 6. Final QA + Docs (21–24)
 
 ---
 
 ### 🧭 Status Summary
-| Category | Tasks | Status |
-|-----------|--------|--------|
-| 🔴 Critical | 6 remaining (4 UX completed) | 🟡 40% |
-| 🟡 High | 4 | ☐ |
-| 🟢 Medium | 3 | ☐ |
-| 🚀 Release | 4 | ☐ |
-| **Total Remaining** | **17** | **UX Complete** |
+
+| Category            | Tasks                        | Status          |
+| ------------------- | ---------------------------- | --------------- |
+| 🔴 Critical         | 6 remaining (4 UX completed) | 🟡 40%          |
+| 🟡 High             | 4                            | ☐               |
+| 🟢 Medium           | 3                            | ☐               |
+| 🚀 Release          | 4                            | ☐               |
+| **Total Remaining** | **17**                       | **UX Complete** |
 
 ---
 

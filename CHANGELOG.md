@@ -1,4 +1,5 @@
 ## v2.3.0 – Polish
+
 - Canonical + OG/Twitter metadata with dynamic /og
 - JSON-LD on layout/home/services/contact
 - Mobile sticky CTA on Contact, Share button on Services

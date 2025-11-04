@@ -7,7 +7,9 @@
 
 /* Reduced motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -41,7 +43,11 @@
 }
 
 .heroGradient {
-  background: radial-gradient(100% 100% at 50% 50%, rgba(0,0,0,.35) 0%, rgba(0,0,0,.75) 100%);
+  background: radial-gradient(
+    100% 100% at 50% 50%,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
 }
 
 /* Smooth scrolling and iOS text size fix */
@@ -87,7 +93,7 @@ body {
   }
 
   body::before {
-    content: '';
+    content: "";
     position: fixed;
     inset: 0;
     width: 100vw;
@@ -167,7 +173,11 @@ body {
 
   /* Luxury Mobile Typography System */
   .mobile-title {
-    font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family:
+      "Geist",
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
     font-weight: 700;
     line-height: 1.1;
     font-size: clamp(2.25rem, 8vw, 3.5rem);
@@ -186,12 +196,21 @@ body {
   }
 
   @keyframes luxuryTextShine {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
   }
 
   .mobile-subtitle {
-    font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family:
+      "Geist",
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
     font-weight: 400;
     line-height: 1.5;
     font-size: clamp(1.125rem, 4vw, 1.5rem);
@@ -335,9 +354,19 @@ body {
   }
 
   @keyframes bounceGentle {
-    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-    40% { transform: translateX(-50%) translateY(-8px); }
-    60% { transform: translateX(-50%) translateY(-4px); }
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    40% {
+      transform: translateX(-50%) translateY(-8px);
+    }
+    60% {
+      transform: translateX(-50%) translateY(-4px);
+    }
   }
 }
 
@@ -406,7 +435,8 @@ body {
   }
 
   /* Body Text - Minimum 16px for accessibility */
-  p, .body-text {
+  p,
+  .body-text {
     font-size: 1rem; /* 16px minimum */
     line-height: 1.7; /* Improved readability */
     margin-bottom: 1rem;
@@ -414,7 +444,8 @@ body {
   }
 
   /* Small text - still readable */
-  .text-sm, small {
+  .text-sm,
+  small {
     font-size: 0.875rem; /* 14px */
     line-height: 1.6;
   }
@@ -468,7 +499,8 @@ body {
   }
 
   /* Desktop Body Text */
-  p, .body-text {
+  p,
+  .body-text {
     font-size: 1.125rem; /* 18px for better desktop readability */
     line-height: 1.8;
     margin-bottom: 1.5rem;
@@ -481,7 +513,9 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 /* Shimmer effect for logo */
@@ -592,45 +626,44 @@ body {
   transform: translateY(-4px);
 }
 
-
 :root {
   /* Luxury Brand Colors */
-  --luxury-gold: #D4AF37;
-  --luxury-gold-light: #F4E4A1;
-  --luxury-gold-dark: #B8941F;
-  --luxury-gold-hover: #E6C556;
+  --luxury-gold: #d4af37;
+  --luxury-gold-light: #f4e4a1;
+  --luxury-gold-dark: #b8941f;
+  --luxury-gold-hover: #e6c556;
 
-  --luxury-platinum: #E5E4E2;
-  --luxury-platinum-light: #F5F4F2;
-  --luxury-platinum-dark: #C5C4C2;
+  --luxury-platinum: #e5e4e2;
+  --luxury-platinum-light: #f5f4f2;
+  --luxury-platinum-dark: #c5c4c2;
 
-  --luxury-charcoal: #36454F;
-  --luxury-charcoal-light: #546C7F;
+  --luxury-charcoal: #36454f;
+  --luxury-charcoal-light: #546c7f;
   --luxury-charcoal-dark: #263035;
 
   --luxury-midnight: #191970;
-  --luxury-midnight-light: #2A2A8A;
-  --luxury-midnight-dark: #0F0F56;
+  --luxury-midnight-light: #2a2a8a;
+  --luxury-midnight-dark: #0f0f56;
 
   /* Semantic Colors */
-  --success: #10B981;
-  --success-light: #34D399;
+  --success: #10b981;
+  --success-light: #34d399;
   --success-dark: #047857;
   --success-bg: rgba(16, 185, 129, 0.1);
 
-  --warning: #F59E0B;
-  --warning-light: #FBBF24;
-  --warning-dark: #D97706;
+  --warning: #f59e0b;
+  --warning-light: #fbbf24;
+  --warning-dark: #d97706;
   --warning-bg: rgba(245, 158, 11, 0.1);
 
-  --error: #EF4444;
-  --error-light: #F87171;
-  --error-dark: #DC2626;
+  --error: #ef4444;
+  --error-light: #f87171;
+  --error-dark: #dc2626;
   --error-bg: rgba(239, 68, 68, 0.1);
 
-  --info: #3B82F6;
-  --info-light: #60A5FA;
-  --info-dark: #2563EB;
+  --info: #3b82f6;
+  --info-light: #60a5fa;
+  --info-dark: #2563eb;
   --info-bg: rgba(59, 130, 246, 0.1);
 
   /* Interactive States */
@@ -690,46 +723,110 @@ body {
 }
 
 /* Luxury Utility Classes */
-.text-luxury-gold { color: var(--luxury-gold); }
-.text-luxury-gold-light { color: var(--luxury-gold-light); }
-.text-luxury-gold-dark { color: var(--luxury-gold-dark); }
+.text-luxury-gold {
+  color: var(--luxury-gold);
+}
+.text-luxury-gold-light {
+  color: var(--luxury-gold-light);
+}
+.text-luxury-gold-dark {
+  color: var(--luxury-gold-dark);
+}
 
-.text-luxury-platinum { color: var(--luxury-platinum); }
-.text-luxury-charcoal { color: var(--luxury-charcoal); }
-.text-luxury-midnight { color: var(--luxury-midnight); }
+.text-luxury-platinum {
+  color: var(--luxury-platinum);
+}
+.text-luxury-charcoal {
+  color: var(--luxury-charcoal);
+}
+.text-luxury-midnight {
+  color: var(--luxury-midnight);
+}
 
-.bg-luxury-gold { background-color: var(--luxury-gold); }
-.bg-luxury-platinum { background-color: var(--luxury-platinum); }
-.bg-luxury-charcoal { background-color: var(--luxury-charcoal); }
+.bg-luxury-gold {
+  background-color: var(--luxury-gold);
+}
+.bg-luxury-platinum {
+  background-color: var(--luxury-platinum);
+}
+.bg-luxury-charcoal {
+  background-color: var(--luxury-charcoal);
+}
 
-.border-luxury-gold { border-color: var(--luxury-gold); }
-.border-luxury-platinum { border-color: var(--luxury-platinum); }
-.border-luxury-charcoal { border-color: var(--luxury-charcoal); }
+.border-luxury-gold {
+  border-color: var(--luxury-gold);
+}
+.border-luxury-platinum {
+  border-color: var(--luxury-platinum);
+}
+.border-luxury-charcoal {
+  border-color: var(--luxury-charcoal);
+}
 
 /* Semantic Color Utilities */
-.text-success { color: var(--success); }
-.text-success-light { color: var(--success-light); }
-.text-success-dark { color: var(--success-dark); }
-.bg-success { background-color: var(--success-bg); }
-.border-success { border-color: var(--success); }
+.text-success {
+  color: var(--success);
+}
+.text-success-light {
+  color: var(--success-light);
+}
+.text-success-dark {
+  color: var(--success-dark);
+}
+.bg-success {
+  background-color: var(--success-bg);
+}
+.border-success {
+  border-color: var(--success);
+}
 
-.text-warning { color: var(--warning); }
-.text-warning-light { color: var(--warning-light); }
-.text-warning-dark { color: var(--warning-dark); }
-.bg-warning { background-color: var(--warning-bg); }
-.border-warning { border-color: var(--warning); }
+.text-warning {
+  color: var(--warning);
+}
+.text-warning-light {
+  color: var(--warning-light);
+}
+.text-warning-dark {
+  color: var(--warning-dark);
+}
+.bg-warning {
+  background-color: var(--warning-bg);
+}
+.border-warning {
+  border-color: var(--warning);
+}
 
-.text-error { color: var(--error); }
-.text-error-light { color: var(--error-light); }
-.text-error-dark { color: var(--error-dark); }
-.bg-error { background-color: var(--error-bg); }
-.border-error { border-color: var(--error); }
+.text-error {
+  color: var(--error);
+}
+.text-error-light {
+  color: var(--error-light);
+}
+.text-error-dark {
+  color: var(--error-dark);
+}
+.bg-error {
+  background-color: var(--error-bg);
+}
+.border-error {
+  border-color: var(--error);
+}
 
-.text-info { color: var(--info); }
-.text-info-light { color: var(--info-light); }
-.text-info-dark { color: var(--info-dark); }
-.bg-info { background-color: var(--info-bg); }
-.border-info { border-color: var(--info); }
+.text-info {
+  color: var(--info);
+}
+.text-info-light {
+  color: var(--info-light);
+}
+.text-info-dark {
+  color: var(--info-dark);
+}
+.bg-info {
+  background-color: var(--info-bg);
+}
+.border-info {
+  border-color: var(--info);
+}
 
 /* Interactive State Utilities */
 .btn-primary {
@@ -773,12 +870,12 @@ body {
   border-color: var(--glass-border-strong);
 }
 
-
 /* Removed complex mobile viewport height fix - using simple 100vh/100dvh instead */
 
 /* Simple overflow prevention for mobile */
 @media (max-width: 768px) {
-  html, body {
+  html,
+  body {
     overflow-x: hidden;
   }
 }
@@ -786,12 +883,16 @@ body {
 /* Mobile-specific enhancements */
 @media (max-width: 768px) {
   /* Enhance button interactions */
-  button, .btn, a[role="button"] {
+  button,
+  .btn,
+  a[role="button"] {
     -webkit-tap-highlight-color: transparent;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  button:active, .btn:active, a[role="button"]:active {
+  button:active,
+  .btn:active,
+  a[role="button"]:active {
     transform: scale(0.95);
   }
 
@@ -887,12 +988,12 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
+
   /* Keep essential animations for UX but reduce dramatically */
   .animate-fade-in-up {
     animation-duration: 0.1s !important;
   }
-  
+
   /* Disable decorative animations completely */
   .shimmer-effect,
   .luxuryTextShine,

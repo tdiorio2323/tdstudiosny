@@ -9,6 +9,7 @@
 ## 🔴 NOW (Critical - Before Launch)
 
 ### Security & Configuration
+
 - [ ] **Fix TypeScript errors in signin page** (2h)
   - File: `app/[client]/signin/page.tsx`
   - Issue: 26 JSX.IntrinsicElements errors
@@ -31,6 +32,7 @@
   - Add to Vercel env vars and `.env.local.example`
 
 ### Core Functionality
+
 - [ ] **Implement contact form email sending** (1h)
   - File: `app/api/contact/route.ts:41`
   - Currently has `// TODO: send email / persist`
@@ -49,6 +51,7 @@
 ## 🟡 NEXT (High Priority - Week 1)
 
 ### Monetization
+
 - [ ] **Implement Stripe checkout for premade designs** (8h)
   - File: `app/resources/premade-designs/page.tsx:61`
   - Currently has TODO comment for Stripe integration
@@ -63,6 +66,7 @@
     - [ ] Test with Stripe test mode
 
 ### SEO & Metadata
+
 - [ ] **Add comprehensive JSON-LD structured data** (2h)
   - Currently only on pricing page
   - Add to:
@@ -84,6 +88,7 @@
   - Reference sitemap location
 
 ### Trust & Credibility
+
 - [ ] **Verify or remove industry award claims** (1h)
   - File: `app/page.tsx:158-197`
   - Homepage has "AWWWARDS WINNER", "CSS DESIGN AWARDS", etc.
@@ -98,6 +103,7 @@
 ## 🟢 LATER (Medium/Low Priority - Week 2+)
 
 ### Testing & Quality
+
 - [ ] **Add Playwright configuration** (1h)
   - File mentioned in CLAUDE.md but `playwright.config.ts` missing
   - Create config with proper viewport sizes
@@ -117,6 +123,7 @@
   - Target 80% coverage for critical paths
 
 ### Monitoring & Observability
+
 - [ ] **Add error monitoring** (2h)
   - Install Sentry or similar
   - Track client-side errors
@@ -130,6 +137,7 @@
   - Track ChatKit engagement
 
 ### UX Enhancements
+
 - [ ] **Add loading states to all forms** (2h)
   - Contact form
   - Client signin
@@ -149,6 +157,7 @@
   - Download confirmation for lead magnets
 
 ### Content & Polish
+
 - [ ] **Add product schema for premade designs** (1h)
   - JSON-LD Product schema
   - Include price, image, description
@@ -166,6 +175,7 @@
   - Add video testimonials option
 
 ### Infrastructure
+
 - [ ] **Create staging environment** (2h)
   - Set up Vercel preview branch
   - Separate Supabase project for staging
@@ -179,6 +189,7 @@
   - Deploy preview to Vercel
 
 ### Future Features
+
 - [ ] **Blog/content marketing** (20h+)
   - Add `/blog` route
   - Set up MDX or CMS integration
@@ -224,17 +235,20 @@
 ## NOTES
 
 ### Priority Breakdown
+
 - **NOW (Critical):** 4.5 hours - Must complete before launch
 - **NEXT (High):** 12.5 hours - Complete in Week 1 post-launch
 - **LATER (Medium/Low):** 30+ hours - Ongoing improvements
 
 ### Dependencies
+
 - Stripe integration blocks premade design sales
 - Email sending blocks lead generation
 - TypeScript errors block strict builds
 - Exposed secrets block secure launch
 
 ### Quick Wins (< 1 hour each)
+
 1. Fix homepage service links (0.5h)
 2. Add RESEND_API_KEY (0.5h)
 3. Create robots.txt (0.5h)
@@ -242,6 +256,7 @@
 5. Rotate API keys (0.5h)
 
 ### Technical Debt
+
 - Next.js config ignores TypeScript/ESLint errors (for v0.app sync)
 - In-memory rate limiting in contact API (loses data on restart)
 - No database migrations system (Supabase only)

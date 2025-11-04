@@ -1,4 +1,3 @@
-
 # GEMINI.md
 
 ## Project Overview
@@ -39,8 +38,8 @@ npm run lint
 
 ## Development Conventions
 
-*   **Styling:** The project uses Tailwind CSS for styling. Global styles are defined in `app/globals.css`.
-*   **Components:** Reusable components are located in the `components` directory.
-*   **Analytics:** The project uses Vercel Analytics, configured in `app/layout.tsx`.
-*   **Deployment:** The project is automatically deployed to Vercel from the `main` branch.
-*   **v0.app:** The project is synced with a v0.app project, which means that changes made in the v0.app UI will be automatically pushed to this repository.
+- **Styling:** The project uses Tailwind CSS for styling. Global styles are defined in `app/globals.css`.
+- **Components:** Reusable components are located in the `components` directory.
+- **Analytics:** The project uses Vercel Analytics, configured in `app/layout.tsx`.
+- **Deployment:** The project is automatically deployed to Vercel from the `main` branch.
+- **v0.app:** The project is synced with a v0.app project, which means that changes made in the v0.app UI will be automatically pushed to this repository.

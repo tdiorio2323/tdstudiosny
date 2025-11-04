@@ -200,6 +200,7 @@ Phase 3 focuses on polishing user experience, completing SEO rollout, improving 
 ## Success Metrics
 
 ### Performance Targets
+
 - Lighthouse Performance Score: ≥90 on all pages
 - First Contentful Paint (FCP): <1.5s
 - Largest Contentful Paint (LCP): <2.5s
@@ -207,6 +208,7 @@ Phase 3 focuses on polishing user experience, completing SEO rollout, improving 
 - Time to Interactive (TTI): <3.5s
 
 ### SEO Targets
+
 - All pages have canonical URLs ✅ (mostly complete)
 - All pages have unique meta descriptions ✅ (mostly complete)
 - Sitemap includes all public routes
@@ -214,12 +216,14 @@ Phase 3 focuses on polishing user experience, completing SEO rollout, improving 
 - JSON-LD structured data on key pages ✅ (Phase 2)
 
 ### Accessibility Targets
+
 - WCAG 2.1 AA compliance on all pages
 - No critical or serious issues in axe DevTools
 - Lighthouse Accessibility Score: ≥95
 - All interactive elements keyboard accessible
 
 ### UX Targets
+
 - All touch targets ≥44x44px
 - Consistent spacing system applied
 - Proper typography hierarchy

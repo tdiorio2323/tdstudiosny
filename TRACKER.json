@@ -459,11 +459,7 @@
       "All routes in sitemap",
       "robots.txt discoverable"
     ],
-    "phase_2": [
-      "LCP < 2.5s on mobile",
-      "Homepage load < 3s on 3G",
-      "Image payload < 2MB total"
-    ],
+    "phase_2": ["LCP < 2.5s on mobile", "Homepage load < 3s on 3G", "Image payload < 2MB total"],
     "phase_3": [
       "All pages have JSON-LD",
       "Google Search Console validates schema",

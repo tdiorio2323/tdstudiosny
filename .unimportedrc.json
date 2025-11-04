@@ -1,11 +1,6 @@
 {
   "$schema": "https://unpkg.com/unimported@1.x/schema.json",
-  "ignorePatterns": [
-    "**/node_modules/**",
-    "**/.next/**",
-    "**/dist/**",
-    "**/build/**"
-  ],
+  "ignorePatterns": ["**/node_modules/**", "**/.next/**", "**/dist/**", "**/build/**"],
   "ignoreUnimported": [
     "app/**/page.tsx",
     "app/**/layout.tsx",

@@ -10,6 +10,7 @@
 ## 📍 Current Status
 
 **Phase 2 Completed** ✅ (v2.2.0)
+
 - Hero video implementation with mobile optimization
 - Canonical URLs added to all major pages
 - Meta descriptions optimized (140-160 characters)
@@ -18,6 +19,7 @@
 - All CI checks passing
 
 **Phase 3 In Progress** 🚧 (v2.3.0)
+
 - See [PHASE3_TRACKER.md](./PHASE3_TRACKER.md) for detailed task breakdown
 - Focus: UX polish, complete SEO rollout, performance, accessibility
 
@@ -39,9 +41,11 @@
 ---
 
 ## 🔴 HIGH PRIORITY (Pre-Launch Critical)
+
 **Total: ~7h | Must complete before production deployment**
 
 ### Navigation & Core Functionality
+
 - [ ] **Fix broken service links** — 0.5h
   - Update 4 broken links: `/web`, `/dev`, `/social`, `/design` → `/services`
   - Files: `app/page.tsx` lines 14, 21, 28, 35, 42
@@ -51,6 +55,7 @@
   - Files: `app/page.tsx` line 49
 
 ### Performance (Blocking)
+
 - [ ] **Optimize hero images** — 4h
   - Convert 4.4MB `parallax-hero.jpg` + 3 others to WebP
   - Target: < 300KB each (85%+ reduction)
@@ -58,6 +63,7 @@
   - Files: `/public/parallax-hero.jpg`, `design-showcase-1.jpg`, `parallax-hero-backup.jpg`, `web-hero.jpg`
 
 ### SEO Essentials
+
 - [ ] **Update sitemap** — 0.5h
   - Add 9 missing routes: `/work`, `/services`, `/pricing`, `/process`, `/book`, `/support`, `/resources`, `/resources/premade-designs`, `/legal`
   - Fix base URL: `www.tdstudiosdigital.com` → `tdstudiosdigital.com`
@@ -68,6 +74,7 @@
   - Files: Create `app/robots.ts`
 
 ### Trust & Compliance
+
 - [ ] **Remove/verify award badges** — 1h
   - 4 unverified awards with `data-verify="pending"`
   - Options: Remove, verify, or change to "Featured On"
@@ -80,9 +87,11 @@
 ---
 
 ## 🟡 MEDIUM PRIORITY (Week 1-2 Post-Launch)
+
 **Total: ~16h | High-impact polish & SEO**
 
 ### SEO Enhancement
+
 - [ ] **Add JSON-LD to 6 pages** — 3h
   - Homepage: Organization + WebSite schema
   - Work: CollectionPage + CreativeWork
@@ -100,6 +109,7 @@
   - Files: All page metadata exports
 
 ### Performance Optimization
+
 - [ ] **Lazy load below-fold images** — 1.5h
   - Add `loading="lazy"` to testimonials, capabilities, lead magnets
   - Files: `app/page.tsx` lines 200+
@@ -110,6 +120,7 @@
   - Files: `public/placeholder.*`
 
 ### Content Improvements
+
 - [ ] **Add testimonial images** — 2h
   - Replace initials (M, S, R) with real photos
   - Files: `app/page.tsx` lines 214, 231, 248 | `/public/testimonials/`
@@ -123,6 +134,7 @@
   - Files: `app/work/portfolio-client-page.tsx`
 
 ### Mobile UX
+
 - [ ] **Enhance mobile menu animations** — 1.5h
   - Add slide-in/fade transitions
   - Files: `components/nav.tsx` lines 114-165
@@ -138,9 +150,11 @@
 ---
 
 ## 🟢 LOW PRIORITY (Week 3+ / Ongoing)
+
 **Total: ~12h | Code quality & maintainability**
 
 ### Code Quality
+
 - [ ] **Audit console.log statements** — 0.5h
   - Remove from production code
   - Command: `grep -r "console.log" app/ components/`
@@ -153,6 +167,7 @@
   - Files: `public/parallax-hero*.jpg`
 
 ### Asset Organization
+
 - [ ] **Audit unused public images** — 2h
   - Remove duplicate backgrounds, unused hero variants
   - Files: `public/*.{jpg,png}`
@@ -166,6 +181,7 @@
   - Files: Create `scripts/optimize-images.mjs`
 
 ### Component Refactoring
+
 - [ ] **Extract testimonial component** — 1.5h
   - Create `<TestimonialCard>`
   - Files: Extract `app/page.tsx:204-264` → `components/testimonial-card.tsx`
@@ -179,6 +195,7 @@
   - Files: Extract pattern from pricing, process, contact
 
 ### Mobile-Specific
+
 - [ ] **Test viewport height fix** — 0.5h
   - Verify iOS 14+, Android Chrome
   - Files: `app/layout.tsx` lines 62-89
@@ -188,6 +205,7 @@
   - Files: `components/design-carousel.tsx` (if exists)
 
 ### Typography & Readability
+
 - [ ] **Review mobile text sizing** — 0.5h
   - Minimum 16px body text
   - Files: `app/globals.css`
@@ -201,67 +219,77 @@
 ## 📋 Execution Checklist
 
 ### Phase 1: Critical Fixes (Day 1)
+
 1. Fix broken service links (0.5h)
 2. Fix portfolio route (0.1h)
 3. Update sitemap (0.5h)
 4. Create robots.txt (0.3h)
 5. Add skip-to-content (0.3h)
-**Total: 1.7h**
+   **Total: 1.7h**
 
 ### Phase 2: Performance (Day 2-3)
+
 1. Optimize hero images (4h)
 2. Remove award badges (1h)
-**Total: 5h**
+   **Total: 5h**
 
 ### Phase 3: SEO & Content (Week 1)
+
 1. Add JSON-LD to 6 pages (3h)
 2. Add canonical URLs (1h)
 3. Optimize meta descriptions (1h)
 4. Lazy load images (1.5h)
 5. Remove placeholder files (0.5h)
-**Total: 7h**
+   **Total: 7h**
 
 ### Phase 4: Mobile & Content Polish (Week 2)
+
 1. Add testimonial images (2h)
 2. Replace capability fallback (0.5h)
 3. Add case study links (2h)
 4. Enhance mobile menu (1.5h)
 5. Verify touch targets (1h)
 6. Improve form UX (2h)
-**Total: 9h**
+   **Total: 9h**
 
 ### Phase 5: Technical Cleanup (Week 3+)
+
 1. Code quality audit (1.3h)
 2. Asset organization (5h)
 3. Component refactoring (4.5h)
 4. Mobile-specific tests (1.5h)
-**Total: 12.3h**
+   **Total: 12.3h**
 
 ---
 
 ## 🎯 Success Metrics
 
 **Post-Phase 1 (Critical Fixes):**
+
 - ✅ Zero 404 errors from homepage
 - ✅ All routes in sitemap
 - ✅ robots.txt discoverable
 
 **Post-Phase 2 (Performance):**
+
 - ✅ LCP < 2.5s on mobile
 - ✅ Homepage load < 3s on 3G
 - ✅ Image payload < 2MB total
 
 **Post-Phase 3 (SEO):**
+
 - ✅ All pages have JSON-LD
 - ✅ Google Search Console validates schema
 - ✅ Meta descriptions unique & optimized
 
 **Post-Phase 4 (Mobile & Content):**
+
 - ✅ Mobile conversion rate +15%
 - ✅ Touch targets pass accessibility audit
 - ✅ Form completion rate improved
 
 **Post-Phase 5 (Cleanup):**
+
 - ✅ Codebase maintainability score +20%
 - ✅ Bundle size reduced by 15%
 - ✅ Component reusability improved
@@ -296,12 +324,12 @@ pnpm scan:secrets           # Security scan
 
 ## 📊 Priority Breakdown
 
-| Priority | Tasks | Hours | Impact |
-|----------|-------|-------|--------|
-| 🔴 High | 7 | 7h | Fixes critical bugs, SEO basics, performance |
-| 🟡 Medium | 11 | 16h | 50-70% perf boost, comprehensive SEO |
-| 🟢 Low | 13 | 12h | Maintainability, bundle reduction |
-| **Total** | **31** | **35h** | **Production-ready luxury site** |
+| Priority  | Tasks  | Hours   | Impact                                       |
+| --------- | ------ | ------- | -------------------------------------------- |
+| 🔴 High   | 7      | 7h      | Fixes critical bugs, SEO basics, performance |
+| 🟡 Medium | 11     | 16h     | 50-70% perf boost, comprehensive SEO         |
+| 🟢 Low    | 13     | 12h     | Maintainability, bundle reduction            |
+| **Total** | **31** | **35h** | **Production-ready luxury site**             |
 
 ---
 
