@@ -29,17 +29,13 @@ export function Nav() {
   }
 
   return (
-    <nav
-      className="bg-black/80 backdrop-blur-sm border-b border-white/10"
-      role="banner"
-      aria-label="Main navigation"
-    >
+    <nav className="h-full" role="banner" aria-label="Main navigation">
       {/* Desktop: Centered Logo at Top */}
       <div className="hidden md:block">
-        <div className="max-w-7xl mx-auto px-6 pt-6 pb-2">
-          <div className="flex justify-center">
+        <div className="max-w-7xl mx-auto px-6 pt-4 pb-2">
+          <div className="flex justify-center items-center">
             <Link href="/" className="flex items-center" aria-label="TD Studios - Home">
-              <Logo className="h-16" aria-hidden="true" />
+              <Logo className="h-14 w-auto" aria-hidden="true" />
               <span className="sr-only">TD Studios</span>
             </Link>
           </div>
@@ -47,7 +43,7 @@ export function Nav() {
       </div>
 
       {/* Navigation and Mobile Logo Section */}
-      <div className="max-w-7xl mx-auto px-6 py-4 md:py-4">
+      <div className="max-w-7xl mx-auto px-4 py-3 md:px-6 md:py-3">
         <div className="flex items-center justify-between">
           {/* Mobile: Centered Logo */}
           <div className="md:hidden flex-1 flex justify-center">
@@ -58,13 +54,13 @@ export function Nav() {
           </div>
 
           {/* Desktop Navigation - Now Centered */}
-          <div className="hidden md:flex flex-1 items-center justify-center gap-6 whitespace-nowrap">
+          <div className="hidden md:flex flex-1 items-center justify-center gap-4 text-sm md:gap-6 md:text-base whitespace-nowrap">
             {navigationItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-lg font-medium uppercase tracking-wider transition-colors hover:text-white ${
-                  pathname === item.href ? "text-white border-b border-white" : "text-white/80"
+                className={`font-medium uppercase tracking-wide transition-colors hover:text-white ${
+                  pathname === item.href ? "text-white border-b border-white" : "text-white/75"
                 }`}
               >
                 {item.name}
@@ -73,11 +69,11 @@ export function Nav() {
           </div>
 
           {/* Desktop Social Icons - Now on the Right */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center ml-2 gap-2 md:gap-3">
             <a
               href="tel:347-485-9935"
               aria-label="Call TD Studios at 347-485-9935"
-              className="p-4 min-h-[44px] min-w-[44px] bg-neutral-900/70 backdrop-blur-sm rounded-lg hover:bg-blue-500/20 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+              className="p-3 min-h-[44px] min-w-[44px] bg-neutral-900/70 backdrop-blur-sm rounded-lg hover:bg-blue-500/20 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-blue-500/50"
             >
               <Send
                 className="w-6 h-6 text-white group-hover:text-blue-500 transition-colors"
@@ -89,7 +85,7 @@ export function Nav() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Message TD Studios on WhatsApp"
-              className="p-4 min-h-[44px] min-w-[44px] bg-neutral-900/70 backdrop-blur-sm rounded-lg hover:bg-green-500/20 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-green-500/50"
+              className="p-3 min-h-[44px] min-w-[44px] bg-neutral-900/70 backdrop-blur-sm rounded-lg hover:bg-green-500/20 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-green-500/50"
             >
               <MessageCircle
                 className="w-6 h-6 text-white group-hover:text-green-500 transition-colors"
@@ -101,7 +97,7 @@ export function Nav() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Follow TD Studios on Instagram"
-              className="p-4 min-h-[44px] min-w-[44px] bg-neutral-900/70 backdrop-blur-sm rounded-lg hover:bg-neutral-900/80 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-white/30"
+              className="p-3 min-h-[44px] min-w-[44px] bg-neutral-900/70 backdrop-blur-sm rounded-lg hover:bg-neutral-900/80 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-white/30"
             >
               <Instagram
                 className="w-6 h-6 text-white group-hover:scale-110 transition-transform"
@@ -128,7 +124,10 @@ export function Nav() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-20 bg-black/95 backdrop-blur-md z-40">
+        <div
+          className="md:hidden fixed inset-x-0 bottom-0 bg-black/95 backdrop-blur-md z-40"
+          style={{ top: "var(--header-h)" }}
+        >
           <div className="flex flex-col justify-between h-full">
             {/* Navigation Items */}
             <div className="flex flex-col items-center justify-start pt-16 space-y-6 px-6">

@@ -76,6 +76,10 @@ html {
   background: rgba(255, 255, 255, 0.3);
 }
 
+:root {
+  --header-h: 84px;
+}
+
 body {
   background-image: url("/global-background.jpg");
   background-size: cover;
@@ -84,6 +88,14 @@ body {
   background-attachment: fixed;
   position: relative;
   min-height: 100vh;
+}
+
+.safe-top {
+  padding-top: var(--header-h);
+}
+
+.hero-min {
+  min-height: calc(100svh - var(--header-h));
 }
 
 /* Mobile: fixed background using a fixed layer (iOS-safe) */
@@ -508,14 +520,13 @@ body {
   }
 }
 
-/* Sticky header that appears after hero */
+/* Sticky header styling */
 .sticky-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
   transition:
     opacity 0.3s ease,
-    transform 0.3s ease;
+    transform 0.3s ease,
+    background-color 0.3s ease;
+  will-change: opacity, transform, background-color;
 }
 
 /* Shimmer effect for logo */
@@ -720,6 +731,12 @@ body {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-h: 104px;
+  }
 }
 
 /* Luxury Utility Classes */

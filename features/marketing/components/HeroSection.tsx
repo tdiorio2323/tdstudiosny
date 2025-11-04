@@ -31,7 +31,7 @@ export function HeroSection({ heroImage }: HeroSectionProps) {
   }, [])
 
   return (
-    <section className="relative isolate h-screen overflow-hidden">
+    <section className="hero-min relative isolate flex items-center overflow-hidden">
       {/* Background Video with Fade Effect */}
       <div
         ref={bgRef}
@@ -52,22 +52,22 @@ export function HeroSection({ heroImage }: HeroSectionProps) {
       />
 
       {/* Hero Content */}
-      <div className="relative z-10 flex h-full items-center">
-        <div className="container-max">
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/50 px-6 py-12 text-center shadow-2xl backdrop-blur-xl sm:px-10 md:px-14">
+      <div className="relative z-10 w-full">
+        <div className="mx-auto max-w-[980px] px-4 md:px-6">
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/40 p-6 text-center shadow-2xl backdrop-blur md:p-10">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-white/5 to-transparent opacity-60"
             />
             <div className="relative stack-md animate-fade-in-up">
-              <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-white">
+              <h1 className="text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl md:leading-[1.1]">
                 Design Your Success
               </h1>
-              <p className="mx-auto max-w-2xl text-lg md:text-xl text-white/80">
+              <p className="mx-auto mt-3 max-w-2xl text-base text-white/80 md:mt-4 md:text-xl">
                 High-end websites, branding, and marketing systems engineered for creators and
                 ambitious brands.
               </p>
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+              <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
                 <Link
                   href="/work"
                   className="w-full min-h-[48px] rounded-full bg-white/90 px-6 py-3 text-base font-medium tracking-wide text-black transition-colors duration-300 hover:bg-white sm:w-auto"

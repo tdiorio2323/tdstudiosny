@@ -4,8 +4,8 @@ import Script from "next/script"
 import type React from "react"
 import { Suspense } from "react"
 import { Footer } from "@/features/layout/components/Footer"
-import { StickyHeader } from "@/features/layout/components/StickyHeader"
 import { AnalyticsProvider } from "@/features/layout/providers/AnalyticsProvider"
+import { StickyHeader } from "@/features/layout/StickyHeader"
 import { JsonLd } from "@/features/seo/components/JsonLd"
 import "./globals.css"
 import "@/styles/layout-scale.css"
@@ -37,7 +37,7 @@ export default function RootLayout({
       <head>
         <link rel="preload" as="image" href="/main-background.webp" />
       </head>
-      <body className={`${inter.className} bg-black text-white antialiased`}>
+      <body className={`safe-top ${inter.className} bg-black text-white antialiased`}>
         {/** Sitewide Organization JSON-LD Schema */}
         <JsonLd
           data={{
