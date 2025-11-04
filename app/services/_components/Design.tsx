@@ -1,5 +1,5 @@
-import { GlassCard } from "@/components/glass-card"
-import { FrostedButton } from "@/components/frosted-button"
+import { FrostedButton } from "@/components/FrostedButton"
+import { GlassCard } from "@/components/GlassCard"
 
 export function Design() {
   const designProcess = [
@@ -22,7 +22,8 @@ export function Design() {
       <div className="text-center max-w-3xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-bold mb-6">Luxury Brand Design</h2>
         <p className="text-lg md:text-xl text-white/80 mb-8">
-          Premium brand identity and visual design that elevates your market position and builds lasting customer connections.
+          Premium brand identity and visual design that elevates your market position and builds
+          lasting customer connections.
         </p>
         <FrostedButton href="/contact">Start your brand transformation</FrostedButton>
       </div>
@@ -32,21 +33,24 @@ export function Design() {
         <GlassCard>
           <h3 className="text-xl font-semibold mb-4">Brand Identity Systems</h3>
           <p className="text-white text-sm">
-            Brand identity systems, logo design, and visual language that communicates premium positioning and builds trust.
+            Brand identity systems, logo design, and visual language that communicates premium
+            positioning and builds trust.
           </p>
         </GlassCard>
 
         <GlassCard>
           <h3 className="text-xl font-semibold mb-4">Luxury Branding</h3>
           <p className="text-white text-sm">
-            Color palettes, typography, iconography, and brand guidelines crafted for sophisticated market positioning.
+            Color palettes, typography, iconography, and brand guidelines crafted for sophisticated
+            market positioning.
           </p>
         </GlassCard>
 
         <GlassCard>
           <h3 className="text-xl font-semibold mb-4">Digital Assets</h3>
           <p className="text-white text-sm">
-            Marketing materials, social media templates, and digital brand assets optimized for consistent brand experiences.
+            Marketing materials, social media templates, and digital brand assets optimized for
+            consistent brand experiences.
           </p>
         </GlassCard>
       </div>

@@ -1,6 +1,6 @@
-import { GlassCard } from "@/components/glass-card"
-import { FrostedButton } from "@/components/frosted-button"
 import { Code, Database, Globe, Layers, Shield, Zap, Settings, BarChart3 } from "lucide-react"
+import { FrostedButton } from "@/components/FrostedButton"
+import { GlassCard } from "@/components/GlassCard"
 
 const techStack = [
   { name: "REACT", icon: Code },
@@ -35,7 +35,8 @@ export function Development() {
       <div className="text-center max-w-3xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-bold mb-6">Full-Stack Development</h2>
         <p className="text-lg md:text-xl text-white/80 mb-8">
-          Custom web applications, APIs, databases, and scalable solutions built with modern tech stacks.
+          Custom web applications, APIs, databases, and scalable solutions built with modern tech
+          stacks.
         </p>
         <FrostedButton href="/contact">Book a build sprint</FrostedButton>
       </div>
@@ -45,21 +46,24 @@ export function Development() {
         <GlassCard>
           <h3 className="text-xl font-semibold mb-4">Product Discovery</h3>
           <p className="text-white text-sm">
-            Rapid architecture mapping, user flows, and proof-of-concept builds to de-risk your roadmap and align teams quickly.
+            Rapid architecture mapping, user flows, and proof-of-concept builds to de-risk your
+            roadmap and align teams quickly.
           </p>
         </GlassCard>
 
         <GlassCard>
           <h3 className="text-xl font-semibold mb-4">Full-stack Delivery</h3>
           <p className="text-white text-sm">
-            TypeScript-first stacks, API design, data modeling, automated QA, and CI/CD across web and mobile surfaces.
+            TypeScript-first stacks, API design, data modeling, automated QA, and CI/CD across web
+            and mobile surfaces.
           </p>
         </GlassCard>
 
         <GlassCard>
           <h3 className="text-xl font-semibold mb-4">Growth & Iteration</h3>
           <p className="text-white text-sm">
-            Analytics instrumentation, experiment support, and performance tuning to sustain shipping velocity post-launch.
+            Analytics instrumentation, experiment support, and performance tuning to sustain
+            shipping velocity post-launch.
           </p>
         </GlassCard>
       </div>
@@ -68,7 +72,8 @@ export function Development() {
       <div>
         <h3 className="text-xl font-semibold mb-6 text-center">Modern stack expertise</h3>
         <p className="text-white mb-8 text-center max-w-2xl mx-auto">
-          React 18, Vite, Expo, Supabase, PostgreSQL, serverless edge, plus observability and error budgets by default.
+          React 18, Vite, Expo, Supabase, PostgreSQL, serverless edge, plus observability and error
+          budgets by default.
         </p>
 
         <div className="grid grid-cols-3 md:grid-cols-9 gap-6">

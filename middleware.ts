@@ -1,7 +1,6 @@
-import { NextRequest, NextResponse } from "next/server"
-import { updateSession, verifySession } from "@/lib/utils/auth"
+import { NextResponse } from "next/server"
 
-export async function middleware(request: NextRequest) {
+export async function middleware(): Promise<NextResponse> {
   // Authentication disabled - allow all routes
   return NextResponse.next()
 }

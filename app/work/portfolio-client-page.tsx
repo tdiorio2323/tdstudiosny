@@ -1,12 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { X, ArrowRight } from "lucide-react"
 import Image from "next/image"
-import { ClientLogo } from "@/components/client-logo"
-import { GlassCard } from "@/components/glass-card"
-import { FrostedButton } from "@/components/frosted-button"
-import { X, ArrowRight, Instagram, Facebook, Twitter, Linkedin, Globe } from "lucide-react"
-import { clients, type Client } from "@/lib/clients-data"
+import { useState } from "react"
+import { FrostedButton } from "@/components/FrostedButton"
+import { GlassCard } from "@/components/GlassCard"
+import { CaseStudyDetailContent } from "@/features/clients/components/CaseStudyDetailContent"
+import { ClientLogo } from "@/features/clients/components/client-logo"
+import { clients, type Client } from "@/features/clients/lib/clients-data"
 
 export default function PortfolioClientPage() {
   const [selectedProject, setSelectedProject] = useState<Client | null>(null)
@@ -19,18 +20,21 @@ export default function PortfolioClientPage() {
           <Image
             src="https://i.imgur.com/a1bXC5y.png"
             alt="Portfolio Hero"
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center"
+            fill
             priority
+            className="object-cover object-center"
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-black/40 md:bg-black/40 hero-overlay-mobile"></div>
         </div>
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">Client Success Stories</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance text-white">
+            Client Success Stories
+          </h1>
           <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
-            Discover how we've transformed brands and businesses through strategic design and development.
+            Discover how we've transformed brands and businesses through strategic design and
+            development.
           </p>
         </div>
       </section>
@@ -41,7 +45,9 @@ export default function PortfolioClientPage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Featured Clients</h2>
-            <p className="text-white text-lg">Click any logo to explore the project details and results</p>
+            <p className="text-white text-lg">
+              Click any logo to explore the project details and results
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -56,10 +62,13 @@ export default function PortfolioClientPage() {
                   alt={`${client.name} logo`}
                   fallbackText={client.name}
                   sizes="96px"
-                  containerClassName={`relative w-24 h-24 mx-auto mb-6 overflow-hidden ${client.logoBgColor || 'bg-neutral-900/80'} border border-white/20 rounded-full group-hover:bg-neutral-900/90 transition-colors`}
-                  imageClassName={`${client.id === 'serious-inquiries-only' ? 'object-cover' : 'object-contain p-4'} ${client.logoInvert ? "invert" : ""}`}                />
+                  containerClassName={`relative w-24 h-24 mx-auto mb-6 overflow-hidden ${client.logoBgColor || "bg-neutral-900/80"} border border-white/20 rounded-full group-hover:bg-neutral-900/90 transition-colors`}
+                  imageClassName={`${client.id === "serious-inquiries-only" ? "object-cover" : "object-contain p-4"} ${client.logoInvert ? "invert" : ""}`}
+                />
                 <h3 className="text-xl font-semibold mb-2 text-white">{client.name}</h3>
-                <p className="text-white text-sm mb-4">{client.industry} • {client.year}</p>
+                <p className="text-white text-sm mb-4">
+                  {client.industry} • {client.year}
+                </p>
                 {client.services.length > 0 && (
                   <div className="flex flex-wrap gap-2 justify-center">
                     {client.services.slice(0, 2).map((service) => (
@@ -116,9 +125,12 @@ export default function PortfolioClientPage() {
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <GlassCard className="p-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Join Our Success Stories?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+              Ready to Join Our Success Stories?
+            </h2>
             <p className="text-white text-lg mb-8">
-              Let's create something extraordinary together. Contact us to discuss your vision and bring it to life.
+              Let's create something extraordinary together. Contact us to discuss your vision and
+              bring it to life.
             </p>
             <FrostedButton href="/contact">Start Your Project</FrostedButton>
           </GlassCard>
@@ -142,8 +154,12 @@ export default function PortfolioClientPage() {
                     imageClassName={`object-contain p-2 ${selectedProject.logoInvert ? "invert" : ""}`}
                   />
                   <div>
-                    <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">{selectedProject.name}</h2>
-                    <p className="text-white text-sm sm:text-base">{selectedProject.industry} • {selectedProject.year}</p>
+                    <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">
+                      {selectedProject.name}
+                    </h2>
+                    <p className="text-white text-sm sm:text-base">
+                      {selectedProject.industry} • {selectedProject.year}
+                    </p>
                   </div>
                 </div>
                 <button
@@ -154,141 +170,8 @@ export default function PortfolioClientPage() {
                 </button>
               </div>
 
-              {/* Client Info */}
-              {(selectedProject.websiteUrl || selectedProject.socialLinks) && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold mb-4 text-white">Client Links</h3>
-                  <div className="flex flex-wrap gap-3">
-                    {selectedProject.websiteUrl && (
-                      <a
-                        href={selectedProject.websiteUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 border border-white/20 rounded-lg text-white hover:bg-neutral-900/90 transition-colors"
-                      >
-                        <Globe className="w-4 h-4" />
-                        Website
-                      </a>
-                    )}
-                    {selectedProject.socialLinks?.instagram && (
-                      <a
-                        href={selectedProject.socialLinks.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 border border-white/20 rounded-lg text-white hover:bg-neutral-900/90 transition-colors"
-                      >
-                        <Instagram className="w-4 h-4" />
-                        Instagram
-                      </a>
-                    )}
-                    {selectedProject.socialLinks?.facebook && (
-                      <a
-                        href={selectedProject.socialLinks.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 border border-white/20 rounded-lg text-white hover:bg-neutral-900/90 transition-colors"
-                      >
-                        <Facebook className="w-4 h-4" />
-                        Facebook
-                      </a>
-                    )}
-                    {selectedProject.socialLinks?.twitter && (
-                      <a
-                        href={selectedProject.socialLinks.twitter}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 border border-white/20 rounded-lg text-white hover:bg-neutral-900/90 transition-colors"
-                      >
-                        <Twitter className="w-4 h-4" />
-                        Twitter
-                      </a>
-                    )}
-                    {selectedProject.socialLinks?.linkedin && (
-                      <a
-                        href={selectedProject.socialLinks.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 border border-white/20 rounded-lg text-white hover:bg-neutral-900/90 transition-colors"
-                      >
-                        <Linkedin className="w-4 h-4" />
-                        LinkedIn
-                      </a>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Services */}
-              {selectedProject.services.length > 0 && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold mb-4 text-white">Services Provided</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.services.map((service) => (
-                      <span
-                        key={service}
-                        className="px-4 py-2 bg-neutral-900/80 border border-white/20 rounded-full text-sm text-white"
-                      >
-                        {service}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Description */}
-              {selectedProject.description && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold mb-4 text-white">Project Overview</h3>
-                  <p className="text-white leading-relaxed">{selectedProject.description}</p>
-                </div>
-              )}
-
-              {/* Results */}
-              {selectedProject.results.length > 0 && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold mb-4 text-white">Key Results</h3>
-                  <ul className="space-y-2">
-                    {selectedProject.results.map((result, index) => (
-                      <li key={index} className="flex items-center text-white">
-                        <span className="text-green-400 mr-3">✓</span>
-                        {result}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Gallery */}
-              {selectedProject.gallery.length > 0 && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold mb-4 text-white">Project Gallery</h3>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    {selectedProject.gallery.map((image, index) => (
-                      <div key={index} className="relative aspect-video overflow-hidden rounded-lg border border-white/10">
-                        <Image
-                          src={image}
-                          alt={`${selectedProject.name} gallery ${index + 1}`}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Testimonial */}
-              {selectedProject.testimonial && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold mb-4 text-white">Client Testimonial</h3>
-                  <GlassCard className="p-6">
-                    <p className="text-white italic mb-4">"{selectedProject.testimonial.quote}"</p>
-                    <p className="text-white font-semibold">{selectedProject.testimonial.author}</p>
-                    <p className="text-white/70 text-sm">{selectedProject.testimonial.position}</p>
-                  </GlassCard>
-                </div>
-              )}
+              {/* Client Details (Reusable Component) */}
+              <CaseStudyDetailContent client={selectedProject} isModal={true} />
 
               {/* Actions */}
               <div className="flex flex-col sm:flex-row gap-4">

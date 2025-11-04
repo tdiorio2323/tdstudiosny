@@ -18,7 +18,7 @@ Add this tool to your TD Studios Agent in the OpenAI platform:
           "description": "Client's full name"
         },
         "brand": {
-          "type": "string", 
+          "type": "string",
           "description": "Client's business/brand name"
         },
         "goals": {
@@ -61,9 +61,9 @@ If using HTTP tool instead:
 Add this to your agent instructions:
 
 ```
-After collecting client information (name, business name, project goals, and budget range), 
-call the log_client_intake function to save their details. 
-Then provide them with the booking link: https://www.tdstudiosny.com/book
+After collecting client information (name, business name, project goals, and budget range),
+call the log_client_intake function to save their details.
+Then provide them with the booking link: https://www.tdstudiosdigital.com/book
 ```
 
 ## Testing the Endpoint

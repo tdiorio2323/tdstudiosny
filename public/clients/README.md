@@ -67,6 +67,7 @@ All client data is stored in `/lib/clients-data.ts`. To update a client:
    - `testimonial`: Client quote with author info
 
 Example:
+
 ```typescript
 {
   id: "quick-printz",

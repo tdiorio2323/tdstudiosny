@@ -1,22 +1,28 @@
 import { Metadata } from "next"
-import { PageTitle } from "@/components/page-title"
-import { Section } from "@/components/section"
-import { GlassCard } from "@/components/glass-card"
-import { FrostedButton } from "@/components/frosted-button"
-import { JsonLd } from "@/components/json-ld"
+import { FrostedButton } from "@/components/FrostedButton"
+import { GlassCard } from "@/components/GlassCard"
+import { Section } from "@/components/Section"
+import { PageTitle } from "@/features/layout/components/PageTitle"
+import { JsonLd } from "@/features/seo/components/JsonLd"
 
 export const metadata: Metadata = {
   title: "Our Process | TD Studios",
-  description: "Our proven 5-step process to turn your brand vision into a polished digital experience.",
+  description:
+    "Our proven 5-step process to turn your brand vision into a polished digital experience.",
+  alternates: {
+    canonical: "https://tdstudiosdigital.com/process",
+  },
   openGraph: {
     title: "Our Process | TD Studios",
-    description: "Our proven 5-step process to turn your brand vision into a polished digital experience.",
-    url: "https://tdstudiosny.com/process",
+    description:
+      "Our proven 5-step process to turn your brand vision into a polished digital experience.",
+    url: "https://tdstudiosdigital.com/process",
   },
   twitter: {
     card: "summary_large_image",
     title: "Our Process | TD Studios",
-    description: "Our proven 5-step process to turn your brand vision into a polished digital experience.",
+    description:
+      "Our proven 5-step process to turn your brand vision into a polished digital experience.",
   },
 }
 
@@ -25,7 +31,8 @@ const processSteps = [
     number: "01",
     title: "Discovery & Strategy",
     duration: "1-2 weeks",
-    description: "We begin with in-depth research into your business, competitors, and target audience. This phase includes stakeholder interviews, brand workshops, and technical architecture planning.",
+    description:
+      "We begin with in-depth research into your business, competitors, and target audience. This phase includes stakeholder interviews, brand workshops, and technical architecture planning.",
     deliverables: [
       "Project brief and goals document",
       "Competitive analysis report",
@@ -37,7 +44,8 @@ const processSteps = [
     number: "02",
     title: "Design & Prototyping",
     duration: "2-3 weeks",
-    description: "Our design team creates wireframes, visual concepts, and interactive prototypes. We iterate based on your feedback to ensure the design aligns perfectly with your vision.",
+    description:
+      "Our design team creates wireframes, visual concepts, and interactive prototypes. We iterate based on your feedback to ensure the design aligns perfectly with your vision.",
     deliverables: [
       "Wireframes and user flows",
       "High-fidelity mockups",
@@ -49,7 +57,8 @@ const processSteps = [
     number: "03",
     title: "Development & Build",
     duration: "4-6 weeks",
-    description: "Our engineering team brings the designs to life with clean, scalable code. We follow agile methodologies with weekly check-ins and progress updates.",
+    description:
+      "Our engineering team brings the designs to life with clean, scalable code. We follow agile methodologies with weekly check-ins and progress updates.",
     deliverables: [
       "Functional web application",
       "Mobile-responsive implementation",
@@ -61,7 +70,8 @@ const processSteps = [
     number: "04",
     title: "Testing & Refinement",
     duration: "1-2 weeks",
-    description: "Rigorous quality assurance testing across devices, browsers, and use cases. We fix bugs, optimize performance, and ensure everything works flawlessly.",
+    description:
+      "Rigorous quality assurance testing across devices, browsers, and use cases. We fix bugs, optimize performance, and ensure everything works flawlessly.",
     deliverables: [
       "QA testing report",
       "Performance optimization",
@@ -73,7 +83,8 @@ const processSteps = [
     number: "05",
     title: "Launch & Support",
     duration: "Ongoing",
-    description: "We handle deployment, monitor performance, and provide post-launch support. Our team remains available to address any issues and implement enhancements.",
+    description:
+      "We handle deployment, monitor performance, and provide post-launch support. Our team remains available to address any issues and implement enhancements.",
     deliverables: [
       "Production deployment",
       "Analytics and tracking setup",
@@ -86,15 +97,18 @@ const processSteps = [
 const faqItems = [
   {
     question: "How involved do I need to be during the process?",
-    answer: "We recommend weekly check-ins and expect timely feedback during review phases. Total time commitment is typically 2-4 hours per week.",
+    answer:
+      "We recommend weekly check-ins and expect timely feedback during review phases. Total time commitment is typically 2-4 hours per week.",
   },
   {
     question: "What happens if we need to make changes mid-project?",
-    answer: "We accommodate reasonable scope changes. Significant changes may affect timeline and budget, which we'll discuss transparently.",
+    answer:
+      "We accommodate reasonable scope changes. Significant changes may affect timeline and budget, which we'll discuss transparently.",
   },
   {
     question: "Do you work with our existing team?",
-    answer: "Absolutely. We integrate seamlessly with your marketing, product, and engineering teams as needed.",
+    answer:
+      "Absolutely. We integrate seamlessly with your marketing, product, and engineering teams as needed.",
   },
 ]
 
@@ -102,30 +116,30 @@ export default function ProcessPage() {
   const howToSchema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": "TD Studios 5-Step Design & Development Process",
-    "description": "A proven methodology that delivers exceptional results, from strategy to launch",
-    "totalTime": "P8W",
-    "step": processSteps.map((step, index) => ({
+    name: "TD Studios 5-Step Design & Development Process",
+    description: "A proven methodology that delivers exceptional results, from strategy to launch",
+    totalTime: "P8W",
+    step: processSteps.map((step, index) => ({
       "@type": "HowToStep",
-      "position": index + 1,
-      "name": step.title,
-      "text": step.description,
-      "itemListElement": step.deliverables.map((deliverable) => ({
+      position: index + 1,
+      name: step.title,
+      text: step.description,
+      itemListElement: step.deliverables.map((deliverable) => ({
         "@type": "HowToTip",
-        "text": deliverable
-      }))
-    }))
+        text: deliverable,
+      })),
+    })),
   }
 
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": faqItems.map((item) => ({
+    mainEntity: faqItems.map((item) => ({
       "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": {
+      name: item.question,
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": item.answer,
+        text: item.answer,
       },
     })),
   }
@@ -133,18 +147,18 @@ export default function ProcessPage() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
+    itemListElement: [
       {
         "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://tdstudiosny.com",
+        position: 1,
+        name: "Home",
+        item: "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
-        "position": 2,
-        "name": "Process",
-        "item": "https://tdstudiosny.com/process",
+        position: 2,
+        name: "Process",
+        item: "https://tdstudiosdigital.com/process",
       },
     ],
   }
@@ -186,7 +200,9 @@ export default function ProcessPage() {
                       <div className="flex-1">
                         <div className="flex items-start justify-between mb-4">
                           <h3 className="text-2xl md:text-3xl font-bold">{step.title}</h3>
-                          <span className="text-sm text-white/60 whitespace-nowrap ml-4">{step.duration}</span>
+                          <span className="text-sm text-white/60 whitespace-nowrap ml-4">
+                            {step.duration}
+                          </span>
                         </div>
                         <p className="text-white/80 mb-6">{step.description}</p>
 

@@ -1,27 +1,12 @@
-import { Metadata } from "next"
+import { generateSEOMetadata } from "@/features/seo/components/SeoHead"
 
-export const metadata: Metadata = {
-  title: "Support | TD Studios",
-  description: "Get technical support, creative guidance, and project assistance from the TD Studios team. Live chat support for web design, development, and branding questions.",
-  alternates: {
-    canonical: "https://tdstudiosny.com/support",
-  },
-  openGraph: {
-    title: "Support | TD Studios",
-    description: "Get technical support, creative guidance, and project assistance from the TD Studios team. Live chat support for web design, development, and branding questions.",
-    url: "https://tdstudiosny.com/support",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Support | TD Studios",
-    description: "Get technical support, creative guidance, and project assistance from the TD Studios team. Live chat support for web design, development, and branding questions.",
-  },
-}
+export const metadata = generateSEOMetadata({
+  title: "Support",
+  description:
+    "Get technical support, creative guidance, and project assistance from the TD Studios team. Live chat support for web design, development, and branding questions.",
+  canonical: "/support",
+})
 
-export default function SupportLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function SupportLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 }

@@ -1,27 +1,29 @@
+import { Share2, TrendingUp, Users, BarChart3, Target } from "lucide-react"
 import { Metadata } from "next"
 import Image from "next/image"
-import { PageTitle } from "@/components/page-title"
-import { Section } from "@/components/section"
-import { GlassCard } from "@/components/glass-card"
-import { FrostedButton } from "@/components/frosted-button"
-import { JsonLd } from "@/components/json-ld"
-import { Share2, TrendingUp, Users, Calendar, BarChart3, Target } from "lucide-react"
+import { FrostedButton } from "@/components/FrostedButton"
+import { GlassCard } from "@/components/GlassCard"
+import { Section } from "@/components/Section"
+import { JsonLd } from "@/features/seo/components/JsonLd"
 
 export const metadata: Metadata = {
   title: "Social Media Marketing | TD Studios",
-  description: "Social media strategy, content creation, and community management. Instagram, LinkedIn, TikTok campaigns that drive engagement and conversions.",
+  description:
+    "Social media strategy, content creation, and community management. Instagram, LinkedIn, TikTok campaigns that drive engagement and conversions.",
   alternates: {
-    canonical: "https://tdstudiosny.com/social",
+    canonical: "https://tdstudiosdigital.com/social",
   },
   openGraph: {
     title: "Social Media Marketing | TD Studios",
-    description: "Social media strategy, content creation, and community management. Instagram, LinkedIn, TikTok campaigns that drive engagement and conversions.",
-    url: "https://tdstudiosny.com/social",
+    description:
+      "Social media strategy, content creation, and community management. Instagram, LinkedIn, TikTok campaigns that drive engagement and conversions.",
+    url: "https://tdstudiosdigital.com/social",
   },
   twitter: {
     card: "summary_large_image",
     title: "Social Media Marketing | TD Studios",
-    description: "Social media strategy, content creation, and community management. Instagram, LinkedIn, TikTok campaigns that drive engagement and conversions.",
+    description:
+      "Social media strategy, content creation, and community management. Instagram, LinkedIn, TikTok campaigns that drive engagement and conversions.",
   },
 }
 
@@ -52,18 +54,18 @@ export default function SocialPage() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
+    itemListElement: [
       {
         "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://tdstudiosny.com",
+        position: 1,
+        name: "Home",
+        item: "https://tdstudiosdigital.com",
       },
       {
         "@type": "ListItem",
-        "position": 2,
-        "name": "Social Media Marketing",
-        "item": "https://tdstudiosny.com/social",
+        position: 2,
+        name: "Social Media Marketing",
+        item: "https://tdstudiosdigital.com/social",
       },
     ],
   }
@@ -92,9 +94,14 @@ export default function SocialPage() {
               Social Media That Converts
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Editorial programming, campaign kits, and community ops that sustain growth and build authentic connections.
+              Editorial programming, campaign kits, and community ops that sustain growth and build
+              authentic connections.
             </p>
-            <FrostedButton href="/contact" analyticsLabel="Social - Start Campaign" analyticsPosition="Hero CTA">
+            <FrostedButton
+              href="/contact"
+              analyticsLabel="Social - Start Campaign"
+              analyticsPosition="Hero CTA"
+            >
               Start your campaign
             </FrostedButton>
           </div>
@@ -105,7 +112,9 @@ export default function SocialPage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Deliver</h2>
-              <p className="text-white/80 text-lg">Comprehensive social media solutions for premium brands</p>
+              <p className="text-white/80 text-lg">
+                Comprehensive social media solutions for premium brands
+              </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -113,7 +122,8 @@ export default function SocialPage() {
                 <Share2 className="w-10 h-10 text-white mb-4" />
                 <h3 className="text-xl font-semibold mb-4">Content Strategy & Planning</h3>
                 <p className="text-white text-sm">
-                  Brand voice development, editorial calendars, and platform-specific content strategies that align with your business goals.
+                  Brand voice development, editorial calendars, and platform-specific content
+                  strategies that align with your business goals.
                 </p>
               </GlassCard>
 
@@ -121,7 +131,8 @@ export default function SocialPage() {
                 <Target className="w-10 h-10 text-white mb-4" />
                 <h3 className="text-xl font-semibold mb-4">Campaign Development</h3>
                 <p className="text-white text-sm">
-                  Multi-platform campaigns with cohesive creative assets, messaging frameworks, and performance tracking systems.
+                  Multi-platform campaigns with cohesive creative assets, messaging frameworks, and
+                  performance tracking systems.
                 </p>
               </GlassCard>
 
@@ -129,7 +140,8 @@ export default function SocialPage() {
                 <Users className="w-10 h-10 text-white mb-4" />
                 <h3 className="text-xl font-semibold mb-4">Community Management</h3>
                 <p className="text-white text-sm">
-                  Engagement strategies, response protocols, and relationship building that turn followers into brand advocates.
+                  Engagement strategies, response protocols, and relationship building that turn
+                  followers into brand advocates.
                 </p>
               </GlassCard>
             </div>
@@ -139,7 +151,9 @@ export default function SocialPage() {
         {/* Platform Expertise */}
         <Section id="platforms" className="py-20 bg-black/20">
           <div className="max-w-7xl mx-auto px-6">
-            <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-center">Platform Expertise</h3>
+            <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-center">
+              Platform Expertise
+            </h3>
             <p className="text-white/80 mb-12 text-center max-w-2xl mx-auto text-lg">
               We create platform-native content that performs across all major social channels.
             </p>
@@ -162,7 +176,9 @@ export default function SocialPage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Process</h2>
-              <p className="text-white/80 text-lg">From strategy to execution, we handle every detail</p>
+              <p className="text-white/80 text-lg">
+                From strategy to execution, we handle every detail
+              </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -197,12 +213,16 @@ export default function SocialPage() {
         <Section id="results" className="py-20 bg-black/20">
           <div className="max-w-4xl mx-auto px-6">
             <GlassCard className="luxury-glass p-8">
-              <h3 className="text-2xl font-semibold mb-6 text-center">Measurement-Driven Approach</h3>
+              <h3 className="text-2xl font-semibold mb-6 text-center">
+                Measurement-Driven Approach
+              </h3>
               <p className="text-white/90 text-lg leading-relaxed mb-6">
-                Every campaign includes comprehensive analytics tracking, engagement metrics, and growth measurement. We optimize based on real performance data, not assumptions.
+                Every campaign includes comprehensive analytics tracking, engagement metrics, and
+                growth measurement. We optimize based on real performance data, not assumptions.
               </p>
               <p className="text-white/80 text-base leading-relaxed">
-                Monthly reporting, A/B testing recommendations, and continuous content optimization keep your social presence growing sustainably.
+                Monthly reporting, A/B testing recommendations, and continuous content optimization
+                keep your social presence growing sustainably.
               </p>
             </GlassCard>
           </div>
@@ -213,7 +233,8 @@ export default function SocialPage() {
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h3 className="text-3xl font-bold mb-6">Ready to grow your social presence?</h3>
             <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
-              Let's build a social media strategy that drives engagement and converts followers into customers.
+              Let's build a social media strategy that drives engagement and converts followers into
+              customers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <FrostedButton href="/contact" className="btn-primary">

@@ -1,149 +1,182 @@
 import Link from "next/link"
-import { Section } from "@/components/section"
-import { GlassCard } from "@/components/glass-card"
-import { JsonLd } from "@/components/json-ld"
-import { HeroVideo } from "@/components/hero-video"
+import { GlassCard } from "@/components/GlassCard"
+import { Section } from "@/components/Section"
+import { HeroSection } from "@/features/marketing/components/HeroSection"
+import { JsonLd } from "@/features/seo/components/JsonLd"
 import heroImage from "@/public/main-background.webp"
 
 export default function HomePage() {
+  const featuredServices = [
+    { name: "Web", href: "/web", desc: "Website design and marketing experiences." },
+    { name: "Dev", href: "/dev", desc: "Platform and system development." },
+    { name: "Social", href: "/social", desc: "Content and social media growth systems." },
+    { name: "Design", href: "/design", desc: "Branding and visual identity design." },
+  ] as const
+
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "TD Studios",
-    "url": "https://tdstudiosny.com",
-    "logo": "https://tdstudiosny.com/logo.png",
-    "description": "High-end websites, branding, and marketing systems engineered for creators and ambitious brands.",
-    "address": {
+    name: "TD Studios",
+    alternateName: "TD Studios NY",
+    url: "https://tdstudiosdigital.com",
+    logo: "https://tdstudiosdigital.com/logo.png",
+    description:
+      "High-end websites, branding, and marketing systems engineered for creators and ambitious brands.",
+    foundingDate: "2023",
+    address: {
       "@type": "PostalAddress",
-      "addressCountry": "US"
+      addressCountry: "US",
+      addressRegion: "NY",
     },
-    "contactPoint": {
+    contactPoint: {
       "@type": "ContactPoint",
-      "contactType": "Customer Support",
-      "url": "https://tdstudiosny.com/contact"
+      contactType: "Customer Support",
+      url: "https://tdstudiosdigital.com/contact",
+      email: "hello@tdstudiosny.com",
     },
-    "sameAs": [
-      "https://tdstudiosny.com"
-    ]
+    serviceArea: {
+      "@type": "Place",
+      name: "Worldwide",
+    },
+    makesOffer: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Web Design & Development",
+          description: "Custom websites and web applications",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Brand Identity Design",
+          description: "Complete brand identity and visual design systems",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Social Media Marketing",
+          description: "Social media strategy and content creation",
+        },
+      },
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      bestRating: "5",
+      ratingCount: "15",
+    },
   }
 
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "TD Studios",
-    "url": "https://tdstudiosny.com",
-    "potentialAction": {
+    name: "TD Studios",
+    url: "https://tdstudiosdigital.com",
+    potentialAction: {
       "@type": "SearchAction",
-      "target": "https://tdstudiosny.com/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+      target: "https://tdstudiosdigital.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  }
+
+  const serviceCatalogSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "TD Studios Core Services",
+    description: "Four primary service pillars delivered by TD Studios.",
+    itemListElement: featuredServices.map((service, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Service",
+        name: `${service.name} Services`,
+        description: service.desc,
+        provider: {
+          "@type": "Organization",
+          name: "TD Studios",
+          url: "https://tdstudiosdigital.com",
+        },
+        areaServed: "Worldwide",
+        serviceOutput: service.name,
+        url: `https://tdstudiosdigital.com${service.href}`,
+      },
+    })),
   }
 
   return (
     <>
       <JsonLd data={organizationSchema} />
       <JsonLd data={websiteSchema} />
+      <JsonLd data={serviceCatalogSchema} />
       <main id="main-content" className="flex flex-col">
-      {/* Hero Section with Video Background */}
-      <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
-        {/* Background Video with Fallback Image */}
-        <HeroVideo
-          videoSrc="/hero-video.mp4"
-          posterSrc="/main-background.webp"
-          fallbackImageSrc={heroImage}
-        />
+        {/* Hero Section with Fade-on-Scroll Effect */}
+        <HeroSection heroImage={heroImage} />
 
-        {/* Hero Content with CSS Animation */}
-        <div className="relative z-10 text-center px-6 animate-fade-in-up max-w-4xl mx-auto">
-          {/* Dark overlay backdrop for text readability */}
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-md rounded-3xl -z-10 transform scale-110" />
-
-          <div className="py-12 px-4 md:px-8">
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white drop-shadow-2xl">
-              Design Your Success
-            </h1>
-            <p className="mt-6 text-white text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
-              High-end websites, branding, and marketing systems engineered for creators and ambitious brands.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/work"
-                className="px-8 py-4 rounded-full bg-white/90 hover:bg-white text-black text-sm font-semibold tracking-wide transition-all duration-300 shadow-xl"
-              >
-                View Our Work
-              </Link>
-              <Link
-                href="/contact"
-                className="px-8 py-4 rounded-full bg-black/80 hover:bg-black border border-white/30 text-white text-sm font-semibold tracking-wide backdrop-blur-lg transition-all duration-300 shadow-xl"
-              >
-                Start a Project
-              </Link>
-            </div>
+        {/* What We Do */}
+        <Section innerClassName="text-center">
+          <h2 className="text-4xl md:text-5xl font-semibold text-white">What We Do</h2>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {featuredServices.map((s) => (
+              <GlassCard key={s.name} className="luxury-glass transition-transform hover:scale-105">
+                <div className="stack-sm text-left">
+                  <h3 className="text-2xl font-bold text-white">{s.name}</h3>
+                  <p className="text-sm text-white/80">{s.desc}</p>
+                  <Link
+                    href={s.href}
+                    className="inline-block text-sm text-white/90 transition-colors hover:text-white hover:underline"
+                  >
+                    Learn More →
+                  </Link>
+                </div>
+              </GlassCard>
+            ))}
           </div>
-        </div>
-      </section>
+        </Section>
 
-      {/* What We Do */}
-      <Section>
-        <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-center text-white">What We Do</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-6">
-          {[
-            { name: "Web", href: "/web", desc: "Website design and marketing experiences." },
-            { name: "Dev", href: "/dev", desc: "Platform and system development." },
-            { name: "Social", href: "/social", desc: "Content and social media growth systems." },
-            { name: "Design", href: "/design", desc: "Branding and visual identity design." },
-          ].map((s) => (
-            <GlassCard key={s.name} className="luxury-glass hover:scale-105 transition-transform">
-              <h3 className="text-2xl font-bold text-white">{s.name}</h3>
-              <p className="text-white/70 text-sm mt-2">{s.desc}</p>
-              <Link
-                href={s.href}
-                className="inline-block mt-4 text-sm text-white/90 hover:text-white hover:underline"
-              >
-                Learn More →
-              </Link>
-            </GlassCard>
-          ))}
-        </div>
-      </Section>
+        {/* Why TD Studios */}
+        <Section className="bg-black/20" innerClassName="text-center md:text-left">
+          <h2 className="text-4xl md:text-5xl font-semibold text-white">Why TD Studios</h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              {
+                title: "Luxury Execution",
+                text: "Every detail is refined for precision and impact. Presentation matters.",
+              },
+              {
+                title: "System-Driven Design",
+                text: "Our framework scales your business across platforms and automations.",
+              },
+              {
+                title: "Proven Results",
+                text: "Projects that convert, perform, and grow your brand's authority.",
+              },
+            ].map((x) => (
+              <GlassCard key={x.title} className="luxury-glass text-left">
+                <div className="stack-sm">
+                  <h3 className="text-xl font-bold text-white">{x.title}</h3>
+                  <p className="text-white/80">{x.text}</p>
+                </div>
+              </GlassCard>
+            ))}
+          </div>
+        </Section>
 
-      {/* Why TD Studios */}
-      <Section className="bg-black/20 py-20">
-        <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-center text-white">Why TD Studios</h2>
-        <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto px-6">
-          {[
-            {
-              title: "Luxury Execution",
-              text: "Every detail is refined for precision and impact. Presentation matters.",
-            },
-            {
-              title: "System-Driven Design",
-              text: "Our framework scales your business across platforms and automations.",
-            },
-            {
-              title: "Proven Results",
-              text: "Projects that convert, perform, and grow your brand's authority.",
-            },
-          ].map((x) => (
-            <GlassCard key={x.title} className="luxury-glass">
-              <h3 className="text-xl font-bold text-white">{x.title}</h3>
-              <p className="text-white/70 mt-2">{x.text}</p>
-            </GlassCard>
-          ))}
-        </div>
-      </Section>
-
-      {/* CTA */}
-      <Section className="text-center py-24">
-        <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">Bring Your Vision to Life</h2>
-        <Link
-          href="/contact"
-          className="inline-block px-10 py-4 rounded-full bg-gradient-to-r from-white/20 to-white/10 hover:from-white/30 hover:to-white/20 border border-white/30 text-white text-sm tracking-wide backdrop-blur-lg transition"
-        >
-          Start a Project
-        </Link>
-      </Section>
-    </main>
+        {/* CTA */}
+        <Section className="py-24" innerClassName="text-center">
+          <h2 className="text-5xl md:text-6xl font-bold text-white">Bring Your Vision to Life</h2>
+          <Link
+            href="/contact"
+            className="inline-block rounded-full border border-white/30 bg-gradient-to-r from-white/20 to-white/10 px-10 py-4 text-sm font-medium tracking-wide text-white transition hover:from-white/30 hover:to-white/20"
+          >
+            Start a Project
+          </Link>
+        </Section>
+      </main>
     </>
   )
 }

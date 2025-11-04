@@ -1,582 +1,586 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flicker Slideshow - TD Studios</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            background: #000;
-            overflow: hidden;
-            font-family: 'Geist Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
+      body {
+        background: #000;
+        overflow: hidden;
+        font-family:
+          "Geist Sans",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
 
-        #slideshow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+      #slideshow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.05s ease-in-out;
-        }
+      .slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.05s ease-in-out;
+      }
 
-        .slide.active {
-            display: flex;
-            opacity: 1;
-        }
+      .slide.active {
+        display: flex;
+        opacity: 1;
+      }
 
-        .slide img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
+      .slide img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
 
-        #controls {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            padding: 12px 24px;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 14px;
-            display: flex;
-            gap: 20px;
-            z-index: 1000;
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
+      #controls {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(10px);
+        padding: 12px 24px;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 14px;
+        display: flex;
+        gap: 20px;
+        z-index: 1000;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      }
 
-        #controls.hidden {
-            opacity: 0;
-        }
+      #controls.hidden {
+        opacity: 0;
+      }
 
-        .control-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+      .control-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
 
-        .key {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-family: 'Geist Mono', monospace;
-            font-size: 12px;
-        }
+      .key {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-family: "Geist Mono", monospace;
+        font-size: 12px;
+      }
 
-        #speed-indicator {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            padding: 8px 16px;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 14px;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+      #speed-indicator {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(10px);
+        padding: 8px 16px;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 14px;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
 
-        #speed-indicator.show {
-            opacity: 1;
-        }
+      #speed-indicator.show {
+        opacity: 1;
+      }
 
-        #loading {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            font-size: 16px;
-            z-index: 999;
-        }
+      #loading {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 16px;
+        z-index: 999;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="loading">Loading images...</div>
     <div id="slideshow"></div>
 
     <div id="controls">
-        <div class="control-item">
-            <span class="key">SPACE</span>
-            <span>Pause/Play</span>
-        </div>
-        <div class="control-item">
-            <span class="key">←</span>
-            <span>Slower</span>
-        </div>
-        <div class="control-item">
-            <span class="key">→</span>
-            <span>Faster</span>
-        </div>
-        <div class="control-item">
-            <span class="key">ESC</span>
-            <span>Exit</span>
-        </div>
+      <div class="control-item">
+        <span class="key">SPACE</span>
+        <span>Pause/Play</span>
+      </div>
+      <div class="control-item">
+        <span class="key">←</span>
+        <span>Slower</span>
+      </div>
+      <div class="control-item">
+        <span class="key">→</span>
+        <span>Faster</span>
+      </div>
+      <div class="control-item">
+        <span class="key">ESC</span>
+        <span>Exit</span>
+      </div>
     </div>
 
     <div id="speed-indicator"></div>
 
     <script>
-        const BASE_URL = 'https://dist.tdstudiosny.com/';
+      const BASE_URL = "https://dist.tdstudiosny.com/"
 
-        const imagePaths = [
-            "thumbs/2 a.webp",
-            "thumbs/4 4 & 8 & oO B B iy.webp",
-            "thumbs/as ee NX ys e rn N N f a aN ys ye 24 sw a of.webp",
-            "thumbs/Cf 2 amy Y ie.webp",
-            "thumbs/Cherry Yummy Mylar Design _1.webp",
-            "thumbs/Copy of Cake Batter 4x5.webp",
-            "thumbs/Copy of Cherry Zlushie 4x5_thumb.webp",
-            "thumbs/e WOES.webp",
-            "thumbs/ERLE CE EEEE.webp",
-            "thumbs/FET ee.webp",
-            "thumbs/file-NycH4vBJbzo8PVWUE7a1iy-cherry-bubble-gum-.webp",
-            "thumbs/Fox Bag.webp",
-            "thumbs/Gewe fad es Seed eg BSS SOSoo Seaey.webp",
-            "thumbs/GRAPE STRAWBERY.webp",
-            "thumbs/ichinas ab Seas iP Sob Be oS a See ox forges gs C.webp",
-            "thumbs/jeu.webp",
-            "thumbs/JID ACS.webp",
-            "thumbs/KA CS.webp",
-            "thumbs/L CL PIDE 2.webp",
-            "thumbs/layer_004_Group 1 copy 7.webp",
-            "thumbs/layer_038_Layer 30.webp",
-            "thumbs/LCG SIZED.webp",
-            "thumbs/mylar_design_0001.webp",
-            "thumbs/mylar_design_0002.webp",
-            "thumbs/mylar_design_0003.webp",
-            "thumbs/mylar_design_0004.webp",
-            "thumbs/mylar_design_0005.webp",
-            "thumbs/mylar_design_0007.webp",
-            "thumbs/mylar_design_0008.webp",
-            "thumbs/mylar_design_0009.webp",
-            "thumbs/mylar_design_0010.webp",
-            "thumbs/mylar_design_0011.webp",
-            "thumbs/mylar_design_0013.webp",
-            "thumbs/mylar_design_0014.webp",
-            "thumbs/mylar_design_0015.webp",
-            "thumbs/mylar_design_0016.webp",
-            "thumbs/mylar_design_0017.webp",
-            "thumbs/mylar_design_0018.webp",
-            "thumbs/mylar_design_0019.webp",
-            "thumbs/mylar_design_0020.webp",
-            "thumbs/mylar_design_0021.webp",
-            "thumbs/mylar_design_0022.webp",
-            "thumbs/mylar_design_0024.webp",
-            "thumbs/mylar_design_0026.webp",
-            "thumbs/mylar_design_0027.webp",
-            "thumbs/mylar_design_0034.webp",
-            "thumbs/mylar_design_0035.webp",
-            "thumbs/mylar_design_0036.webp",
-            "thumbs/mylar_design_0039.webp",
-            "thumbs/mylar_design_0042.webp",
-            "thumbs/mylar_design_0045.webp",
-            "thumbs/mylar_design_0046.webp",
-            "thumbs/mylar_design_0047.webp",
-            "thumbs/mylar_design_0048.webp",
-            "thumbs/mylar_design_0049.webp",
-            "thumbs/mylar_design_0052.webp",
-            "thumbs/mylar_design_0057.webp",
-            "thumbs/mylar_design_0058.webp",
-            "thumbs/mylar_design_0063.webp",
-            "thumbs/mylar_design_0066.webp",
-            "images/mylar_design_0067.webp",
-            "thumbs/mylar_design_0067.webp",
-            "thumbs/mylar_design_0068.webp",
-            "thumbs/mylar_design_0069.webp",
-            "thumbs/mylar_design_0070.webp",
-            "thumbs/mylar_design_0071.webp",
-            "thumbs/mylar_design_0073.webp",
-            "thumbs/mylar_design_0075.webp",
-            "thumbs/mylar_design_0076.webp",
-            "thumbs/mylar_design_0078.webp",
-            "thumbs/mylar_design_0079.webp",
-            "thumbs/mylar_design_0082.webp",
-            "thumbs/mylar_design_0089.webp",
-            "thumbs/mylar_design_0098.webp",
-            "thumbs/mylar_design_0099.webp",
-            "thumbs/mylar_design_0102.webp",
-            "images/mylar_design_0104.webp",
-            "thumbs/mylar_design_0104.webp",
-            "thumbs/mylar_design_0105.webp",
-            "thumbs/mylar_design_0106.webp",
-            "thumbs/mylar_design_0107.webp",
-            "thumbs/mylar_design_0108.webp",
-            "thumbs/mylar_design_0109.webp",
-            "thumbs/mylar_design_0110.webp",
-            "thumbs/mylar_design_0111.webp",
-            "thumbs/mylar_design_0112.webp",
-            "thumbs/mylar_design_0113.webp",
-            "thumbs/mylar_design_0114.webp",
-            "thumbs/mylar_design_0115.webp",
-            "thumbs/mylar_design_0116.webp",
-            "thumbs/mylar_design_0117.webp",
-            "thumbs/mylar_design_0120.webp",
-            "thumbs/mylar_design_0121.webp",
-            "thumbs/mylar_design_0124.webp",
-            "thumbs/mylar_design_0125.webp",
-            "images/mylar_design_0129.webp",
-            "thumbs/mylar_design_0129.webp",
-            "thumbs/mylar_design_0131.webp",
-            "thumbs/mylar_design_0132.webp",
-            "thumbs/mylar_design_0133.webp",
-            "thumbs/mylar_design_0134.webp",
-            "thumbs/mylar_design_0135.webp",
-            "thumbs/mylar_design_0136.webp",
-            "thumbs/mylar_design_0137.webp",
-            "thumbs/mylar_design_0138.webp",
-            "thumbs/mylar_design_0139.webp",
-            "thumbs/mylar_design_0141.webp",
-            "thumbs/mylar_design_0143.webp",
-            "thumbs/mylar_design_0144.webp",
-            "thumbs/mylar_design_0145.webp",
-            "thumbs/mylar_design_0151.webp",
-            "thumbs/mylar_design_0152.webp",
-            "thumbs/mylar_design_0153.webp",
-            "thumbs/mylar_design_0155.webp",
-            "thumbs/mylar_design_0156.webp",
-            "thumbs/mylar_design_0157.webp",
-            "thumbs/mylar_design_0158.webp",
-            "thumbs/mylar_design_0159.webp",
-            "thumbs/mylar_design_0160.webp",
-            "thumbs/mylar_design_0162.webp",
-            "thumbs/mylar_design_0164.webp",
-            "thumbs/mylar_design_0165.webp",
-            "thumbs/mylar_design_0166.webp",
-            "thumbs/mylar_design_0167.webp",
-            "thumbs/mylar_design_0169.webp",
-            "thumbs/mylar_design_0171.webp",
-            "thumbs/mylar_design_0172.webp",
-            "thumbs/mylar_design_0173.webp",
-            "thumbs/mylar_design_0175.webp",
-            "thumbs/mylar_design_0176.webp",
-            "thumbs/mylar_design_0177.webp",
-            "thumbs/mylar_design_0180.webp",
-            "thumbs/mylar_design_0181.webp",
-            "thumbs/mylar_design_0182.webp",
-            "thumbs/mylar_design_0183.webp",
-            "thumbs/mylar_design_0184.webp",
-            "thumbs/mylar_design_0186.webp",
-            "thumbs/mylar_design_0187.webp",
-            "images/mylar_design_0188.webp",
-            "thumbs/mylar_design_0188.webp",
-            "thumbs/mylar_design_0190.webp",
-            "thumbs/mylar_design_0191.webp",
-            "thumbs/mylar_design_0192.webp",
-            "thumbs/mylar_design_0193.webp",
-            "thumbs/mylar_design_0194.webp",
-            "thumbs/mylar_design_0196.webp",
-            "thumbs/mylar_design_0198.webp",
-            "thumbs/mylar_design_0199.webp",
-            "thumbs/mylar_design_0200.webp",
-            "thumbs/mylar_design_0201.webp",
-            "thumbs/mylar_design_0202.webp",
-            "images/mylar_design_0203.webp",
-            "thumbs/mylar_design_0203.webp",
-            "thumbs/mylar_design_0204.webp",
-            "thumbs/mylar_design_0205.webp",
-            "thumbs/mylar_design_0207.webp",
-            "thumbs/mylar_design_0208.webp",
-            "thumbs/mylar_design_0209.webp",
-            "thumbs/mylar_design_0210.webp",
-            "thumbs/mylar_design_0211.webp",
-            "thumbs/mylar_design_0213.webp",
-            "thumbs/mylar_design_0214.webp",
-            "thumbs/mylar_design_0215.webp",
-            "thumbs/mylar_design_0216.webp",
-            "thumbs/mylar_design_0217.webp",
-            "thumbs/mylar_design_0219.webp",
-            "thumbs/mylar_design_0220.webp",
-            "thumbs/mylar_design_0221.webp",
-            "thumbs/mylar_design_0222.webp",
-            "thumbs/mylar_design_0223.webp",
-            "thumbs/mylar_design_0224.webp",
-            "thumbs/mylar_design_0225.webp",
-            "thumbs/mylar_design_0226.webp",
-            "thumbs/mylar_design_0227.webp",
-            "thumbs/mylar_design_0228.webp",
-            "thumbs/mylar_design_0230.webp",
-            "thumbs/mylar_design_0231.webp",
-            "thumbs/mylar_design_0232.webp",
-            "thumbs/mylar_design_0233.webp",
-            "thumbs/mylar_design_0234.webp",
-            "thumbs/mylar_design_0235.webp",
-            "images/mylar_design_0236.webp",
-            "thumbs/mylar_design_0236.webp",
-            "thumbs/mylar_design_0237.webp",
-            "images/mylar_design_0238.webp",
-            "thumbs/mylar_design_0238.webp",
-            "thumbs/mylar_design_0239.webp",
-            "thumbs/mylar_design_0240.webp",
-            "thumbs/mylar_design_0242.webp",
-            "thumbs/mylar_design_0245.webp",
-            "thumbs/mylar_design_0251.webp",
-            "thumbs/mylar_design_0255.webp",
-            "thumbs/mylar_design_0256.webp",
-            "thumbs/mylar_design_0257.webp",
-            "thumbs/mylar_design_0258.webp",
-            "thumbs/mylar_design_0260.webp",
-            "thumbs/mylar_design_0262.webp",
-            "thumbs/mylar_design_0264.webp",
-            "thumbs/mylar_design_0267.webp",
-            "thumbs/mylar_design_0269.webp",
-            "thumbs/mylar_design_0270.webp",
-            "thumbs/mylar_design_0272.webp",
-            "thumbs/mylar_design_0273.webp",
-            "thumbs/mylar_design_0274.webp",
-            "thumbs/mylar_design_0275.webp",
-            "thumbs/mylar_design_0276.webp",
-            "thumbs/mylar_design_0277.webp",
-            "thumbs/mylar_design_0278.webp",
-            "thumbs/mylar_design_0279.webp",
-            "thumbs/mylar_design_0280.webp",
-            "thumbs/mylar_design_0281.webp",
-            "thumbs/mylar_design_0282.webp",
-            "images/mylar_design_0286.webp",
-            "thumbs/mylar_design_0286.webp",
-            "thumbs/mylar_design_0287.webp",
-            "thumbs/mylar_design_0289.webp",
-            "thumbs/mylar_design_0290.webp",
-            "thumbs/mylar_design_0291.webp",
-            "thumbs/mylar_design_0297.webp",
-            "thumbs/mylar_design_0301.webp",
-            "images/mylar_design_0303.webp",
-            "thumbs/mylar_design_0303.webp",
-            "thumbs/mylar_design_0304.webp",
-            "thumbs/mylar_design_0313.webp",
-            "thumbs/mylar_design_0318.webp",
-            "thumbs/mylar_design_0319.webp",
-            "thumbs/mylar_design_0320.webp",
-            "thumbs/mylar_design_0321.webp",
-            "thumbs/mylar_design_0322.webp",
-            "thumbs/mylar_design_0323.webp",
-            "thumbs/mylar_design_0324.webp",
-            "thumbs/mylar_design_0325.webp",
-            "thumbs/mylar_design_0326.webp",
-            "thumbs/mylar_design_0329.webp",
-            "thumbs/mylar_design_0330.webp",
-            "thumbs/mylar_design_0334.webp",
-            "thumbs/mylar_design_0335.webp",
-            "thumbs/mylar_design_0336.webp",
-            "thumbs/mylar_design_0337.webp",
-            "thumbs/mylar_design_0341.webp",
-            "thumbs/mylar_design_0342.webp",
-            "thumbs/mylar_design_0343.webp",
-            "thumbs/mylar_design_0344.webp",
-            "thumbs/mylar_design_0345.webp",
-            "thumbs/mylar_design_0354.webp",
-            "thumbs/mylar_design_0356.webp",
-            "thumbs/mylar_design_0357.webp",
-            "thumbs/mylar_design_0358.webp",
-            "thumbs/mylar_design_0360.webp",
-            "thumbs/mylar_design_0361.webp",
-            "images/mylar_design_0362.webp",
-            "thumbs/mylar_design_0362.webp",
-            "thumbs/mylar_design_0364.webp",
-            "thumbs/mylar_design_0367.webp",
-            "images/mylar_design_0369.webp",
-            "thumbs/mylar_design_0369.webp",
-            "thumbs/mylar_design_0370.webp",
-            "thumbs/mylar_design_0372.webp",
-            "thumbs/mylar_design_0373.webp",
-            "thumbs/mylar_design_0374.webp",
-            "thumbs/mylar_design_0375.webp",
-            "thumbs/mylar_design_0378.webp",
-            "thumbs/mylar_design_0379.webp",
-            "thumbs/mylar_design_0380.webp",
-            "thumbs/mylar_design_0382.webp",
-            "thumbs/mylar_design_0384.webp",
-            "thumbs/mylar_design_0385.webp",
-            "thumbs/mylar_design_0388.webp",
-            "thumbs/N a t yan  ey.webp",
-            "thumbs/nr 7 y Ne WAN.webp",
-            "thumbs/OREO 4X5.webp",
-            "thumbs/Pacman Final.webp",
-            "thumbs/Saget Pe re x.webp",
-            "thumbs/Strawberry tsunami 4x5_thumb.webp",
-            "thumbs/tA y sO late.webp",
-            "thumbs/Tropical Punch 4x5.webp",
-            "thumbs/V WAFER DOG.webp",
-            "thumbs/Y Prin.webp",
-            "thumbs/Ya A.webp"
-        ];
+      const imagePaths = [
+        "thumbs/2 a.webp",
+        "thumbs/4 4 & 8 & oO B B iy.webp",
+        "thumbs/as ee NX ys e rn N N f a aN ys ye 24 sw a of.webp",
+        "thumbs/Cf 2 amy Y ie.webp",
+        "thumbs/Cherry Yummy Mylar Design _1.webp",
+        "thumbs/Copy of Cake Batter 4x5.webp",
+        "thumbs/Copy of Cherry Zlushie 4x5_thumb.webp",
+        "thumbs/e WOES.webp",
+        "thumbs/ERLE CE EEEE.webp",
+        "thumbs/FET ee.webp",
+        "thumbs/file-NycH4vBJbzo8PVWUE7a1iy-cherry-bubble-gum-.webp",
+        "thumbs/Fox Bag.webp",
+        "thumbs/Gewe fad es Seed eg BSS SOSoo Seaey.webp",
+        "thumbs/GRAPE STRAWBERY.webp",
+        "thumbs/ichinas ab Seas iP Sob Be oS a See ox forges gs C.webp",
+        "thumbs/jeu.webp",
+        "thumbs/JID ACS.webp",
+        "thumbs/KA CS.webp",
+        "thumbs/L CL PIDE 2.webp",
+        "thumbs/layer_004_Group 1 copy 7.webp",
+        "thumbs/layer_038_Layer 30.webp",
+        "thumbs/LCG SIZED.webp",
+        "thumbs/mylar_design_0001.webp",
+        "thumbs/mylar_design_0002.webp",
+        "thumbs/mylar_design_0003.webp",
+        "thumbs/mylar_design_0004.webp",
+        "thumbs/mylar_design_0005.webp",
+        "thumbs/mylar_design_0007.webp",
+        "thumbs/mylar_design_0008.webp",
+        "thumbs/mylar_design_0009.webp",
+        "thumbs/mylar_design_0010.webp",
+        "thumbs/mylar_design_0011.webp",
+        "thumbs/mylar_design_0013.webp",
+        "thumbs/mylar_design_0014.webp",
+        "thumbs/mylar_design_0015.webp",
+        "thumbs/mylar_design_0016.webp",
+        "thumbs/mylar_design_0017.webp",
+        "thumbs/mylar_design_0018.webp",
+        "thumbs/mylar_design_0019.webp",
+        "thumbs/mylar_design_0020.webp",
+        "thumbs/mylar_design_0021.webp",
+        "thumbs/mylar_design_0022.webp",
+        "thumbs/mylar_design_0024.webp",
+        "thumbs/mylar_design_0026.webp",
+        "thumbs/mylar_design_0027.webp",
+        "thumbs/mylar_design_0034.webp",
+        "thumbs/mylar_design_0035.webp",
+        "thumbs/mylar_design_0036.webp",
+        "thumbs/mylar_design_0039.webp",
+        "thumbs/mylar_design_0042.webp",
+        "thumbs/mylar_design_0045.webp",
+        "thumbs/mylar_design_0046.webp",
+        "thumbs/mylar_design_0047.webp",
+        "thumbs/mylar_design_0048.webp",
+        "thumbs/mylar_design_0049.webp",
+        "thumbs/mylar_design_0052.webp",
+        "thumbs/mylar_design_0057.webp",
+        "thumbs/mylar_design_0058.webp",
+        "thumbs/mylar_design_0063.webp",
+        "thumbs/mylar_design_0066.webp",
+        "images/mylar_design_0067.webp",
+        "thumbs/mylar_design_0067.webp",
+        "thumbs/mylar_design_0068.webp",
+        "thumbs/mylar_design_0069.webp",
+        "thumbs/mylar_design_0070.webp",
+        "thumbs/mylar_design_0071.webp",
+        "thumbs/mylar_design_0073.webp",
+        "thumbs/mylar_design_0075.webp",
+        "thumbs/mylar_design_0076.webp",
+        "thumbs/mylar_design_0078.webp",
+        "thumbs/mylar_design_0079.webp",
+        "thumbs/mylar_design_0082.webp",
+        "thumbs/mylar_design_0089.webp",
+        "thumbs/mylar_design_0098.webp",
+        "thumbs/mylar_design_0099.webp",
+        "thumbs/mylar_design_0102.webp",
+        "images/mylar_design_0104.webp",
+        "thumbs/mylar_design_0104.webp",
+        "thumbs/mylar_design_0105.webp",
+        "thumbs/mylar_design_0106.webp",
+        "thumbs/mylar_design_0107.webp",
+        "thumbs/mylar_design_0108.webp",
+        "thumbs/mylar_design_0109.webp",
+        "thumbs/mylar_design_0110.webp",
+        "thumbs/mylar_design_0111.webp",
+        "thumbs/mylar_design_0112.webp",
+        "thumbs/mylar_design_0113.webp",
+        "thumbs/mylar_design_0114.webp",
+        "thumbs/mylar_design_0115.webp",
+        "thumbs/mylar_design_0116.webp",
+        "thumbs/mylar_design_0117.webp",
+        "thumbs/mylar_design_0120.webp",
+        "thumbs/mylar_design_0121.webp",
+        "thumbs/mylar_design_0124.webp",
+        "thumbs/mylar_design_0125.webp",
+        "images/mylar_design_0129.webp",
+        "thumbs/mylar_design_0129.webp",
+        "thumbs/mylar_design_0131.webp",
+        "thumbs/mylar_design_0132.webp",
+        "thumbs/mylar_design_0133.webp",
+        "thumbs/mylar_design_0134.webp",
+        "thumbs/mylar_design_0135.webp",
+        "thumbs/mylar_design_0136.webp",
+        "thumbs/mylar_design_0137.webp",
+        "thumbs/mylar_design_0138.webp",
+        "thumbs/mylar_design_0139.webp",
+        "thumbs/mylar_design_0141.webp",
+        "thumbs/mylar_design_0143.webp",
+        "thumbs/mylar_design_0144.webp",
+        "thumbs/mylar_design_0145.webp",
+        "thumbs/mylar_design_0151.webp",
+        "thumbs/mylar_design_0152.webp",
+        "thumbs/mylar_design_0153.webp",
+        "thumbs/mylar_design_0155.webp",
+        "thumbs/mylar_design_0156.webp",
+        "thumbs/mylar_design_0157.webp",
+        "thumbs/mylar_design_0158.webp",
+        "thumbs/mylar_design_0159.webp",
+        "thumbs/mylar_design_0160.webp",
+        "thumbs/mylar_design_0162.webp",
+        "thumbs/mylar_design_0164.webp",
+        "thumbs/mylar_design_0165.webp",
+        "thumbs/mylar_design_0166.webp",
+        "thumbs/mylar_design_0167.webp",
+        "thumbs/mylar_design_0169.webp",
+        "thumbs/mylar_design_0171.webp",
+        "thumbs/mylar_design_0172.webp",
+        "thumbs/mylar_design_0173.webp",
+        "thumbs/mylar_design_0175.webp",
+        "thumbs/mylar_design_0176.webp",
+        "thumbs/mylar_design_0177.webp",
+        "thumbs/mylar_design_0180.webp",
+        "thumbs/mylar_design_0181.webp",
+        "thumbs/mylar_design_0182.webp",
+        "thumbs/mylar_design_0183.webp",
+        "thumbs/mylar_design_0184.webp",
+        "thumbs/mylar_design_0186.webp",
+        "thumbs/mylar_design_0187.webp",
+        "images/mylar_design_0188.webp",
+        "thumbs/mylar_design_0188.webp",
+        "thumbs/mylar_design_0190.webp",
+        "thumbs/mylar_design_0191.webp",
+        "thumbs/mylar_design_0192.webp",
+        "thumbs/mylar_design_0193.webp",
+        "thumbs/mylar_design_0194.webp",
+        "thumbs/mylar_design_0196.webp",
+        "thumbs/mylar_design_0198.webp",
+        "thumbs/mylar_design_0199.webp",
+        "thumbs/mylar_design_0200.webp",
+        "thumbs/mylar_design_0201.webp",
+        "thumbs/mylar_design_0202.webp",
+        "images/mylar_design_0203.webp",
+        "thumbs/mylar_design_0203.webp",
+        "thumbs/mylar_design_0204.webp",
+        "thumbs/mylar_design_0205.webp",
+        "thumbs/mylar_design_0207.webp",
+        "thumbs/mylar_design_0208.webp",
+        "thumbs/mylar_design_0209.webp",
+        "thumbs/mylar_design_0210.webp",
+        "thumbs/mylar_design_0211.webp",
+        "thumbs/mylar_design_0213.webp",
+        "thumbs/mylar_design_0214.webp",
+        "thumbs/mylar_design_0215.webp",
+        "thumbs/mylar_design_0216.webp",
+        "thumbs/mylar_design_0217.webp",
+        "thumbs/mylar_design_0219.webp",
+        "thumbs/mylar_design_0220.webp",
+        "thumbs/mylar_design_0221.webp",
+        "thumbs/mylar_design_0222.webp",
+        "thumbs/mylar_design_0223.webp",
+        "thumbs/mylar_design_0224.webp",
+        "thumbs/mylar_design_0225.webp",
+        "thumbs/mylar_design_0226.webp",
+        "thumbs/mylar_design_0227.webp",
+        "thumbs/mylar_design_0228.webp",
+        "thumbs/mylar_design_0230.webp",
+        "thumbs/mylar_design_0231.webp",
+        "thumbs/mylar_design_0232.webp",
+        "thumbs/mylar_design_0233.webp",
+        "thumbs/mylar_design_0234.webp",
+        "thumbs/mylar_design_0235.webp",
+        "images/mylar_design_0236.webp",
+        "thumbs/mylar_design_0236.webp",
+        "thumbs/mylar_design_0237.webp",
+        "images/mylar_design_0238.webp",
+        "thumbs/mylar_design_0238.webp",
+        "thumbs/mylar_design_0239.webp",
+        "thumbs/mylar_design_0240.webp",
+        "thumbs/mylar_design_0242.webp",
+        "thumbs/mylar_design_0245.webp",
+        "thumbs/mylar_design_0251.webp",
+        "thumbs/mylar_design_0255.webp",
+        "thumbs/mylar_design_0256.webp",
+        "thumbs/mylar_design_0257.webp",
+        "thumbs/mylar_design_0258.webp",
+        "thumbs/mylar_design_0260.webp",
+        "thumbs/mylar_design_0262.webp",
+        "thumbs/mylar_design_0264.webp",
+        "thumbs/mylar_design_0267.webp",
+        "thumbs/mylar_design_0269.webp",
+        "thumbs/mylar_design_0270.webp",
+        "thumbs/mylar_design_0272.webp",
+        "thumbs/mylar_design_0273.webp",
+        "thumbs/mylar_design_0274.webp",
+        "thumbs/mylar_design_0275.webp",
+        "thumbs/mylar_design_0276.webp",
+        "thumbs/mylar_design_0277.webp",
+        "thumbs/mylar_design_0278.webp",
+        "thumbs/mylar_design_0279.webp",
+        "thumbs/mylar_design_0280.webp",
+        "thumbs/mylar_design_0281.webp",
+        "thumbs/mylar_design_0282.webp",
+        "images/mylar_design_0286.webp",
+        "thumbs/mylar_design_0286.webp",
+        "thumbs/mylar_design_0287.webp",
+        "thumbs/mylar_design_0289.webp",
+        "thumbs/mylar_design_0290.webp",
+        "thumbs/mylar_design_0291.webp",
+        "thumbs/mylar_design_0297.webp",
+        "thumbs/mylar_design_0301.webp",
+        "images/mylar_design_0303.webp",
+        "thumbs/mylar_design_0303.webp",
+        "thumbs/mylar_design_0304.webp",
+        "thumbs/mylar_design_0313.webp",
+        "thumbs/mylar_design_0318.webp",
+        "thumbs/mylar_design_0319.webp",
+        "thumbs/mylar_design_0320.webp",
+        "thumbs/mylar_design_0321.webp",
+        "thumbs/mylar_design_0322.webp",
+        "thumbs/mylar_design_0323.webp",
+        "thumbs/mylar_design_0324.webp",
+        "thumbs/mylar_design_0325.webp",
+        "thumbs/mylar_design_0326.webp",
+        "thumbs/mylar_design_0329.webp",
+        "thumbs/mylar_design_0330.webp",
+        "thumbs/mylar_design_0334.webp",
+        "thumbs/mylar_design_0335.webp",
+        "thumbs/mylar_design_0336.webp",
+        "thumbs/mylar_design_0337.webp",
+        "thumbs/mylar_design_0341.webp",
+        "thumbs/mylar_design_0342.webp",
+        "thumbs/mylar_design_0343.webp",
+        "thumbs/mylar_design_0344.webp",
+        "thumbs/mylar_design_0345.webp",
+        "thumbs/mylar_design_0354.webp",
+        "thumbs/mylar_design_0356.webp",
+        "thumbs/mylar_design_0357.webp",
+        "thumbs/mylar_design_0358.webp",
+        "thumbs/mylar_design_0360.webp",
+        "thumbs/mylar_design_0361.webp",
+        "images/mylar_design_0362.webp",
+        "thumbs/mylar_design_0362.webp",
+        "thumbs/mylar_design_0364.webp",
+        "thumbs/mylar_design_0367.webp",
+        "images/mylar_design_0369.webp",
+        "thumbs/mylar_design_0369.webp",
+        "thumbs/mylar_design_0370.webp",
+        "thumbs/mylar_design_0372.webp",
+        "thumbs/mylar_design_0373.webp",
+        "thumbs/mylar_design_0374.webp",
+        "thumbs/mylar_design_0375.webp",
+        "thumbs/mylar_design_0378.webp",
+        "thumbs/mylar_design_0379.webp",
+        "thumbs/mylar_design_0380.webp",
+        "thumbs/mylar_design_0382.webp",
+        "thumbs/mylar_design_0384.webp",
+        "thumbs/mylar_design_0385.webp",
+        "thumbs/mylar_design_0388.webp",
+        "thumbs/N a t yan  ey.webp",
+        "thumbs/nr 7 y Ne WAN.webp",
+        "thumbs/OREO 4X5.webp",
+        "thumbs/Pacman Final.webp",
+        "thumbs/Saget Pe re x.webp",
+        "thumbs/Strawberry tsunami 4x5_thumb.webp",
+        "thumbs/tA y sO late.webp",
+        "thumbs/Tropical Punch 4x5.webp",
+        "thumbs/V WAFER DOG.webp",
+        "thumbs/Y Prin.webp",
+        "thumbs/Ya A.webp",
+      ]
 
-        // Remove duplicates
-        const uniqueImages = [...new Set(imagePaths)];
-        const imageUrls = uniqueImages.map(path => BASE_URL + path);
+      // Remove duplicates
+      const uniqueImages = [...new Set(imagePaths)]
+      const imageUrls = uniqueImages.map((path) => BASE_URL + path)
 
-        let currentIndex = 0;
-        let interval = null;
-        let isPaused = false;
-        let speed = 90; // milliseconds
-        const speedSteps = [30, 60, 90, 120, 150, 200, 300, 500, 1000];
-        let speedIndex = speedSteps.indexOf(speed);
-        let preloadedImages = [];
-        let controlsTimeout = null;
+      let currentIndex = 0
+      let interval = null
+      let isPaused = false
+      let speed = 90 // milliseconds
+      const speedSteps = [30, 60, 90, 120, 150, 200, 300, 500, 1000]
+      let speedIndex = speedSteps.indexOf(speed)
+      let preloadedImages = []
+      let controlsTimeout = null
 
-        const slideshow = document.getElementById('slideshow');
-        const loadingEl = document.getElementById('loading');
-        const speedIndicator = document.getElementById('speed-indicator');
-        const controls = document.getElementById('controls');
+      const slideshow = document.getElementById("slideshow")
+      const loadingEl = document.getElementById("loading")
+      const speedIndicator = document.getElementById("speed-indicator")
+      const controls = document.getElementById("controls")
 
-        // Preload all images
-        function preloadImages() {
-            let loaded = 0;
+      // Preload all images
+      function preloadImages() {
+        let loaded = 0
 
-            imageUrls.forEach((url, index) => {
-                const img = new Image();
-                img.onload = () => {
-                    loaded++;
-                    loadingEl.textContent = `Loading images... ${loaded}/${imageUrls.length}`;
-                    if (loaded === imageUrls.length) {
-                        loadingEl.style.display = 'none';
-                        startSlideshow();
-                    }
-                };
-                img.onerror = () => {
-                    loaded++;
-                    console.warn(`Failed to load: ${url}`);
-                    if (loaded === imageUrls.length) {
-                        loadingEl.style.display = 'none';
-                        startSlideshow();
-                    }
-                };
-                img.src = url;
-                preloadedImages.push(img);
-            });
-        }
-
-        // Create slide elements
-        function createSlides() {
-            imageUrls.forEach((url, index) => {
-                const slide = document.createElement('div');
-                slide.className = 'slide';
-                slide.innerHTML = `<img src="${url}" alt="Slide ${index + 1}">`;
-                slideshow.appendChild(slide);
-            });
-        }
-
-        function showSlide(index) {
-            const slides = document.querySelectorAll('.slide');
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[index].classList.add('active');
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % imageUrls.length;
-            showSlide(currentIndex);
-        }
-
-        function startSlideshow() {
-            createSlides();
-            showSlide(0);
-            interval = setInterval(nextSlide, speed);
-        }
-
-        function togglePause() {
-            isPaused = !isPaused;
-            if (isPaused) {
-                clearInterval(interval);
-                showSpeedIndicator('PAUSED');
-            } else {
-                interval = setInterval(nextSlide, speed);
-                showSpeedIndicator(`${speed}ms`);
+        imageUrls.forEach((url, index) => {
+          const img = new Image()
+          img.onload = () => {
+            loaded++
+            loadingEl.textContent = `Loading images... ${loaded}/${imageUrls.length}`
+            if (loaded === imageUrls.length) {
+              loadingEl.style.display = "none"
+              startSlideshow()
             }
-        }
-
-        function changeSpeed(direction) {
-            if (direction === 'slower' && speedIndex < speedSteps.length - 1) {
-                speedIndex++;
-            } else if (direction === 'faster' && speedIndex > 0) {
-                speedIndex--;
+          }
+          img.onerror = () => {
+            loaded++
+            console.warn(`Failed to load: ${url}`)
+            if (loaded === imageUrls.length) {
+              loadingEl.style.display = "none"
+              startSlideshow()
             }
+          }
+          img.src = url
+          preloadedImages.push(img)
+        })
+      }
 
-            speed = speedSteps[speedIndex];
+      // Create slide elements
+      function createSlides() {
+        imageUrls.forEach((url, index) => {
+          const slide = document.createElement("div")
+          slide.className = "slide"
+          slide.innerHTML = `<img src="${url}" alt="Slide ${index + 1}">`
+          slideshow.appendChild(slide)
+        })
+      }
 
-            if (!isPaused) {
-                clearInterval(interval);
-                interval = setInterval(nextSlide, speed);
-            }
+      function showSlide(index) {
+        const slides = document.querySelectorAll(".slide")
+        slides.forEach((slide) => slide.classList.remove("active"))
+        slides[index].classList.add("active")
+      }
 
-            showSpeedIndicator(`${speed}ms`);
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % imageUrls.length
+        showSlide(currentIndex)
+      }
+
+      function startSlideshow() {
+        createSlides()
+        showSlide(0)
+        interval = setInterval(nextSlide, speed)
+      }
+
+      function togglePause() {
+        isPaused = !isPaused
+        if (isPaused) {
+          clearInterval(interval)
+          showSpeedIndicator("PAUSED")
+        } else {
+          interval = setInterval(nextSlide, speed)
+          showSpeedIndicator(`${speed}ms`)
+        }
+      }
+
+      function changeSpeed(direction) {
+        if (direction === "slower" && speedIndex < speedSteps.length - 1) {
+          speedIndex++
+        } else if (direction === "faster" && speedIndex > 0) {
+          speedIndex--
         }
 
-        function showSpeedIndicator(text) {
-            speedIndicator.textContent = text;
-            speedIndicator.classList.add('show');
-            setTimeout(() => {
-                speedIndicator.classList.remove('show');
-            }, 1000);
+        speed = speedSteps[speedIndex]
+
+        if (!isPaused) {
+          clearInterval(interval)
+          interval = setInterval(nextSlide, speed)
         }
 
-        function hideControls() {
-            clearTimeout(controlsTimeout);
-            controlsTimeout = setTimeout(() => {
-                controls.classList.add('hidden');
-            }, 3000);
+        showSpeedIndicator(`${speed}ms`)
+      }
+
+      function showSpeedIndicator(text) {
+        speedIndicator.textContent = text
+        speedIndicator.classList.add("show")
+        setTimeout(() => {
+          speedIndicator.classList.remove("show")
+        }, 1000)
+      }
+
+      function hideControls() {
+        clearTimeout(controlsTimeout)
+        controlsTimeout = setTimeout(() => {
+          controls.classList.add("hidden")
+        }, 3000)
+      }
+
+      function showControls() {
+        controls.classList.remove("hidden")
+        hideControls()
+      }
+
+      // Keyboard controls
+      document.addEventListener("keydown", (e) => {
+        switch (e.key) {
+          case " ":
+            e.preventDefault()
+            togglePause()
+            break
+          case "ArrowLeft":
+            e.preventDefault()
+            changeSpeed("slower")
+            break
+          case "ArrowRight":
+            e.preventDefault()
+            changeSpeed("faster")
+            break
+          case "Escape":
+            e.preventDefault()
+            window.close()
+            break
         }
+        showControls()
+      })
 
-        function showControls() {
-            controls.classList.remove('hidden');
-            hideControls();
-        }
+      // Mouse movement shows controls
+      document.addEventListener("mousemove", showControls)
 
-        // Keyboard controls
-        document.addEventListener('keydown', (e) => {
-            switch(e.key) {
-                case ' ':
-                    e.preventDefault();
-                    togglePause();
-                    break;
-                case 'ArrowLeft':
-                    e.preventDefault();
-                    changeSpeed('slower');
-                    break;
-                case 'ArrowRight':
-                    e.preventDefault();
-                    changeSpeed('faster');
-                    break;
-                case 'Escape':
-                    e.preventDefault();
-                    window.close();
-                    break;
-            }
-            showControls();
-        });
+      // Initial hide controls after 3 seconds
+      hideControls()
 
-        // Mouse movement shows controls
-        document.addEventListener('mousemove', showControls);
-
-        // Initial hide controls after 3 seconds
-        hideControls();
-
-        // Start preloading
-        preloadImages();
+      // Start preloading
+      preloadImages()
     </script>
-</body>
+  </body>
 </html>

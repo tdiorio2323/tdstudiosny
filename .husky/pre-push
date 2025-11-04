@@ -1,5 +1,6 @@
-branch="$(git rev-parse --abbrev-ref HEAD)"
-[ "$branch" = "main" ] && { echo "🚫 Direct pushes to main are blocked. Use feature branch + PR."; exit 1; }
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
 if [ -z "$CI" ]; then
   pnpm -s scan:secrets >/dev/null || { echo "🚫 Pre-push secret scan failed."; exit 1; }
 fi

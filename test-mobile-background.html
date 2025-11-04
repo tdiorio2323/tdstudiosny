@@ -1,92 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mobile Background Test</title>
     <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: url("/main-background.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        min-height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        color: white;
+      }
+
+      @media (max-width: 768px) {
         body {
-            margin: 0;
-            padding: 0;
-            background-image: url("/main-background.jpg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            color: white;
+          /* iOS Safari doesn't handle fixed backgrounds well, use scroll */
+          background-attachment: scroll;
         }
+      }
 
-        @media (max-width: 768px) {
-            body {
-                /* iOS Safari doesn't handle fixed backgrounds well, use scroll */
-                background-attachment: scroll;
-            }
-        }
+      .test-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.4);
+      }
 
-        .test-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.4);
-        }
+      .content {
+        text-align: center;
+        padding: 2rem;
+      }
 
-        .content {
-            text-align: center;
-            padding: 2rem;
-        }
+      .test-content {
+        min-height: 200vh;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 2rem;
+        margin-top: 100vh;
+      }
 
-        .test-content {
-            min-height: 200vh;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 2rem;
-            margin-top: 100vh;
-        }
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            font-size: 1.2rem;
-        }
+      p {
+        font-size: 1.2rem;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="test-section">
-        <div class="content">
-            <h1>Mobile Background Test</h1>
-            <p>This should have a consistent background that doesn't disappear on scroll</p>
-            <p>Scroll down to test...</p>
-        </div>
+      <div class="content">
+        <h1>Mobile Background Test</h1>
+        <p>This should have a consistent background that doesn't disappear on scroll</p>
+        <p>Scroll down to test...</p>
+      </div>
     </div>
 
     <div class="test-content">
-        <h2>Scroll Test Content</h2>
-        <p>The background should remain visible as you scroll.</p>
-        <p>On mobile, it uses background-attachment: scroll</p>
-        <p>On desktop, it uses background-attachment: fixed</p>
+      <h2>Scroll Test Content</h2>
+      <p>The background should remain visible as you scroll.</p>
+      <p>On mobile, it uses background-attachment: scroll</p>
+      <p>On desktop, it uses background-attachment: fixed</p>
 
-        <div style="height: 100vh; display: flex; align-items: center; justify-content: center;">
-            <div>
-                <h3>Middle Section</h3>
-                <p>Background should still be visible here</p>
-            </div>
+      <div style="height: 100vh; display: flex; align-items: center; justify-content: center">
+        <div>
+          <h3>Middle Section</h3>
+          <p>Background should still be visible here</p>
         </div>
+      </div>
 
-        <div style="height: 100vh; display: flex; align-items: center; justify-content: center;">
-            <div>
-                <h3>Bottom Section</h3>
-                <p>Background should remain consistent throughout</p>
-                <p>This demonstrates the fixed mobile background solution</p>
-            </div>
+      <div style="height: 100vh; display: flex; align-items: center; justify-content: center">
+        <div>
+          <h3>Bottom Section</h3>
+          <p>Background should remain consistent throughout</p>
+          <p>This demonstrates the fixed mobile background solution</p>
         </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>

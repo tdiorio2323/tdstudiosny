@@ -1,4 +1,5 @@
 # TD Studios - Non-API Improvements TODO
+
 **Generated:** 2025-10-07
 **Scope:** UI/UX, SEO, Content, Performance (excludes `/api` and backend logic)
 
@@ -7,6 +8,7 @@
 ## 🧠 Summary
 
 **Current UX Condition:**
+
 - **Good:** Strong luxury aesthetic, glassmorphism design system, mobile-responsive, proper analytics tracking, JSON-LD structured data on some pages
 - **Critical Issues:** Broken homepage service links (4 routes don't exist), outdated sitemap, missing alt text on hero images, unverified award claims, massive image files (4MB+), placeholder references still in code
 - **SEO Status:** Partial implementation - metadata present but sitemap incomplete, no robots.txt, missing JSON-LD on key pages
@@ -17,6 +19,7 @@
 ## ✅ Quick Wins (< 1 hour each)
 
 ### Routing & Navigation
+
 - [ ] **Fix broken homepage service links** (app/page.tsx:14,21,28,35,42)
   - Links point to `/web`, `/dev`, `/social`, `/design` (don't exist)
   - Should all redirect to `/services` or `/services?tab=<category>`
@@ -31,10 +34,11 @@
 - [ ] **Update sitemap.ts with all routes** (app/sitemap.ts)
   - Currently only includes `/`, `/portfolio`, `/contact`
   - Missing: `/work`, `/services`, `/pricing`, `/process`, `/book`, `/support`, `/resources`, `/resources/premade-designs`, `/legal`
-  - Fix base URL: change `www.tdstudiosny.com` → `tdstudiosny.com` (www redirects)
+  - Fix base URL: change `www.tdstudiosdigital.com` → `tdstudiosdigital.com` (www redirects)
   - **Files:** `app/sitemap.ts` lines 4-10
 
 ### Content & Trust
+
 - [ ] **Remove or verify unverified award claims** (app/page.tsx:157-197)
   - All industry awards marked with `data-verify="pending"`
   - **Options:** (1) Remove badges, (2) Apply & verify, (3) Change to "As Featured On"
@@ -42,6 +46,7 @@
   - **Files:** `app/page.tsx` lines 157-197
 
 ### Accessibility
+
 - [ ] **Add missing alt text to hero section** (app/page.tsx:75-91)
   - Hero section has no background image alt text
   - Add descriptive alt to all decorative images
@@ -53,6 +58,7 @@
   - **Files:** `components/sticky-header.tsx` or `app/layout.tsx`
 
 ### SEO Basics
+
 - [ ] **Create robots.txt** (app/robots.ts)
   - Next.js 15 format: export default function robots()
   - Allow all crawlers, reference sitemap
@@ -63,6 +69,7 @@
 ## 🚀 High-Leverage Upgrades (1-4 hours each)
 
 ### Performance Optimization
+
 - [ ] **Optimize hero images** (Priority: HIGH)
   - `parallax-hero.jpg` = 4.4MB, `design-showcase-1.jpg` = 4.2MB, `parallax-hero-backup.jpg` = 4.0MB, `web-hero.jpg` = 3.0MB
   - Convert to WebP format, resize to max 1920px wide
@@ -89,6 +96,7 @@
   - **Files:** `app/page.tsx` (all Image components after line 200)
 
 ### SEO Enhancement
+
 - [ ] **Add JSON-LD structured data to all pages**
   - **Homepage:** Organization + WebSite schema
   - **Work page:** CollectionPage + CreativeWork schemas
@@ -100,7 +108,7 @@
 
 - [ ] **Add canonical URLs to all pages**
   - Currently only in root layout metadata
-  - Add `alternates: { canonical: 'https://tdstudiosny.com/[route]' }` to each page's metadata
+  - Add `alternates: { canonical: 'https://tdstudiosdigital.com/[route]' }` to each page's metadata
   - **Files:** All `app/*/page.tsx` metadata exports
 
 - [ ] **Optimize meta descriptions** (150-160 chars)
@@ -109,6 +117,7 @@
   - **Files:** All `page.tsx` metadata objects
 
 ### Content Improvements
+
 - [ ] **Add testimonial images** (app/page.tsx:204-264)
   - Currently using placeholder initials (M, S, R)
   - Add real client photos or professional headshots
@@ -125,6 +134,7 @@
   - **Files:** `app/work/portfolio-client-page.tsx`
 
 ### Mobile UX Polish
+
 - [ ] **Enhance mobile menu animations**
   - Add slide-in/fade transitions
   - Improve touch feedback on mobile nav items
@@ -146,6 +156,7 @@
 ## ⚙️ Technical Cleanup
 
 ### Code Quality
+
 - [ ] **Remove console.log statements**
   - Found in: `tests/mobile-layout.spec.ts` (only in tests, acceptable)
   - Audit entire codebase for production console statements
@@ -162,6 +173,7 @@
   - **Files:** `public/parallax-hero*.jpg`
 
 ### Asset Organization
+
 - [ ] **Audit and remove unused public images**
   - Multiple "new-hero-image" variants (jpg and png)
   - Duplicate backgrounds (`global-background.jpg`, `main-background.jpg`)
@@ -179,6 +191,7 @@
   - **Files:** Create `scripts/optimize-images.mjs`
 
 ### Layout & Structure
+
 - [ ] **Extract testimonials to separate component**
   - Homepage testimonials section is 80+ lines
   - Create reusable `<TestimonialCard>` component
@@ -195,6 +208,7 @@
   - **Files:** Extract pattern from pricing, process, contact pages
 
 ### Mobile-Specific
+
 - [ ] **Test mobile viewport height fix** (app/layout.tsx:62-89)
   - Inline script handles iOS Safari viewport issues
   - Verify functionality on iOS 14+, Android Chrome
@@ -207,6 +221,7 @@
   - **Files:** `components/design-carousel.tsx`
 
 ### Typography & Readability
+
 - [ ] **Review mobile text sizing**
   - Ensure all body text is minimum 16px on mobile
   - Check headings for proper hierarchy
@@ -222,18 +237,21 @@
 ## 📊 Priority Ranking
 
 **Immediate (Pre-Launch):**
+
 1. Fix broken service links (app/page.tsx)
 2. Update sitemap with all routes
 3. Optimize hero images (4MB+ files)
 4. Remove/verify award badges
 
 **Week 1 (Post-Launch):**
+
 1. Add JSON-LD to all pages
 2. Create robots.txt
 3. Add testimonial images
 4. Remove unused placeholder files
 
 **Week 2-3 (Polish):**
+
 1. Lazy load below-fold images
 2. Mobile UX improvements
 3. Extract reusable components

@@ -1,24 +1,28 @@
+import { BookOpen, Download, Lightbulb, TrendingUp, Users, Video } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
+import type { Metadata } from "next"
 import Image from "next/image"
-import { Metadata } from "next"
-import { GlassCard } from "@/components/glass-card"
-import { FrostedButton } from "@/components/frosted-button"
-import { BookOpen, Download, Video, Users, Lightbulb, TrendingUp } from "lucide-react"
+import { FrostedButton } from "@/components/FrostedButton"
+import { GlassCard } from "@/components/GlassCard"
 
 export const metadata: Metadata = {
   title: "Resources | TD Studios",
-  description: "Free design guides, case studies, templates, and webinars. Learn luxury brand psychology, color theory, typography, and conversion optimization strategies.",
+  description:
+    "Free design guides, case studies, templates, and webinars. Learn luxury brand psychology, color theory, typography, and conversion optimization strategies.",
   alternates: {
-    canonical: "https://tdstudiosny.com/resources",
+    canonical: "https://tdstudiosdigital.com/resources",
   },
   openGraph: {
     title: "Resources | TD Studios",
-    description: "Free design guides, case studies, templates, and webinars. Learn luxury brand psychology, color theory, typography, and conversion optimization strategies.",
-    url: "https://tdstudiosny.com/resources",
+    description:
+      "Free design guides, case studies, templates, and webinars. Learn luxury brand psychology, color theory, typography, and conversion optimization strategies.",
+    url: "https://tdstudiosdigital.com/resources",
   },
   twitter: {
     card: "summary_large_image",
     title: "Resources | TD Studios",
-    description: "Free design guides, case studies, templates, and webinars. Learn luxury brand psychology, color theory, typography, and conversion optimization strategies.",
+    description:
+      "Free design guides, case studies, templates, and webinars. Learn luxury brand psychology, color theory, typography, and conversion optimization strategies.",
   },
 }
 
@@ -58,26 +62,26 @@ type ResourceItem = PDFGuide | VideoTutorial | CaseStudy | ToolResource
 
 interface ResourceCategory {
   category: string
-  icon: any
+  icon: LucideIcon
   items: ResourceItem[]
 }
 
 // Helper functions to safely access properties
 const getResourceMetric = (item: ResourceItem): string => {
-  if ('pages' in item) return item.pages
-  if ('readTime' in item) return item.readTime
-  if ('duration' in item) return item.duration
-  if ('items' in item) return item.items
-  return ''
+  if ("pages" in item) return item.pages
+  if ("readTime" in item) return item.readTime
+  if ("duration" in item) return item.duration
+  if ("items" in item) return item.items
+  return ""
 }
 
 const getDownloadSize = (item: ResourceItem): string | undefined => {
-  if ('downloadSize' in item) return item.downloadSize
+  if ("downloadSize" in item) return item.downloadSize
   return undefined
 }
 
 const getIndustry = (item: ResourceItem): string | undefined => {
-  if ('industry' in item) return item.industry
+  if ("industry" in item) return item.industry
   return undefined
 }
 
@@ -88,7 +92,8 @@ const resources: ResourceCategory[] = [
     items: [
       {
         title: "Luxury Brand Psychology: The Complete Guide",
-        description: "Understanding the psychology behind luxury consumer behavior and how to design for it",
+        description:
+          "Understanding the psychology behind luxury consumer behavior and how to design for it",
         type: "PDF Guide",
         downloadSize: "2.5MB",
         pages: "25 pages",
@@ -144,7 +149,8 @@ const resources: ResourceCategory[] = [
       },
       {
         title: "E-commerce Conversion Optimization: 300% Increase",
-        description: "Premium design strategies that tripled conversion rates for a luxury retailer",
+        description:
+          "Premium design strategies that tripled conversion rates for a luxury retailer",
         type: "Case Study",
         readTime: "6 min",
         industry: "E-commerce",
@@ -246,15 +252,15 @@ export default function ResourcesPage() {
                         <category.icon className="w-6 h-6 text-black" />
                       </div>
                       <div className="flex-1">
-                        <span className="text-luxury-gold text-sm font-medium">{category.category}</span>
+                        <span className="text-luxury-gold text-sm font-medium">
+                          {category.category}
+                        </span>
                         <h3 className="text-xl font-semibold mb-2 text-white">{item.title}</h3>
                       </div>
                     </div>
                     <p className="text-white text-sm mb-4">{item.description}</p>
                     <div className="flex items-center justify-between">
-                      <div className="text-white/60 text-xs">
-                        {getResourceMetric(item)}
-                      </div>
+                      <div className="text-white/60 text-xs">{getResourceMetric(item)}</div>
                       <FrostedButton
                         href="/contact?type=guide"
                         className="btn-primary text-sm"
@@ -265,7 +271,8 @@ export default function ResourcesPage() {
                       </FrostedButton>
                     </div>
                     <p className="text-white/50 text-xs mt-3">
-                      We send every resource straight to your inbox once you submit the request form.
+                      We send every resource straight to your inbox once you submit the request
+                      form.
                     </p>
                   </GlassCard>
                 ))
@@ -380,7 +387,8 @@ export default function ResourcesPage() {
             <Lightbulb className="w-16 h-16 text-luxury-gold mx-auto mb-6" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Brand?</h2>
             <p className="text-white text-lg mb-8">
-              Get personalized guidance on implementing these strategies for your specific brand and industry.
+              Get personalized guidance on implementing these strategies for your specific brand and
+              industry.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <FrostedButton

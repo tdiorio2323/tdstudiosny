@@ -1,7 +1,29 @@
+import type { Metadata } from "next"
 import Image from "next/image"
-import { GlassCard } from "@/components/glass-card"
-import { FrostedButton } from "@/components/frosted-button"
-import { PREMADE, type PremadeDesign } from "@/lib/premade-designs"
+import { FrostedButton } from "@/components/FrostedButton"
+import { GlassCard } from "@/components/GlassCard"
+import { PREMADE, type PremadeDesign } from "@/features/resources/lib/premade-designs"
+
+export const metadata: Metadata = {
+  title: "Premade Designs | TD Studios",
+  description:
+    "Ready-to-deploy design templates and assets for Quick Printz campaigns. Professional designs at affordable prices.",
+  alternates: {
+    canonical: "https://tdstudiosdigital.com/resources/premade-designs",
+  },
+  openGraph: {
+    title: "Premade Designs | TD Studios",
+    description:
+      "Ready-to-deploy design templates and assets for Quick Printz campaigns. Professional designs at affordable prices.",
+    url: "https://tdstudiosdigital.com/resources/premade-designs",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Premade Designs | TD Studios",
+    description:
+      "Ready-to-deploy design templates and assets for Quick Printz campaigns. Professional designs at affordable prices.",
+  },
+}
 
 export default function PremadeDesignsPage() {
   return (
@@ -21,7 +43,9 @@ export default function PremadeDesignsPage() {
         </div>
         <div className="relative z-10 text-center px-6 max-w-3xl">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">Premade Designs</h1>
-          <p className="text-white/90 text-lg">Curated, ready-to-deploy assets for Quick Printz campaigns.</p>
+          <p className="text-white/90 text-lg">
+            Curated, ready-to-deploy assets for Quick Printz campaigns.
+          </p>
         </div>
       </section>
 
@@ -37,6 +61,7 @@ export default function PremadeDesignsPage() {
                     src={design.thumb}
                     alt={design.title}
                     fill
+                    loading="lazy"
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
                   />
@@ -55,7 +80,10 @@ export default function PremadeDesignsPage() {
                 </div>
                 <div className="text-white font-bold text-xl mb-4">${design.price}</div>
                 <div className="flex gap-2">
-                  <FrostedButton href={`/contact?type=premade&design=${design.slug}`} className="flex-1">
+                  <FrostedButton
+                    href={`/contact?type=premade&design=${design.slug}`}
+                    className="flex-1"
+                  >
                     Preview
                   </FrostedButton>
                   {/* TODO: Integrate Stripe/checkout for direct purchase */}
@@ -71,4 +99,3 @@ export default function PremadeDesignsPage() {
     </div>
   )
 }
-

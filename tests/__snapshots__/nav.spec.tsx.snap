@@ -75,55 +75,55 @@ exports[`Nav > renders stable snapshot 1`] = `
           class="hidden md:flex items-center justify-center flex-1 space-x-12"
         >
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/70"
+            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
             href="/work"
           >
             WORK
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/70"
+            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
             href="/web"
           >
             WEB
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/70"
+            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
             href="/dev"
           >
             DEV
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/70"
+            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
             href="/social"
           >
             SOCIAL
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/70"
+            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
             href="/design"
           >
             DESIGN
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/70"
+            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
             href="/process"
           >
             PROCESS
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/70"
+            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
             href="/resources"
           >
             RESOURCES
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/70"
+            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
             href="/faq"
           >
             FAQ
           </a>
           <a
-            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/70"
+            class="text-lg font-medium tracking-wider transition-colors hover:text-white text-white/80"
             href="/contact"
           >
             CONTACT

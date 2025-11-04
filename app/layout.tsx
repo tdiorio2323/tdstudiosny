@@ -1,57 +1,30 @@
-import type { Metadata } from "next"
-import { Inter } from 'next/font/google'
-import Script from 'next/script'
 import { Analytics } from "@vercel/analytics/next"
-import { Footer } from "@/components/footer"
-import { StickyHeader } from "@/components/sticky-header"
-import { AnalyticsProvider } from "@/components/analytics-provider"
-import "./globals.css"
+import { Inter } from "next/font/google"
+import Script from "next/script"
 import type React from "react"
 import { Suspense } from "react"
+import { Footer } from "@/features/layout/components/Footer"
+import { AnalyticsProvider } from "@/features/layout/providers/AnalyticsProvider"
+import { StickyHeader } from "@/features/layout/StickyHeader"
+import { JsonLd } from "@/features/seo/components/JsonLd"
+import "./globals.css"
+import "@/styles/layout-scale.css"
 
-const inter = Inter({ subsets: ['latin'], display: 'swap' })
+const inter = Inter({ subsets: ["latin"], display: "swap" })
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://tdstudiosny.com"),
-  title: {
-    default: "TD Studios | Design Your Success",
-    template: "%s | TD Studios",
-  },
+export const metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://tdstudiosdigital.com"),
+  title: { default: "TD Studios", template: "%s · TD Studios" },
   description:
-    "TD Studios builds high-end websites and systems that turn bold visions into revenue-generating realities.",
-  alternates: {
-    canonical: "https://tdstudiosny.com",
-  },
-  openGraph: {
-    title: "TD Studios",
-    description:
-      "High-end design, web, and marketing systems built for performance and control.",
-    url: "https://tdstudiosny.com",
-    siteName: "TD Studios",
-    locale: "en_US",
-    type: "website",
-    images: [
-      {
-        url: "https://tdstudiosny.com/og-image.webp",
-        width: 1200,
-        height: 630,
-        alt: "TD Studios OG Image",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "TD Studios | Design Your Success",
-    description:
-      "Design. Develop. Scale. TD Studios builds digital experiences for ambitious brands.",
-    images: ["https://tdstudiosny.com/og-image.webp"],
-  },
+    "High-end websites, branding, and marketing systems engineered for creators and ambitious brands.",
+  alternates: { canonical: "/" },
 }
 
 export const viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
-  viewportFit: 'cover',
+  viewportFit: "cover",
+  themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#0b0b0c" }],
 }
 
 export default function RootLayout({
@@ -62,22 +35,41 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link
-          rel="preload"
-          as="image"
-          href="/main-background.webp"
-        />
+        <link rel="preload" as="image" href="/main-background.webp" />
       </head>
-      <body className={`${inter.className} bg-black text-white antialiased`}>
-        <Script src='https://cdn.platform.openai.com/deployments/chatkit/chatkit.js' strategy='afterInteractive' />
+      <body className={`safe-top ${inter.className} bg-black text-white antialiased`}>
+        {/** Sitewide Organization JSON-LD Schema */}
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "TD Studios",
+            url: "https://tdstudiosdigital.com",
+            logo: "https://tdstudiosdigital.com/og/td-logo.png",
+            sameAs: ["https://instagram.com/tdstudiosco"],
+          }}
+        />
+        {/* Skip Navigation Link for Accessibility */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-black px-4 py-2 rounded-md z-[60] font-medium min-h-[44px]"
+        >
+          Skip to content
+        </a>
+        <Script
+          src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
+          strategy="afterInteractive"
+        />
         <AnalyticsProvider>
           <StickyHeader />
-          <main>
-            <Suspense fallback={<div className="text-white p-8">Loading...</div>}>{children}</Suspense>
+          <main id="main" role="main">
+            <Suspense fallback={<div className="text-white p-8">Loading...</div>}>
+              {children}
+            </Suspense>
           </main>
           <Footer />
         </AnalyticsProvider>
-        <Analytics />
+        {process.env.NODE_ENV === "production" && <Analytics />}
 
         {/* Mobile Viewport Height Fix Script */}
         <script

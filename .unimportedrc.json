@@ -1,0 +1,29 @@
+{
+  "$schema": "https://unpkg.com/unimported@1.x/schema.json",
+  "ignorePatterns": ["**/node_modules/**", "**/.next/**", "**/dist/**", "**/build/**"],
+  "ignoreUnimported": [
+    "app/**/page.tsx",
+    "app/**/layout.tsx",
+    "app/**/loading.tsx",
+    "app/**/error.tsx",
+    "app/**/not-found.tsx",
+    "app/**/route.ts",
+    "app/robots.ts",
+    "app/sitemap.ts",
+    "middleware.ts",
+    "next.config.mjs",
+    "tailwind.config.js",
+    "vitest.config.ts",
+    "jest.config.js",
+    "jest.setup.js"
+  ],
+  "ignoreUnused": [
+    "@radix-ui/**",
+    "@vercel/analytics",
+    "autoprefixer",
+    "geist",
+    "next-themes",
+    "tailwindcss",
+    "postcss"
+  ]
+}

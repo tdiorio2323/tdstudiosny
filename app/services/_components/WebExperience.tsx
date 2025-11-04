@@ -1,5 +1,5 @@
-import { GlassCard } from "@/components/glass-card"
-import { FrostedButton } from "@/components/frosted-button"
+import { FrostedButton } from "@/components/FrostedButton"
+import { GlassCard } from "@/components/GlassCard"
 
 export function WebExperience() {
   const discoveryCheckpoints = [
@@ -22,7 +22,8 @@ export function WebExperience() {
       <div className="text-center max-w-3xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-bold mb-6">Website Design That Converts</h2>
         <p className="text-lg md:text-xl text-white/80 mb-8">
-          Premium website design with luxury aesthetics, conversion-focused UX, and stunning visual storytelling.
+          Premium website design with luxury aesthetics, conversion-focused UX, and stunning visual
+          storytelling.
         </p>
         <FrostedButton href="/contact">Start your project</FrostedButton>
       </div>
@@ -32,21 +33,24 @@ export function WebExperience() {
         <GlassCard>
           <h3 className="text-xl font-semibold mb-4">Conversion-Ready Landers</h3>
           <p className="text-white text-sm">
-            Story-driven sections, SEO-focused architecture, and instrumented funnels built for measurable wins.
+            Story-driven sections, SEO-focused architecture, and instrumented funnels built for
+            measurable wins.
           </p>
         </GlassCard>
 
         <GlassCard>
           <h3 className="text-xl font-semibold mb-4">Scalable Marketing Sites</h3>
           <p className="text-white text-sm">
-            Modular content models, CMS-ready components, and asset optimization that keeps teams shipping fast.
+            Modular content models, CMS-ready components, and asset optimization that keeps teams
+            shipping fast.
           </p>
         </GlassCard>
 
         <GlassCard>
           <h3 className="text-xl font-semibold mb-4">Product Ecosystems</h3>
           <p className="text-white text-sm">
-            Unified brand, docs, and support surfaces powered by design systems and enterprise-grade hosting.
+            Unified brand, docs, and support surfaces powered by design systems and enterprise-grade
+            hosting.
           </p>
         </GlassCard>
       </div>
@@ -55,8 +59,9 @@ export function WebExperience() {
       <GlassCard className="luxury-glass">
         <h3 className="text-xl font-semibold mb-6">Everything tied to outcomes</h3>
         <p className="text-white">
-          We lead discovery, prototype reviews, and performance calibration alongside your marketing and product leads.
-          Expect dependable handoff, documentation, and a roadmap for optimization.
+          We lead discovery, prototype reviews, and performance calibration alongside your marketing
+          and product leads. Expect dependable handoff, documentation, and a roadmap for
+          optimization.
         </p>
       </GlassCard>
 
