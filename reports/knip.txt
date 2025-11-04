@@ -1,0 +1,29 @@
+Unused files (7)
+features/layout/providers/ThemeProvider.tsx
+features/marketing/components/DesignCarousel.tsx
+lib/lighthouse/lhci.config.js
+scripts/a11y-codemod.mjs
+scripts/build-with-timestamp.mjs
+styles/globals.css
+supabase-cli.mjs
+Unused dependencies (1)
+package.json: @hookform/resolvers, @radix-ui/react-accordion, @radix-ui/react-alert-dialog, @radix-ui/react-aspect-ratio, @radix-ui/react-avatar, @radix-ui/react-checkbox, @radix-ui/react-collapsible, @radix-ui/react-context-menu, @radix-ui/react-dialog, @radix-ui/react-dropdown-menu, @radix-ui/react-hover-card, @radix-ui/react-menubar, @radix-ui/react-navigation-menu, @radix-ui/react-popover, @radix-ui/react-progress, @radix-ui/react-radio-group, @radix-ui/react-scroll-area, @radix-ui/react-select, @radix-ui/react-separator, @radix-ui/react-slider, @radix-ui/react-slot, @radix-ui/react-switch, @radix-ui/react-tabs, @radix-ui/react-toast, @radix-ui/react-toggle, @radix-ui/react-toggle-group, @radix-ui/react-tooltip, cmdk, date-fns, embla-carousel-react, geist, input-otp, next-themes, openai, react-day-picker, react-hook-form, react-resizable-panels, recharts, sonner, tailwindcss-animate, vaul
+Unused devDependencies (1)
+package.json: @secretlint/secretlint-rule-preset-recommend, @testing-library/user-event, depcheck, dotenv, eslint-config-prettier, eslint-plugin-prettier, lighthouse, start-server-and-test, ts-prune, tw-animate-css, wait-on
+Unlisted dependencies (3)
+postcss.config.mjs: postcss-load-config
+scripts/lh-run.cjs: playwright
+vitest.config.ts: jsdom
+Unlisted binaries (1)
+package.json: supabase, scripts/audit.sh, lsof
+Unresolved imports (1)
+.eslintrc.json: eslint-import-resolver-typescript
+Unused exports (4)
+features/clients/components/CaseStudyDetailContent.tsx: SocialLinkButton
+features/clients/lib/auth.ts: encrypt, decrypt, verifySession, deleteSession, updateSession
+lib/supabaseAdmin.ts: supabase
+lib/utils.ts: createMetadata
+Unused exported types (3)
+features/clients/lib/auth.ts: SessionPayload
+features/clients/lib/client-access.ts: ClientAccessProfile
+features/contact/lib/contact-schema.ts: ContactFormData

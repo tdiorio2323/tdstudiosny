@@ -1,0 +1,73 @@
+middleware.ts:3 - middleware
+middleware.ts:8 - config
+vitest.config.ts:4 - default
+app/error.tsx:4 - default
+app/layout.tsx:30 - default
+app/layout.tsx:23 - viewport
+app/not-found.tsx:3 - default
+app/page.tsx:8 - default
+app/robots.ts:3 - default
+app/sitemap.ts:4 - default
+lib/supabaseAdmin.ts:19 - supabase
+lib/utils.ts:15 - createMetadata
+.next/types/routes.d.ts:41 - ParamsOf
+.next/types/routes.d.ts:53 - PageRoutes (used in module)
+.next/types/routes.d.ts:53 - RedirectRoutes (used in module)
+.next/types/routes.d.ts:53 - RewriteRoutes (used in module)
+app/book/page.tsx:27 - default
+app/contact/layout.tsx:10 - default
+app/contact/layout.tsx:3 - metadata
+app/contact/page.tsx:48 - default
+app/design/page.tsx:44 - default
+app/design/page.tsx:9 - metadata
+app/dev/page.tsx:56 - default
+app/dev/page.tsx:9 - metadata
+app/faq/page.tsx:132 - default
+app/faq/page.tsx:8 - metadata
+app/legal/page.tsx:28 - default
+app/legal/page.tsx:7 - metadata
+app/og/route.ts:5 - GET
+app/og/route.ts:3 - runtime
+app/process/page.tsx:115 - default
+app/process/page.tsx:8 - metadata
+app/resources/page.tsx:201 - default
+app/resources/page.tsx:8 - metadata
+app/services/layout.tsx:21 - default
+app/services/layout.tsx:3 - metadata
+app/services/page.tsx:12 - default
+app/social/page.tsx:53 - default
+app/social/page.tsx:9 - metadata
+app/support/layout.tsx:10 - default
+app/support/layout.tsx:3 - metadata
+app/support/page.tsx:3 - default
+app/web/page.tsx:43 - default
+app/web/page.tsx:8 - metadata
+app/work/page.tsx:14 - default
+app/work/page.tsx:5 - metadata
+app/[client]/signin/layout.tsx:9 - generateMetadata
+app/[client]/signin/layout.tsx:37 - default
+app/[client]/signin/page.tsx:23 - default
+app/api/contact/route.ts:19 - POST
+app/api/intake/route.ts:15 - POST
+app/api/intake/route.ts:68 - GET
+app/clients/[client]/layout.tsx:9 - generateMetadata
+app/clients/[client]/layout.tsx:37 - default
+app/clients/[client]/page.tsx:38 - default
+app/resources/premade-designs/page.tsx:28 - default
+app/resources/premade-designs/page.tsx:7 - metadata
+app/work/[slug]/page.tsx:18 - generateStaticParams
+app/work/[slug]/page.tsx:24 - generateMetadata
+app/work/[slug]/page.tsx:41 - default
+features/clients/components/CaseStudyDetailContent.tsx:143 - SocialLinkButton (used in module)
+features/clients/lib/auth.ts:30 - encrypt (used in module)
+features/clients/lib/auth.ts:38 - decrypt (used in module)
+features/clients/lib/auth.ts:68 - verifySession
+features/clients/lib/auth.ts:85 - deleteSession
+features/clients/lib/auth.ts:90 - updateSession
+features/clients/lib/auth.ts:15 - SessionPayload (used in module)
+features/clients/lib/client-access.ts:1 - ClientAccessProfile (used in module)
+features/contact/lib/contact-schema.ts:16 - ContactFormData
+features/layout/providers/ThemeProvider.tsx:6 - ThemeProvider (used in module)
+features/marketing/components/DesignCarousel.tsx:36 - DesignCarousel
+app/api/auth/signin/route.ts:37 - POST
+app/api/chatkit/session/route.ts:4 - POST

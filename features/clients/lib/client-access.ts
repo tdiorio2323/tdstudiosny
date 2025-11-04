@@ -1,4 +1,4 @@
-export interface ClientAccessProfile {
+interface ClientAccessProfile {
   slug: string
   displayName: string
   brandNames: string[]

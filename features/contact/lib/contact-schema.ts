@@ -12,5 +12,3 @@ export const contactSchema = z.object({
   contactType: z.string().optional(),
   website: z.string().optional(),
 })
-
-export type ContactFormData = z.infer<typeof contactSchema>

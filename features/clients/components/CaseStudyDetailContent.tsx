@@ -138,6 +138,3 @@ export function CaseStudyDetailContent({ client, isModal = false }: CaseStudyDet
     </div>
   )
 }
-
-// Exporting the helper component for internal use if needed
-export { SocialLinkButton }

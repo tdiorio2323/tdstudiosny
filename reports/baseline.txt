@@ -1,0 +1,29 @@
+
+> my-v0-project@0.1.0 ci:verify /Users/tylerdiorio/tdstudiosny
+> pnpm lint && pnpm typecheck && pnpm test
+
+
+> my-v0-project@0.1.0 lint /Users/tylerdiorio/tdstudiosny
+> eslint . --max-warnings=0
+
+
+> my-v0-project@0.1.0 typecheck /Users/tylerdiorio/tdstudiosny
+> tsc -p tsconfig.json --noEmit
+
+
+> my-v0-project@0.1.0 test /Users/tylerdiorio/tdstudiosny
+> vitest run
+
+
+ RUN  v3.2.4 /Users/tylerdiorio/tdstudiosny
+
+ ✓ __tests__/contact-route.spec.ts (3 tests) 9ms
+ ✓ __tests__/routes.spec.tsx (1 test) 3ms
+ ✓ __tests__/nav.spec.tsx (1 test) 70ms
+ ✓ __tests__/seo.spec.ts (1 test) 2ms
+
+ Test Files  4 passed (4)
+      Tests  6 passed (6)
+   Start at  02:52:17
+   Duration  2.00s (transform 445ms, setup 580ms, collect 1.24s, tests 85ms, environment 3.14s, prepare 905ms)
+
