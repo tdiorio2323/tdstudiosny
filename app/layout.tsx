@@ -69,7 +69,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </AnalyticsProvider>
-        <Analytics />
+        {process.env.NODE_ENV === "production" && <Analytics />}
 
         {/* Mobile Viewport Height Fix Script */}
         <script
